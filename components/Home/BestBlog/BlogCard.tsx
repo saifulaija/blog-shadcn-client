@@ -1,14 +1,41 @@
+'use client'
+
 import Image from 'next/image'
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import { IBlog } from '@/types/blog'
 import { MyAvatar } from '@/components/shadcn/MyAvatar'
 import { dateFormat, formateDate } from '@/utils/common'
-import { CalendarDays } from 'lucide-react'
+
 import { truncateTitle } from '@/utils/truncateTitle'
 import { Button } from '@/components/ui/button'
+import { useRouter } from 'next/navigation'
+import { getUserInfo } from '@/services/authServices'
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+  } from "@/components/ui/alert-dialog"
 
 const BestBlogCard = ({ blog }: { blog: IBlog }) => {
-    const truncatedTitle = truncateTitle(blog?.title, 50);
+    const user =getUserInfo()
+    const router=useRouter()
+    const truncatedTitle = truncateTitle(blog?.title, 30);
+
+    const handleDetails=()=>{
+
+        router.push(`blogs/details/${blog?.id}`)
+
+    }
+
+    const handleLogin = () => {
+        router.push('/signin')
+      }
 
     return (
         <Card className="w-full max-w-sm">
@@ -39,7 +66,28 @@ const BestBlogCard = ({ blog }: { blog: IBlog }) => {
             <div className='flex-between p-1'>
                 <p> Likes: {blog?.likeCount}</p>
                 <p> Views: {blog?.views}</p>
-                <Button variant='default'>Read More</Button>
+                {/* <Button variant='default'>Read More</Button> */}
+                {
+            user?.userId ? <Button onClick={handleDetails}>Read More</Button> : (
+              <AlertDialog>
+                <AlertDialogTrigger asChild>
+                  <Button>Read More</Button>
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>Are you want to read more?</AlertDialogTitle>
+                    <AlertDialogDescription>
+                      You need to login at first. Would you like to go to the login page?
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogAction onClick={handleLogin}>Continue</AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
+            )
+          }
 
             </div>
 
