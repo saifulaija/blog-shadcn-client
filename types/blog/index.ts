@@ -46,7 +46,7 @@ export type TLoginUser = {
     authorId: string;
     likeCount: number;
     visibility: "PUBLIC" | "PRIVATE";
-    createdAt: string;
+    createdAt: Date;
     updatedAt: string;
     views: number;
     author?: Author;
