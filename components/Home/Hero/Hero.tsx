@@ -3,6 +3,8 @@ import Image from 'next/image';
 import assets from '@/public';
 import { Button } from '@/components/ui/button';
 import { APP_NAME } from '@/lib/constants';
+import Link from 'next/link';
+import { Navigation2 } from 'lucide-react';
 
 
 const Hero = () => {
@@ -21,7 +23,13 @@ const Hero = () => {
           <div className=" text-center md:text-left">
             <h1 className="text-5xl font-bold mb-4">Welcome to Our {APP_NAME}</h1>
             <p className="text-xl mb-6">Discover the latest articles, news, and insights from our community.</p>
-           <Button>Explore More</Button>
+            <Button asChild>
+          <Link href='/signin'>
+          <Navigation2 />
+            Explore More
+          </Link>
+
+        </Button>
           </div>
         </div>
       </div>
