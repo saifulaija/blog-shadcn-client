@@ -27,7 +27,7 @@ const BestBlogCard = ({ blog }: { blog: IBlog }) => {
 
             </CardHeader>
             <div className='flex-between p-1'>
-                <div className="flex items-center">
+                <div className="flex-center gap-2">
                     <MyAvatar url={blog?.author?.profilePhoto || '/photo'} alt={blog?.author?.name || 'author'} />
                     <p>{blog?.author?.name}</p>
                 </div>
@@ -39,7 +39,7 @@ const BestBlogCard = ({ blog }: { blog: IBlog }) => {
             <div className='flex-between p-1'>
                 <p> Likes: {blog?.likeCount}</p>
                 <p> Views: {blog?.views}</p>
-                <Button variant='outline'>Read More</Button>
+                <Button variant='default'>Read More</Button>
 
             </div>
 
