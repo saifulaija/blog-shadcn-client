@@ -9,6 +9,7 @@ import { FieldValues, useForm } from "react-hook-form";
 import {
     useCreateCommentMutation,
     useDeleteCommentMutation,
+    useGetSingleCommentQuery,
 } from "@/redux/features/comment/commentApi";
 
 
@@ -16,12 +17,17 @@ import { getUserInfo } from "@/services/authServices";
 import { comment } from "postcss";
 import { MyAvatar } from "@/components/shadcn/MyAvatar";
 import { Button } from "@/components/ui/button";
-import { Delete, Edit, Loader2, Send, SendToBackIcon, X } from "lucide-react";
-import { Separator } from "@/components/ui/separator";
+import {  Loader, Send, } from "lucide-react";
+
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
+
+
+import MyDialog from "@/components/shadcn/MyDialog";
+import CommentUpdateForm from "@/components/Form/CommentUpdateForm";
+
 const formSchema = z.object({
     content: z.string()
 
@@ -47,6 +53,10 @@ const ShowComments = ({
     const [createComment, { isLoading }] = useCreateCommentMutation();
     const [deleteComment] = useDeleteCommentMutation();
     const user = getUserInfo();
+    const { data, isLoading: update } = useGetSingleCommentQuery(commentId);
+    console.log('comment data', commentId)
+
+
 
     const myCommentData = comments.filter(
         (item) => item.comment.id === user.userId
@@ -87,10 +97,11 @@ const ShowComments = ({
                             key={comment.id}
                             className={`p-2 rounded ${comment.comment.id === user?.userId ? 'bg-background/50' : 'bg-background'}`}
                         >
-                            <div className=" flex flex-col border border-gray-300 rounded-2xl p-2 w-[500px]">
-                                {/* Display user avatar and name */}
+                            <div className=" flex flex-col border border-gray-300 rounded-2xl p-2 w-[400px]">
+
                                 <div className="flex justify-start items-center gap-2">
-                                    <MyAvatar src={comment?.comment?.profilePhoto} alt="user" />
+                                    {/* <Image src={}/> */}
+                                    <MyAvatar url={comment?.comment?.profilePhoto} alt="user" />
                                     <p>
                                         {comment?.comment?.name || comment?.comment?.email}
                                     </p>
@@ -105,21 +116,21 @@ const ShowComments = ({
                                     </p>
 
                                     {comment?.comment?.id === user?.userId && (
-                                        <div className="flex justify-end gap-0">
-                                            <Button
-                                                variant='link'
-                                                onClick={() => handleEditComment(comment.id)}
-                                                aria-label="edit"
+                                        <div className="flex justify-end gap-2">
+
+                                            <MyDialog triggerButton={<Button onClick={() => handleEditComment(comment.id)} variant='outline' >Edit</Button>}
                                             >
-                                                <Edit />
-                                            </Button>
+                                                <CommentUpdateForm data={data} />
+                                            </MyDialog>
+
+
                                             <Button
 
-                                                variant='link'
+                                                variant='outline'
                                                 onClick={() => handleDeleteComment(comment.id)}
                                                 aria-label="delete"
                                             >
-                                                <X />
+                                                Delete
                                             </Button>
                                         </div>
                                     )}
@@ -143,7 +154,7 @@ const ShowComments = ({
                                                         placeholder="Enter your comment"
                                                         required={true}
                                                         {...field}
-                                                        className="w-[500px]"
+                                                        className="w-[400px]"
                                                     />
                                                 </FormControl>
                                                 <FormMessage />
@@ -152,7 +163,7 @@ const ShowComments = ({
                                     />
                                     <Button type="submit" variant="link">
                                         {isLoading ? (
-                                            <Loader2 className="h-5 w-5 animate-spin" />
+                                            <Loader className="h-5 w-5 animate-spin" />
                                         ) : (
                                             <Send className="w-5 h-5 -ml-20 mt-2" />
                                         )}
@@ -166,11 +177,7 @@ const ShowComments = ({
             ) : (
                 ""
             )}
-            {/* <CommentModal
-                open={isModalOpen}
-                setOpen={setIsModalOpen}
-                commentId={commentId}
-            /> */}
+
         </div>
     );
 };

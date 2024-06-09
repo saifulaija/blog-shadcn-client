@@ -25,7 +25,7 @@ import { useState } from "react";
 
 import { useToast } from "../ui/use-toast";
 import { useRouter } from "next/navigation";
-import { Loader2 } from "lucide-react";
+import { Loader } from "lucide-react";
 import { signInUser } from "@/services/actions/signInUser";
 import { storeUserInfo } from "@/services/authServices";
 
@@ -122,8 +122,8 @@ const SignInForm = () => {
           />
           <Link href='/forgot-password'><p className="text-sm font-semibold mt-4 hover:underline text-end">Forgot password ?</p></Link>
           <Button type="submit" disabled={loading} className="w-full">
-            Login
-            {loading && <Loader2 className="ml-6 h-5 w-5 animate-spin" />}
+            {loading && <Loader className="animate-spin mr-2" />}
+            Signin
           </Button>
 
           <div className="text-balance flex justify-center items-center gap-1 text-center">
