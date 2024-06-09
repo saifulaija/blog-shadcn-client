@@ -23,7 +23,7 @@ const Hero = () => {
           <div className=" text-center md:text-left">
             <h1 className="text-2xl md:text-5xl text-muted font-semibold mb-4">Welcome to Our {APP_NAME}</h1>
             <p className="text-xl mb-6 text-muted-foreground">Discover the latest articles, news, and insights from our community.</p>
-            <Button asChild>
+            <Button asChild className='animate-in zoom-in duration-500'>
           <Link href='/signin'>
           <Navigation2 />
             Explore More

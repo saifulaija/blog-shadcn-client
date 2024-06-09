@@ -65,8 +65,8 @@ const BlogDetailsCard = ({ blogId }: { blogId: string }) => {
 
     return (
         <div className="w-full p-10">
-            <div className="wrapper">
-                <Card className="flex flex-col md:flex-row md:justify-between gap-2 p-10 space-y-8 md:space-y-0">
+            <div className="wrapper border">
+                <div className="flex flex-col md:flex-row md:justify-between gap-2 p-10 space-y-8 md:space-y-0">
                     <div className="md:w-1/3 space-y-4">
                         <AuthorInformation blog={blog} />
                     </div>
@@ -98,38 +98,42 @@ const BlogDetailsCard = ({ blogId }: { blogId: string }) => {
                             <p className="text-xl font-semibold">Conclusion:</p>
                             <p className="text-sm text-muted-foreground/90 font-medium capitalize">{blog?.conclusion}</p>
                         </div>
-                        <div className="relative">
-                            <div className="flex gap-3 items-center">
-                                <Button
-                                    variant='link'
-                                    asChild
-                                    onClick={() => handleCreateLike(blog?.id)}
-                                    className={`cursor-pointer ${isLiked ? 'text-blue-500' : ''}`}
-                                >
-                                    <div className="flex items-center justify-center">
-                                        <ThumbsUp className="mr-1" />
-                                        <span>{blog?.likeCount}</span>
-                                    </div>
-                                </Button>
-                                <Collapsible
-                                    open={isOpen}
-                                    onOpenChange={setIsOpen}
-                                    className="relative"
-                                >
-                                    <CollapsibleTrigger asChild>
-                                        <Button variant="ghost" size="sm" className="w-9 p-0">
-                                            <MessageCircleMore />
-                                            <span className="sr-only">Toggle</span>
-                                        </Button>
-                                    </CollapsibleTrigger>
-                                    <CollapsibleContent className="absolute top-full mt-4 w-full">
-                                        <ShowComments authorId={authorId} comments={comments} newId={newId} />
-                                    </CollapsibleContent>
-                                </Collapsible>
-                            </div>
-                        </div>
                     </div>
-                </Card>
+                </div>
+                <div>
+                    <div  className="flex">
+                        <Button
+                            variant='link'
+                            asChild
+                            onClick={() => handleCreateLike(blog?.id)}
+                            className={`cursor-pointer ${isLiked ? 'text-blue-500' : ''}`}
+                        >
+                            <div className="flex items-center justify-center">
+                                <ThumbsUp className="mr-1" />
+                                <span>{blog?.likeCount}</span>
+                            </div>
+                        </Button>
+                      <div>
+                            <Collapsible
+                                open={isOpen}
+                                onOpenChange={setIsOpen}
+    
+                            >
+                                <CollapsibleTrigger asChild>
+                                    <Button variant="ghost" size="sm">
+                                        <MessageCircleMore />
+                                        <span className="sr-only">Toggle</span>
+                                    </Button>
+                                </CollapsibleTrigger>
+    
+                                <CollapsibleContent className="w-full">
+                                    <ShowComments authorId={authorId} comments={comments} newId={newId} />
+                                </CollapsibleContent>
+    
+                            </Collapsible>
+                      </div>
+                    </div>
+                </div>
             </div>
         </div>
     );
