@@ -97,7 +97,7 @@ const BlogDetailsCard = ({ blogId }: { blogId: string }) => {
                         </div>
                         <div>
                             <p className="text-xl font-semibold">Conclusion:</p>
-                            <p className="text-sm text-muted-foreground/90 font-medium capitalize">{blog?.conclusion}</p>
+                            <p className="text-sm text-muted-foreground/90 font-medium capitalize"> {ReactHtmlParser(blog?.conclusion)}</p>
                         </div>
                     </div>
                 </div>
