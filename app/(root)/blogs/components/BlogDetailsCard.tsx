@@ -13,7 +13,7 @@ import Image from "next/image";
 import ReactHtmlParser from "html-react-parser";
 import { useState } from "react";
 import AuthorInformation from "./AuthorInformation";
-import CustomLoader from "@/components/shared/CustomLoader/CustomLoader";
+
 import { MessageCircleMore, ThumbsUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CommentsCard } from "./Comments";
@@ -23,6 +23,7 @@ import {
     CollapsibleTrigger,
 } from "@/components/ui/collapsible"
 import ShowComments from "./ShowComments";
+import BlogDetailsSkeleton from "./BlogDetailsSkeleton";
 
 
 type TParams = {
@@ -33,7 +34,7 @@ type TParams = {
 
 const BlogDetailsCard = ({ blogId }: { blogId: string }) => {
     const [isOpen, setIsOpen] = useState(false)
-    // const { blogId } = params;
+ 
     const user = getUserInfo();
 
     const { data: comments } = useGetAllCommentsQuery(blogId);
@@ -60,12 +61,12 @@ const BlogDetailsCard = ({ blogId }: { blogId: string }) => {
     };
 
     if (isLoading) {
-        return <CustomLoader />
+        return <BlogDetailsSkeleton/>
     }
 
     return (
         <div className="w-full p-10">
-            <div className="wrapper border">
+            <div className="wrapper border rounded-md">
                 <div className="flex flex-col md:flex-row md:justify-between gap-2 p-10 space-y-8 md:space-y-0">
                     <div className="md:w-1/3 space-y-4">
                         <AuthorInformation blog={blog} />

@@ -45,7 +45,7 @@ const Header = () => {
   const router = useRouter();
   const handleLogout = () => {
     logoutUser(router);
-    toast({ title: "Logout", description: "User logged out successfully" });
+    toast({ variant:'destructive', title: "Logout", description: "User logged out successfully" });
   };
 
   return (
@@ -85,7 +85,7 @@ const Header = () => {
                         key={menuItem.label}
                         className={`link ${
                           pathname === menuItem.path
-                            ? "border-b-2 space-x-2 w-[60px] border-primary"
+                            ? "bg-muted text-primary  rounded-sm px-3 py-2 transition-all"
                             : ""
                         } text-foreground`}
                       >
@@ -124,7 +124,7 @@ const Header = () => {
                   href={menuItem.path}
                   key={menuItem.label}
                   className={`group inline-flex h-9 w-max items-center rounded-md px-4 py-2 text-sm font-medium ${
-                    pathname === menuItem.path ? "border-b-2 border-primary" : ""
+                    pathname === menuItem.path ? "bg-muted text-primary  rounded-sm px-3 py-2 transition-all" : ""
                   } text-foreground`}
                 >
                   {menuItem.label}
@@ -159,3 +159,5 @@ const Header = () => {
 };
 
 export default Header;
+
+
