@@ -42,15 +42,21 @@ export type TLoginUser = {
     title: string;
     content: string;
     category: string;
+    conclusion:string;
     image?: string;
-    authorId: string;
-    likeCount: number;
-    visibility: "PUBLIC" | "PRIVATE";
+    authorId?: string;
+    likeCount?: number;
+    visibility?: "PUBLIC" | "PRIVATE";
     createdAt: Date;
-    updatedAt: string;
-    views: number;
+    updatedAt?: string;
+    views?: number;
     author?: Author;
     comment?:TComment[]
+  }
+
+
+  export interface IBlogUpdateProps{
+    data: IBlog | null
   }
 
 
