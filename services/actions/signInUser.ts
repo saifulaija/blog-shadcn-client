@@ -25,9 +25,10 @@ export const signInUser = async (data: FieldValues) => {
   const userData = jwtDecode(userInfo?.data?.accessToken) as any;
   const needPasswordChanged = userInfo?.data?.passwordChangeRequired;
   const role = userData?.role;
+   const lowerCaseRole=role.toLowerCase()
   if (userInfo?.data?.accessToken) {
     setAccessToken(userInfo?.data?.accessToken, {
-      redirect: "/dashboard",
+      redirect: `/dashboard/${lowerCaseRole}`,
       needPasswordChanged,
       role,
     });

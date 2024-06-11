@@ -32,6 +32,8 @@ const AuthDropdown = () => {
   };
 
 
+  const role= user?.role.toLowerCase()
+
   return (
     <>
       {user && user.id ? (
@@ -48,7 +50,7 @@ const AuthDropdown = () => {
                <p>{user?.email}</p>
                
               </DropdownMenuItem>
-            <Link href={`/dashboard/${user.role}/profile`}>
+            <Link href={`/dashboard/${role}/profile`}>
               <DropdownMenuItem className="flex items-center gap-3 cursor-pointer text-muted-foreground">
                 <Settings/>
                 <p>Setting</p>

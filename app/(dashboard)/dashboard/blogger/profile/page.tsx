@@ -32,6 +32,8 @@ import MyDialog from "@/components/shadcn/MyDialog";
 import BloggerProfileInformation from "./components/BloggerProfileInformation";
 import BloggerProfileUpdateForm from "@/components/Form/BloggerProfileUpdateForm";
 import { Author } from "next/dist/lib/metadata/types/metadata-types";
+import ChangePassword from "@/components/PasswordChange/PasswordChange";
+
 
 
 const formSchema = z.object({
@@ -162,7 +164,7 @@ const ProfilePage = () => {
 
          <div className="md:max-w-[60%] w-full"> <BloggerProfileInformation data={userData} /></div>
         </div>
-    
+    <ChangePassword/>
     </article>
   );
 };
