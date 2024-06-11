@@ -89,7 +89,7 @@ const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
         <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
             <div className="w-full space-y-4 px-10 py-6">
-                <div className="grid grid-cols-2  gap-4 justify-center items-center">
+                <div className="grid grid-cols-1  gap-4 justify-center items-center">
                     <FormField
                         control={form.control}
                         name="title"
