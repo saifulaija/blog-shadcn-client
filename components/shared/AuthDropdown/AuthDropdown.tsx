@@ -10,6 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useToast } from "@/components/ui/use-toast";
+import { useGetMYProfileQuery } from "@/redux/features/myProfile/myProfileApi";
 
 import { logoutUser } from "@/services/actions/logoutUser";
 import { getUserInfo } from "@/services/authServices";
@@ -21,7 +22,7 @@ import { useRouter } from "next/navigation";
 
 const AuthDropdown = () => {
   const { toast } = useToast();
-  const user = getUserInfo();
+  const { data:user, isLoading,error } = useGetMYProfileQuery({});
 
 
   const router = useRouter();
@@ -29,11 +30,11 @@ const AuthDropdown = () => {
     logoutUser(router);
     toast({ title: "Logout", description: "User logged out successfully" });
   };
-  console.log(user)
+
 
   return (
     <>
-      {user && user.userId ? (
+      {user && user.id ? (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="secondary" size="icon" className="rounded-full">

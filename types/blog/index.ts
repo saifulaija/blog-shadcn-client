@@ -42,22 +42,23 @@ export type TLoginUser = {
     title: string;
     content: string;
     category: string;
-    conclusion:string;
-    image?: string;
+    conclusion: string;
+    image: string; // Make image property mandatory
     authorId?: string;
+    publishedStatus: "PENDING" | "APPROVED" | "CANCEL";
     likeCount?: number;
     visibility?: "PUBLIC" | "PRIVATE";
     createdAt: Date;
     updatedAt?: string;
     views?: number;
     author?: Author;
-    comment?:TComment[]
+    comment?: TComment[];
   }
-
-
-  export interface IBlogUpdateProps{
-    data: IBlog | null
+  
+  export interface IBlogUpdateProps {
+    data: IBlog | null;
   }
+  
 
 
 
