@@ -12,18 +12,20 @@ import { TBlogResponse } from "@/types/blog";
 import Image from "next/image";
 import ReactHtmlParser from "html-react-parser";
 import { useState } from "react";
-import AuthorInformation from "./AuthorInformation";
+
 
 import { MessageCircleMore, ThumbsUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { CommentsCard } from "./Comments";
+
 import {
     Collapsible,
     CollapsibleContent,
     CollapsibleTrigger,
 } from "@/components/ui/collapsible"
-import ShowComments from "./ShowComments";
-import BlogDetailsSkeleton from "./BlogDetailsSkeleton";
+import BlogDetailsSkeleton from "@/app/(root)/blogs/components/BlogDetailsSkeleton";
+import AuthorInformation from "@/app/(root)/blogs/components/AuthorInformation";
+
+
 
 
 type TParams = {
@@ -107,7 +109,7 @@ const BlogDetailsCard = ({ blogId }: { blogId: string }) => {
                     </div>
                 </div>
                 <div>
-                    <div  className="flex">
+                    {/* <div  className="flex">
                         <Button
                             variant='link'
                             asChild
@@ -138,7 +140,7 @@ const BlogDetailsCard = ({ blogId }: { blogId: string }) => {
     
                             </Collapsible>
                       </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>

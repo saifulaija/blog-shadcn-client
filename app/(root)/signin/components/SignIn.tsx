@@ -22,7 +22,7 @@ const SignIn = () => {
         exit={{ opacity: 0 }}
         transition={{ duration: 0.5, ease: "easeInOut" }}
       >
-        <div className="flex flex-col md:flex-row items-center justify-center gap-8 border-[.25px] border-primary/40 p-4 rounded-lg ">
+        <div className="flex flex-col md:flex-row items-center justify-center gap-8 border p-4 rounded-lg ">
           <motion.div
             className="flex-shrink-0 hidden md:block"
             initial={{ opacity: 0, y: -20 }}

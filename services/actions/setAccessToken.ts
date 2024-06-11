@@ -15,8 +15,10 @@ if(options && options?.role ==="SUBSCRIBER"){
     redirect('/')
 }
 
+const lowercaseRole=options?.role.toLowerCase()
+
 if(options && options?. needPasswordChanged){
-    redirect('/dashboard/change-password')
+    redirect(`/dashboard/${lowercaseRole}`)
 }
 if(options && !options?. needPasswordChanged && options?.redirect){
 

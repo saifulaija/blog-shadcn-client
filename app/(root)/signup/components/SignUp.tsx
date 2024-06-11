@@ -22,7 +22,7 @@ const SignUp = () => {
         exit={{ opacity: 0 }}
         transition={{ duration: 0.5, ease: "easeInOut" }}
       >
-        <div className="max-w-3xl w-full space-y-4 rounded-lg border-[.25px] border-primary/40 py-4">
+        <div className="max-w-3xl w-full space-y-4 rounded-lg  border py-4">
           <motion.div
             className="text-center"
             initial={{ opacity: 0, y: -20 }}

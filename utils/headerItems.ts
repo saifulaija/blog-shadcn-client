@@ -4,10 +4,10 @@ import { IHeaderItem, UserRole } from "@/types";
 
 export const headerItems =(role: UserRole): IHeaderItem[] => {
   const roleMenus: IHeaderItem[] = [];
-  const defaultMenus = [
-    { title: "Profile", path: `${role}/profile` },
-    { title: "Change Password", path: `change-password` },
-  ];
+  // const defaultMenus = [
+  //   { title: "Profile", path: `${role}/profile` },
+  //   // { title: "Change Password", path: `change-password` },
+  // ];
 
   switch (role) {
     case USER_ROLE.SUPER_ADMIN:
@@ -45,5 +45,5 @@ export const headerItems =(role: UserRole): IHeaderItem[] => {
       break;
   }
 
-  return [...roleMenus, ...defaultMenus];
+  return [...roleMenus];
 };

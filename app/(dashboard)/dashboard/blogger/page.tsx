@@ -1,5 +1,6 @@
 'use client'
 
+import AreaChart from '@/components/shared/AreaChart/AreaChart';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { useGetMetaQuery } from '@/redux/api/metaDataApi';
 import { CheckCheck, CircleEllipsis, DollarSign, NotebookPen, Users, View } from 'lucide-react'
@@ -69,7 +70,7 @@ const BloggerDashboardPage = () => {
           </Card>
         </div>
 
-
+<AreaChart/>
     </div>
   )
 }
