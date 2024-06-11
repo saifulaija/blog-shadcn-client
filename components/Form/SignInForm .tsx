@@ -128,9 +128,11 @@ const SignInForm = () => {
 
           <div className="text-balance flex justify-center items-center gap-1 text-center">
            <span>New user?</span>
-            <Link href="/signup" className="text-primary hover:underline">
+            {/* <Link href="/signup" className="text-primary hover:underline">
               Register Here
-            </Link>
+            </Link> */}
+            <span  className="text-primary">
+          Go Sign Up</span>
           </div>
         </div>
       </form>

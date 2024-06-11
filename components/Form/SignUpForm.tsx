@@ -194,9 +194,8 @@ const SignUpForm = () => {
 
                     <div className="text-balance flex justify-center items-center gap-1 text-center">
                         <span>Old user?</span>
-                        <Link href="/signin" className="text-primary hover:underline">
-                            Login Here
-                        </Link>
+                        <span  className="text-primary">
+          Go Sign In</span>
                     </div>
                 </div>
             </form>

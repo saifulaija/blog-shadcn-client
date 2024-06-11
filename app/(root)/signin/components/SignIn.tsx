@@ -30,7 +30,7 @@ const SignIn = () => {
             transition={{ duration: 0.6, ease: "easeInOut" }}
           >
             <Image
-              src={assets.images.register}
+              src={assets.images.login}
               width={200}
               height={200}
               alt="Login Illustration"
