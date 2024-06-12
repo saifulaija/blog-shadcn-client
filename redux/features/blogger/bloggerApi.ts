@@ -6,6 +6,7 @@ import { IAuthor } from "@/types/author";
 
 
 
+
 export const authorApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
    
@@ -16,19 +17,27 @@ export const authorApi = baseApi.injectEndpoints({
         method: "GET",
         params: arg,
       }),
-      // transformResponse: (response: IAuthor[], meta: IMeta) => {
-      //   return {
-      //     aut: response,
-      //     meta,
-      //   };
-      // },
+      transformResponse: (response: IAuthor[], meta: IMeta) => {
+        return {
+          authors: response,
+          meta,
+        };
+      },
       providesTags: [tagTypes.blogger],
     }),
 
     deleteAuthor: build.mutation({
       query: (id) => ({
-        url: `/Author/soft/${id}`,
+        url: `/author/soft/${id}`,
         method: "DELETE",
+      }),
+      invalidatesTags: [tagTypes.blogger],
+    }),
+    createAuthor: build.mutation({
+      query: (data) => ({
+        url:'/user/create-author',
+        method: "POST",
+        data
       }),
       invalidatesTags: [tagTypes.blogger],
     }),
@@ -43,7 +52,7 @@ export const authorApi = baseApi.injectEndpoints({
     // update a Author
     updateAuthor: build.mutation({
       query: (data) => ({
-        url: `/Author/${data.id}`,
+        url: `/author/${data.id}`,
         method: "PATCH",
         data: data.body,
       }),
@@ -58,4 +67,5 @@ export const {
   useDeleteAuthorMutation,
 useGetSingleAuthorQuery,
   useUpdateAuthorMutation,
+  useCreateAuthorMutation
 } = authorApi;

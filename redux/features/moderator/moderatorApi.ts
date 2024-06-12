@@ -13,12 +13,12 @@ export const moderatorApi = baseApi.injectEndpoints({
         method: "GET",
         params: arg,
       }),
-      transformResponse: (response: TModerator[], meta: IMeta) => {
-        return {
-          Moderators: response,
-          meta,
-        };
-      },
+      // transformResponse: (response: TModerator[], meta: IMeta) => {
+      //   return {
+      //     Moderators: response,
+      //     meta,
+      //   };
+      // },
       providesTags: [tagTypes.moderator],
     }),
 

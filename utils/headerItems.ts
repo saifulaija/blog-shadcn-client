@@ -22,7 +22,6 @@ export const headerItems =(role: UserRole): IHeaderItem[] => {
     case USER_ROLE.ADMIN:
       roleMenus.push(
         { title: "Dashboard", path: `${role}` },
-        { title: "Admins", path: `${role}/admins` },
         { title: "Bloggers", path: `${role}/bloggers` },
         { title: "Moderator", path: `${role}/moderators` },
         { title: "Blogs", path: `${role}/blogs` }

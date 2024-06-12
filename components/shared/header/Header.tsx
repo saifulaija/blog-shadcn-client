@@ -50,7 +50,7 @@ const Header = () => {
 
   return (
     <div
-      className={`fixed top-0 left-0 right-0 z-50 transition-shadow duration-300 h-16 ${scrolled ? "shadow-md border-b bg-background/90 backdrop-blur-lg" : "bg-background/70 border-b"
+      className={`fixed top-0 left-0 right-0 z-50 transition-shadow duration-300 flex justify-center items-center h-16 ${scrolled ? "shadow-md border-b bg-background/90 backdrop-blur-lg" : "bg-background/70 border-b"
         }`}
     >
       <div className="container mx-auto">

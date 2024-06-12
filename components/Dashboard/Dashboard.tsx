@@ -114,6 +114,7 @@ import AuthDropdown from '../shared/AuthDropdown/AuthDropdown';
 import Image from 'next/image';
 import assets from '@/public';
 import { APP_NAME } from '@/lib/constants';
+import { ModeToggle } from '../shared/header/ModeToggle';
 
 export function Dashboard({ children }: { children: React.ReactNode }) {
   const [userRole, setUserRole] = useState("");
@@ -186,6 +187,7 @@ export function Dashboard({ children }: { children: React.ReactNode }) {
           </Link>
         </div>
         <div className="flex items-center gap-2">
+          <ModeToggle/>
           <Bell size={24} className="ml-auto" />
           <AuthDropdown />
         </div>

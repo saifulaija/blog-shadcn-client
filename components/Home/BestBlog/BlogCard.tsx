@@ -38,7 +38,7 @@ const BestBlogCard = ({ blog }: { blog: IBlog }) => {
       }
 
     return (
-        <Card className="w-full max-w-sm">
+        <Card className="w-full max-w-sm outline-0 focus:ring-2 hover:ring-2 ring-primary transition duration-300 rounded-lg">
             <CardHeader className="p-0 items-center">
                 <div className="relative w-full" style={{ height: '200px' }}>
                     <Image
@@ -47,11 +47,9 @@ const BestBlogCard = ({ blog }: { blog: IBlog }) => {
                         layout="fill"
                         objectFit="cover"
                         quality={100}
-                        className="rounded"
+                         className="rounded-sm"
                     />
                 </div>
-
-
             </CardHeader>
             <div className='flex-between p-1'>
                 <div className="flex-center gap-2">
