@@ -36,15 +36,17 @@ export const moderatorColumn: ColumnDef<TAuthor>[] = [
     cell: ({ row }) => {
       const image = row.original.profilePhoto;
     
-      return (
-        <Image
-          src={image || '/http'}
-          width={70}
-          height={70}
-          alt="flat image"
-          className="self-center rounded-md"
-        />
-      );
+     return(
+      <div className="flex justify-center items-center w-[50px] h-[40px]">
+      <Image
+        src={image || '/http'}
+        width={70}
+        height={70}
+        alt="flat image"
+        className="rounded-md object-cover"
+      />
+    </div>
+     )
     },
   },
  
