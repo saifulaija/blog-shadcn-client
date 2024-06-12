@@ -146,6 +146,7 @@ const Header = () => {
                 <Link href="/signin" className="flex items-center gap-2">
                   Sign In
                   <ChevronRight className="transition-transform duration-300 ease-in-out transform group-hover:translate-x-1" />
+                  
                 </Link>
               </Button>
 

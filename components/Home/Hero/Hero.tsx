@@ -4,7 +4,7 @@ import assets from '@/public';
 import { Button } from '@/components/ui/button';
 import { APP_NAME } from '@/lib/constants';
 import Link from 'next/link';
-import { Navigation2 } from 'lucide-react';
+import {SendHorizonal } from 'lucide-react';
 
 
 const Hero = () => {
@@ -23,13 +23,13 @@ const Hero = () => {
           <div className=" text-center md:text-left">
             <h1 className="text-2xl md:text-5xl text-muted font-semibold mb-4">Welcome to Our {APP_NAME}</h1>
             <p className="text-xl mb-6 text-muted-foreground">Discover the latest articles, news, and insights from our community.</p>
-            <Button asChild className='animate-in zoom-in duration-500'>
-          <Link href='/signin'>
-          <Navigation2 />
-            Explore More
-          </Link>
+            <Button asChild className="group animate-in zoom-in duration-500">
+              <Link href="/all_blogs" className="flex items-center gap-2">
+                Explore More
+                <SendHorizonal className="transition-transform duration-300 ease-in-out transform group-hover:translate-x-1" />
 
-        </Button>
+              </Link>
+            </Button>
           </div>
         </div>
       </div>

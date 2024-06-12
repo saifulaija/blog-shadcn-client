@@ -180,8 +180,8 @@ const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
                 </div>
                 <div className="mt-6">
                     <Button type="submit" disabled={update} className="w-full">
+                        Update Now
                         {update && <Loader className="ml-6 h-5 w-5 animate-spin" />}
-                        Add Now
                     </Button>
                 </div>
             </div>
