@@ -1,8 +1,5 @@
 
 'use client'
-
-import { Card } from "@/components/ui/card";
-
 import { useGetSingleBlogQuery } from "@/redux/features/blog/blogApi";
 import { useGetAllCommentsQuery } from "@/redux/features/comment/commentApi";
 import { useCreateLikeMutation } from "@/redux/features/like/likeApi";
@@ -12,31 +9,16 @@ import { TBlogResponse } from "@/types/blog";
 import Image from "next/image";
 import ReactHtmlParser from "html-react-parser";
 import { useState } from "react";
-
-
-import { MessageCircleMore, ThumbsUp } from "lucide-react";
-import { Button } from "@/components/ui/button";
-
-import {
-    Collapsible,
-    CollapsibleContent,
-    CollapsibleTrigger,
-} from "@/components/ui/collapsible"
 import BlogDetailsSkeleton from "@/app/(root)/blogs/components/BlogDetailsSkeleton";
 import AuthorInformation from "@/app/(root)/blogs/components/AuthorInformation";
-
-
-
-
 type TParams = {
     params: {
         blogId: string;
     }
 };
-
 const BlogDetailsCard = ({ blogId }: { blogId: string }) => {
     const [isOpen, setIsOpen] = useState(false)
- 
+
     const user = getUserInfo();
 
     const { data: comments } = useGetAllCommentsQuery(blogId);
@@ -63,7 +45,7 @@ const BlogDetailsCard = ({ blogId }: { blogId: string }) => {
     };
 
     if (isLoading) {
-        return <BlogDetailsSkeleton/>
+        return <BlogDetailsSkeleton />
     }
 
     return (
@@ -93,54 +75,22 @@ const BlogDetailsCard = ({ blogId }: { blogId: string }) => {
                         </div>
                         <div>
                             <p className="text-xl font-semibold">Description:</p>
-                            <div className="text-sm text-muted-foreground/90 font-medium capitalize">
-                                {/* {ReactHtmlParser(blog?.content)} */}
+                            <div className="text-sm text-muted-foreground/90 font-medium">
+                             
                                 {blog?.content ? ReactHtmlParser(blog.content) : "No description available"}
                             </div>
                         </div>
                         <div>
                             <p className="text-xl font-semibold">Conclusion:</p>
-                            <p className="text-sm text-muted-foreground/90 font-medium capitalize"> 
-
-                            {blog?.conclusion ? ReactHtmlParser(blog.conclusion) : "No conclusion available"}
-                            
-                            </p>
+                            <div className="text-sm text-muted-foreground/90 font-medium">
+                                {blog?.conclusion ? ReactHtmlParser(blog.conclusion) : "No description available"}
+                            </div>
                         </div>
+                        
                     </div>
                 </div>
                 <div>
-                    {/* <div  className="flex">
-                        <Button
-                            variant='link'
-                            asChild
-                            onClick={() => handleCreateLike(blog?.id)}
-                            className={`cursor-pointer ${isLiked ? 'text-blue-500' : ''}`}
-                        >
-                            <div className="flex items-center justify-center">
-                                <ThumbsUp className="mr-1" />
-                                <span>{blog?.likeCount}</span>
-                            </div>
-                        </Button>
-                      <div>
-                            <Collapsible
-                                open={isOpen}
-                                onOpenChange={setIsOpen}
-    
-                            >
-                                <CollapsibleTrigger asChild>
-                                    <Button variant="ghost" size="sm">
-                                        <MessageCircleMore />
-                                        <span className="sr-only">Toggle</span>
-                                    </Button>
-                                </CollapsibleTrigger>
-    
-                                <CollapsibleContent className="w-full">
-                                    <ShowComments authorId={authorId} comments={comments} newId={newId} />
-                                </CollapsibleContent>
-    
-                            </Collapsible>
-                      </div>
-                    </div> */}
+
                 </div>
             </div>
         </div>

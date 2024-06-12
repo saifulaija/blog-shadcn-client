@@ -24,10 +24,12 @@ import { useForm } from "react-hook-form";
 import CustomLoader from "@/components/shared/CustomLoader/CustomLoader";
 import { useGetMYProfileQuery, useUpdateMYProfileMutation } from "@/redux/features/myProfile/myProfileApi";
 import MyDialog from "@/components/shadcn/MyDialog";
-import BloggerProfileInformation from "./components/BloggerProfileInformation";
-import BloggerProfileUpdateForm from "@/components/Form/BloggerProfileUpdateForm";
+
+
 import { Author } from "next/dist/lib/metadata/types/metadata-types";
 import ChangePassword from "@/components/PasswordChange/PasswordChange";
+import ModeratorProfileInformation from "./components/ModeratorProfileInformation";
+import ModeratorProfileUpdateForm from "@/components/Form/ModeratorProfileUpdateForm";
 const formSchema = z.object({
   profilePhoto: z.any(),
 });
@@ -140,13 +142,13 @@ const ProfilePage = () => {
                     </div>
                   }
                 >
-                  <BloggerProfileUpdateForm data={userData} />
+                  <ModeratorProfileUpdateForm data={userData} />
                 </MyDialog>
               </div>
            
           </div>
 
-         <div className="md:max-w-[60%] w-full"> <BloggerProfileInformation data={userData} /></div>
+         <div className="md:max-w-[60%] w-full"> <ModeratorProfileInformation data={userData} /></div>
         </div>
     <ChangePassword/>
     </article>
