@@ -17,12 +17,12 @@ export const adminApi = baseApi.injectEndpoints({
         method: "GET",
         params: arg,
       }),
-      transformResponse: (response: TAdmin[], meta: IMeta) => {
-        return {
-          admins: response,
-          meta,
-        };
-      },
+      // transformResponse: (response: TAdmin[], meta: IMeta) => {
+      //   return {
+      //     admins: response,
+      //     meta,
+      //   };
+      // },
       providesTags: [tagTypes.admin],
     }),
 

@@ -16,6 +16,7 @@ export const headerItems =(role: UserRole): IHeaderItem[] => {
         { title: "Manage Users", path: `${role}/users` },
         { title: "Admins", path: `${role}/admins` },
         { title: "Moderator", path: `${role}/moderators` },
+        { title: "Bloggers", path: `${role}/bloggers` },
         { title: "Blogs", path: `${role}/blogs` }
       );
       break;

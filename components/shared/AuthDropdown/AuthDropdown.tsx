@@ -28,7 +28,7 @@ const AuthDropdown = () => {
   const router = useRouter();
   const handleLogout = () => {
     logoutUser(router);
-    toast({ title: "Logout", description: "User logged out successfully" });
+    toast({ title: "Logout", variant:'destructive', description: "User logged out successfully" });
   };
 
 
