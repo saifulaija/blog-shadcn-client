@@ -40,8 +40,6 @@ const formSchema = z
         contactNumber: z.string().min(1, {
             message: "Enter your contact number",
         }),
-        // gender:z.enum(["MALE", "FEMALE"]),
-        gender:z.string(),
         profilePhoto: z.any(),
 
 
@@ -78,6 +76,8 @@ const CreateAdminForm = () => {
 
         try {
             const res = await createAdmin(values);
+
+            console.log(res,values, 'admin--------------------')
             console.log(res, 'values.........')
          
             if (res?.data) {
