@@ -85,7 +85,7 @@ const ShowComments = ({
         await deleteComment(commentId);
     };
 
-    console.log(comments)
+ 
 
     return (
 

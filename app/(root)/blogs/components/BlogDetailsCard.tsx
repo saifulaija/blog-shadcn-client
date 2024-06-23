@@ -1,8 +1,5 @@
 
 'use client'
-
-import { Card } from "@/components/ui/card";
-
 import { useGetSingleBlogQuery } from "@/redux/features/blog/blogApi";
 import { useGetAllCommentsQuery } from "@/redux/features/comment/commentApi";
 import { useCreateLikeMutation } from "@/redux/features/like/likeApi";
@@ -16,14 +13,11 @@ import AuthorInformation from "./AuthorInformation";
 
 import { MessageCircleMore, ThumbsUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { CommentsCard } from "./Comments";
-import {
-    Collapsible,
-    CollapsibleContent,
-    CollapsibleTrigger,
-} from "@/components/ui/collapsible"
+
+
 import ShowComments from "./ShowComments";
 import BlogDetailsSkeleton from "./BlogDetailsSkeleton";
+import MyDialog from "@/components/shadcn/MyDialog";
 
 
 type TParams = {
@@ -34,7 +28,7 @@ type TParams = {
 
 const BlogDetailsCard = ({ blogId }: { blogId: string }) => {
     const [isOpen, setIsOpen] = useState(false)
- 
+
     const user = getUserInfo();
 
     const { data: comments } = useGetAllCommentsQuery(blogId);
@@ -61,7 +55,7 @@ const BlogDetailsCard = ({ blogId }: { blogId: string }) => {
     };
 
     if (isLoading) {
-        return <BlogDetailsSkeleton/>
+        return <BlogDetailsSkeleton />
     }
 
     return (
@@ -92,22 +86,22 @@ const BlogDetailsCard = ({ blogId }: { blogId: string }) => {
                         <div>
                             <p className="text-xl font-semibold">Description:</p>
                             <div className="text-sm text-muted-foreground/90 font-medium capitalize">
-                                {/* {ReactHtmlParser(blog?.content)} */}
+
                                 {blog?.content ? ReactHtmlParser(blog.content) : "No description available"}
                             </div>
                         </div>
                         <div>
                             <p className="text-xl font-semibold">Conclusion:</p>
-                            <p className="text-sm text-muted-foreground/90 font-medium capitalize"> 
+                            <p className="text-sm text-muted-foreground/90 font-medium capitalize">
 
-                            {blog?.conclusion ? ReactHtmlParser(blog.conclusion) : "No conclusion available"}
-                            
+                                {blog?.conclusion ? ReactHtmlParser(blog.conclusion) : "No conclusion available"}
+
                             </p>
                         </div>
                     </div>
                 </div>
                 <div>
-                    <div  className="flex">
+                    <div className="flex">
                         <Button
                             variant='link'
                             asChild
@@ -119,25 +113,12 @@ const BlogDetailsCard = ({ blogId }: { blogId: string }) => {
                                 <span>{blog?.likeCount}</span>
                             </div>
                         </Button>
-                      <div>
-                            <Collapsible
-                                open={isOpen}
-                                onOpenChange={setIsOpen}
-    
-                            >
-                                <CollapsibleTrigger asChild>
-                                    <Button variant="ghost" size="sm">
-                                        <MessageCircleMore />
-                                        <span className="sr-only">Toggle</span>
-                                    </Button>
-                                </CollapsibleTrigger>
-    
-                                <CollapsibleContent className="w-full">
-                                    <ShowComments authorId={authorId} comments={comments} newId={newId} />
-                                </CollapsibleContent>
-    
-                            </Collapsible>
-                      </div>
+                        <div>
+
+                            <MyDialog triggerButton={<Button variant="link"> <MessageCircleMore /></Button>}>
+                                <ShowComments authorId={authorId} comments={comments} newId={newId} />
+                            </MyDialog>
+                        </div>
                     </div>
                 </div>
             </div>
