@@ -1,19 +1,3 @@
-/*
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
-*/
-
-
 import { Calendar, HandPlatter } from "lucide-react";
 
 export default function NewsLetter() {
@@ -24,8 +8,8 @@ export default function NewsLetter() {
           <div className="max-w-xl lg:max-w-lg">
             <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">Subscribe to our newsletter.</h2>
             <p className="mt-4 text-lg leading-8 text-gray-300">
-              Nostrud amet eu ullamco nisi aute in ad minim nostrud adipisicing velit quis. Duis tempor incididunt
-              dolore.
+              Stay updated with the latest articles and discussions on BlogPlex. Get exclusive content, insights, and
+              engage with our community. No spam, just quality content.
             </p>
             <div className="mt-6 flex max-w-md gap-x-4">
               <label htmlFor="email-address" className="sr-only">
@@ -55,7 +39,7 @@ export default function NewsLetter() {
               </div>
               <dt className="mt-4 font-semibold text-white">Weekly articles</dt>
               <dd className="mt-2 leading-7 text-gray-400">
-                Non laboris consequat cupidatat laborum magna. Eiusmod non irure cupidatat duis commodo amet.
+                Discover new articles and discussions every week on BlogPlex. Engage with a vibrant community.
               </dd>
             </div>
             <div className="flex flex-col items-start">
@@ -64,7 +48,7 @@ export default function NewsLetter() {
               </div>
               <dt className="mt-4 font-semibold text-white">No spam</dt>
               <dd className="mt-2 leading-7 text-gray-400">
-                Officia excepteur ullamco ut sint duis proident non adipisicing. Voluptate incididunt anim.
+                We value your privacy and time. Receive only the content you love without any spam.
               </dd>
             </div>
           </dl>

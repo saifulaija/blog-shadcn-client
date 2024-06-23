@@ -22,9 +22,7 @@ const BloggerDashboardPage = () => {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold"> {data?.blogCount}</div>
-              <p className="text-xs text-muted-foreground">
-                +20.1% from last month
-              </p>
+              
             </CardContent>
           </Card>
           <Card x-chunk="dashboard-01-chunk-1">
@@ -37,9 +35,7 @@ const BloggerDashboardPage = () => {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{data?.approvedBlogCount}</div>
-              <p className="text-xs text-muted-foreground">
-                +180.1% from last month
-              </p>
+              
             </CardContent>
           </Card>
           <Card x-chunk="dashboard-01-chunk-2">
@@ -50,9 +46,7 @@ const BloggerDashboardPage = () => {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{data?.pendingBlogCount}</div>
-              <p className="text-xs text-muted-foreground">
-                +19% from last month
-              </p>
+             
             </CardContent>
           </Card>
           <Card x-chunk="dashboard-01-chunk-3">
@@ -63,9 +57,7 @@ const BloggerDashboardPage = () => {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold"> {data?.totalViews}</div>
-              <p className="text-xs text-muted-foreground">
-                +201 since last hour
-              </p>
+             
             </CardContent>
           </Card>
         </div>

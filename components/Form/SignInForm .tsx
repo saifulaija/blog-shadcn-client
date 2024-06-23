@@ -11,13 +11,7 @@ import { useForm } from "react-hook-form";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  Card,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "../ui/card";
+
 
 import Link from "next/link";
 import { useState } from "react";
@@ -76,14 +70,7 @@ const SignInForm = () => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
-        <div className="w-full max-w-md space-y-4 p-4 border-0 shadow-sm">
-          <CardHeader>
-            <h2 className="text-xl  md:text-2xl font-semibold text-primary">Login</h2>
-            <p>
-              Enter your email below to login to your account.
-            </p>
-          </CardHeader>
-
+        <div className="w-full space-y-4 md:px-4 py-6">
           {error && <p className="text-red-500">{error}</p>}
 
           <FormField
@@ -127,12 +114,10 @@ const SignInForm = () => {
           </Button>
 
           <div className="text-balance flex justify-center items-center gap-1 text-center">
-           <span>New user?</span>
-            {/* <Link href="/signup" className="text-primary hover:underline">
-              Register Here
-            </Link> */}
-            <span  className="text-primary">
-          Go Sign Up</span>
+            <span>New user?</span>
+
+            <span className="text-primary">
+              Go Sign Up</span>
           </div>
         </div>
       </form>

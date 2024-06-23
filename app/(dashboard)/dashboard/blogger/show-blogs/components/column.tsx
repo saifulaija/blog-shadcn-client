@@ -34,8 +34,8 @@ export const blogColumn: ColumnDef<Blog>[] = [
       return (
         <Image
           src={image}
-          width={70}
-          height={70}
+          width={50}
+          height={50}
           alt="flat image"
           className="self-center rounded-md"
         />
@@ -110,7 +110,7 @@ export const blogColumn: ColumnDef<Blog>[] = [
     cell: ({ row }) => {
       const blog = row.original;
       return (
-        <div className="my-10">
+        <div>
           <MyDialog triggerButton={<Button variant="outline">Edit</Button>}>
             <BlogUpdateForm data={blog} />
           </MyDialog>

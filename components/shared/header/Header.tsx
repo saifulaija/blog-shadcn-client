@@ -63,7 +63,7 @@ const Header = () => {
                   <span className="sr-only">Toggle Navigation menu</span>
                 </Button>
               </SheetTrigger>
-              <SheetContent side="left">
+              <SheetContent side="right">
                 <div className="flex-start">
                   <Link href="/" className="flex-start">
                     <Image

@@ -14,11 +14,11 @@ const BestBlogs = async () => {
 
   const blogData = await res.json();
   const blogs = blogData?.data;
-  console.log(blogs)
+
   return (
-    <div className="w-full p-10">
+    <div className="w-full p-0 md:p-8">
       <div className="wrapper">
-        <h1 className="h2-bold text-center p-10">Popular Blogs</h1>
+        <h1 className="h2-bold text-center p-10 ">Popular Blogs</h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {blogs?.slice(0, 8).map((blog: IBlog) => (
             <BestBlogCard blog={blog} key={blog.id} />
