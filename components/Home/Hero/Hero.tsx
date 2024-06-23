@@ -21,7 +21,7 @@ const Hero = () => {
       <div className="wrapper mx-auto px-4 z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 items-center max-w-[800px]">
           <div className=" text-center md:text-left">
-            <h1 className="text-2xl md:text-5xl text-muted font-semibold mb-4">Welcome to Our {APP_NAME}</h1>
+            <h1 className="text-2xl md:text-5xl text-gray-500 sm:text-gray-700 font-semibold mb-4">Welcome to Our {APP_NAME}</h1>
             <p className="text-xl mb-6 text-muted-foreground">Discover the latest articles, news, and insights from our community.</p>
             <Button asChild className="group animate-in zoom-in duration-500">
               <Link href="/all_blogs" className="flex items-center gap-2">

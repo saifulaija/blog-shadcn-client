@@ -134,10 +134,10 @@ const Header = () => {
             <ModeToggle />
 
             {user && user.userId ? (
-              <Button onClick={handleLogout} asChild className="cursor-pointer">
+              <Button onClick={handleLogout} asChild className="cursor-pointer group">
                 <span className="flex items-center gap-2">
-                  <LogOut />
                   Logout
+                  <LogOut  className="transition-transform duration-300 ease-in-out transform group-hover:translate-x-1" />
                 </span>
               </Button>
             ) : (

@@ -19,7 +19,7 @@ const BestBlogs = async () => {
     <div className="w-full p-0 md:p-8">
       <div className="wrapper">
         <h1 className="h2-bold text-center p-10 ">Popular Blogs</h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:m-0">
           {blogs?.slice(0, 8).map((blog: IBlog) => (
             <BestBlogCard blog={blog} key={blog.id} />
           ))}

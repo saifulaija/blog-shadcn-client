@@ -147,7 +147,7 @@ export function Dashboard({ children }: { children: React.ReactNode }) {
               width={30}
               height={30}
               alt={`${APP_NAME} logo`}
-              className="rounded-lg"
+              className="rounded-lg mr-1"
             />
             {APP_NAME}
           </Link>
