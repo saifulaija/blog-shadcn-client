@@ -107,7 +107,7 @@ const Header = () => {
                     width={40}
                     height={40}
                     alt={`${APP_NAME} logo`}
-                    className="rounded-md"
+                    className="rounded-md mr-1"
                   />
                   {APP_NAME}
                 </Link>
