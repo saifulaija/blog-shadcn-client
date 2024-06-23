@@ -11,7 +11,7 @@ import 'chartjs-adapter-date-fns';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, ArcElement, Tooltip, Legend, Title, TimeScale);
 
-const SuperAdminDashboardPage = () => {
+const ModeratorDashboardPage = () => {
   const { data, isLoading } = useGetMetaQuery(undefined);
   console.log(data)
   const barChartData = {
@@ -163,4 +163,4 @@ const SuperAdminDashboardPage = () => {
   );
 };
 
-export default SuperAdminDashboardPage;
+export default ModeratorDashboardPage;

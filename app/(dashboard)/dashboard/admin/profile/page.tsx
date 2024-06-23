@@ -105,7 +105,7 @@ const ProfilePage = () => {
               </div>
             )}
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
+              <form onSubmit={form.handleSubmit(onSubmit)} className="max-w-md w-full">
                 <div className="w-full space-y-4 px-10 py-6 border-0 ">
                   <div className="w-full">
                     <FormField
@@ -136,7 +136,7 @@ const ProfilePage = () => {
                 </div>
               </form>
             </Form>
-              <div className="w-full">
+              <div className="w-full flex justify-center items-center">
                 <MyDialog
                   triggerButton={
                     <div className="w-full">

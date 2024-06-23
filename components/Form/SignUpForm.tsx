@@ -171,6 +171,7 @@ const SignUpForm = () => {
                         <FormField
                             control={form.control}
                             name="profilePhoto"
+                            
                             render={({ field }) => (
                                 <FormItem>
                                     <FormLabel>profilePhoto</FormLabel>
@@ -179,7 +180,7 @@ const SignUpForm = () => {
                                             type="file"
                                             accept="image/*"
                                             onChange={(e) => field.onChange(e.target.files)}
-                                        className="w-full"
+                                        className="w-full flex-1"
                                         />
                                     </FormControl>
                                     <FormMessage />
