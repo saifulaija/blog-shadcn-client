@@ -14,14 +14,19 @@ import Image from 'next/image';
 import assets from '@/public';
 import { APP_NAME } from '@/lib/constants';
 import { ModeToggle } from '../shared/header/ModeToggle';
-import { MyPopover } from '../shadcn/My Popover';
-import { ScrollAreaCorner } from '@radix-ui/react-scroll-area';
-import { ScrollAreaNotification } from '../ScrollArea/ScrollArea';
+
+
 import NotificationDropdown from '../shared/NotificationDropdown/NotificationDropwon';
+import { useAppSelector } from '@/redux/hooks';
+import { RootState } from '@/redux/store';
+import { Badge } from '../ui/badge';
+
 
 export function Dashboard({ children }: { children: React.ReactNode }) {
   const [userRole, setUserRole] = useState("");
   const [scrolled, setScrolled] = useState(false);
+  const blogs = useAppSelector((state: RootState) => state.blog.blogItems);
+  console.log(blogs)
 
   useEffect(() => {
     const { role } = getUserInfo();
@@ -91,12 +96,14 @@ export function Dashboard({ children }: { children: React.ReactNode }) {
         </div>
         <div className="flex items-center gap-2">
           <ModeToggle/>
-          {/* <ModeToggle/>
-          <MyPopover buttonLabel='open'>
-            <ScrollAreaNotification/>
-          </MyPopover>
-          <Bell size={24} className="ml-auto" /> */}
-          <NotificationDropdown/>
+          <div className='relative'>
+            <Badge className='fixed ml-4 cursor-pointer animate-bounce'>
+           
+           {blogs?.length}
+        
+            </Badge>
+           {userRole !=='blogger' &&  <NotificationDropdown/>}
+          </div>
           <AuthDropdown />
         </div>
       </header>

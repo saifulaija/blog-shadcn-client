@@ -31,6 +31,8 @@ import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrig
 import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css";
 import { BlogCategory } from "@/types";
+import { useDispatch } from "react-redux";
+import { addBlog } from "@/redux/features/blog/blogSlice";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
@@ -45,6 +47,7 @@ const formSchema = z.object({
 });
 
 const AddBlogForm = () => {
+    const dispatch=useDispatch()
     const router = useRouter();
     const user = useUserInfo();
     const [createBlog, { isLoading }] = useCreateBlogMutation();
@@ -75,6 +78,11 @@ const AddBlogForm = () => {
                     description: "Blog created successfully",
                 });
                 router.push(`/dashboard/${user?.role}/show-blogs`);
+                dispatch(addBlog({
+                    name:user?.name,
+                    category:values?.category,
+                    message:'create a new blog'
+                  }))
             }
         } catch (error) {
             console.error(error);
