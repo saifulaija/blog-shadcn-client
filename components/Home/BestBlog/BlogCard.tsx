@@ -153,7 +153,7 @@ const BestBlogCard = ({ blog }: { blog: IBlog }) => {
   }
 
   return (
-    <Card className="w-full max-w-sm outline-0 focus:ring-2 hover:ring-2 ring-primary transition duration-300 rounded-md">
+    <Card className="w-full max-w-sm outline-0 focus:ring-2 hover:bg-muted-foreground/15 ring-primary transition duration-300 rounded-md">
       <CardHeader className="p-0 items-center">
         <div className="relative w-full" style={{ height: '200px' }}>
           <Image

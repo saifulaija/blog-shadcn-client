@@ -17,9 +17,11 @@ import BestBlogCard from "../BestBlog/BlogCard";
 import { NoData } from "@/components/shared/NoData/NoData";
 import { IBlog } from "@/types/blog";
 import BlogCardSkeleton from "@/components/shared/CardLoader/BlogSkeleton";
+import { motion } from 'framer-motion';
 
 
 const Blogs = () => {
+    const [isFocused, setIsFocused] = useState(false);
     const query: Record<string, any> = {};
     const [page, setPage] = useState(1);
     const [limit, setLimit] = useState(8);
@@ -57,17 +59,26 @@ const Blogs = () => {
                 <div>
                     <h1 className="text-2xl font-semibold text-center">All Blogs</h1>
 
-                    <div className="w-full flex justify-center items-center">
+                  
+
+                    <div className="w-full flex justify-center items-center my-5">
                         <div className="my-5 w-full max-w-md md:max-w-lg">
-                            <div className="relative w-full">
+                            <motion.div
+                                className="relative w-full"
+                                initial={{ y: 0 }}
+                                animate={{ y: isFocused ? 10 : 0 }}
+                                transition={{ type: 'spring', stiffness: 300 }}
+                            >
                                 <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
                                 <Input
                                     type="search"
                                     onChange={(e) => setQ(e.target.value)}
+                                    onFocus={() => setIsFocused(true)}
+                                    onBlur={() => setIsFocused(false)}
                                     placeholder="Search by location, rent price..."
                                     className="w-full appearance-none bg-background pl-8 shadow-none"
                                 />
-                            </div>
+                            </motion.div>
                         </div>
                     </div>
 
@@ -78,7 +89,7 @@ const Blogs = () => {
                                     <BlogCardSkeleton key={index} />
                                 ))}
                             </div>
-                        ) :  (data?.blogs?.length ?? 0) > 0  ? (
+                        ) : (data?.blogs?.length ?? 0) > 0 ? (
                             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                                 {data?.blogs?.map((blog: IBlog) => (
                                     <BestBlogCard blog={blog} key={blog.id} />
