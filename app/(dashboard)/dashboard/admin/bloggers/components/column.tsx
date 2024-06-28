@@ -37,8 +37,8 @@ export const bloggerColumn: ColumnDef<TAuthor>[] = [
       return (
         <Image
           src={image || '/http'}
-          width={70}
-          height={70}
+          width={40}
+          height={40}
           alt="flat image"
           className="self-center rounded-md"
         />

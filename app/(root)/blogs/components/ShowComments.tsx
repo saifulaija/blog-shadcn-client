@@ -54,7 +54,7 @@ const ShowComments = ({
     const [deleteComment] = useDeleteCommentMutation();
     const user = getUserInfo();
     const { data, isLoading: update } = useGetSingleCommentQuery(commentId);
-    console.log('comment data', commentId)
+
 
 
 
@@ -89,7 +89,7 @@ const ShowComments = ({
 
     return (
 
-        <div className="wrapper">
+        <div className="">
             {user ? (
                 <div>
                     {comments?.map((comment, index) => (
@@ -97,7 +97,7 @@ const ShowComments = ({
                             key={comment.id}
                             className={`p-2 rounded ${comment.comment.id === user?.userId ? 'bg-background/50' : 'bg-background'}`}
                         >
-                            <div className=" flex flex-col border border-gray-300 rounded-2xl p-2 w-[400px]">
+                            <div className=" flex flex-col border border-gray-300 rounded-md p-4 max-w-[400px] w-full">
 
                                 <div className="flex justify-start items-center gap-2">
                                     {/* <Image src={}/> */}
@@ -142,7 +142,7 @@ const ShowComments = ({
                     <div>
                         <Form {...form}>
                             <form onSubmit={form.handleSubmit(handleSendComment)} className="w-full">
-                                <div className="flex items-center space-x-2">
+                                <div className="flex items-center">
                                     <FormField
                                         control={form.control}
                                         name="content"
@@ -163,7 +163,7 @@ const ShowComments = ({
                                     />
                                     <Button type="submit" variant="link">
                                         {isLoading ? (
-                                            <Loader className="h-5 w-5 animate-spin" />
+                                            <Loader className="h-3 w-3 animate-spin -ml-20 mt-2" />
                                         ) : (
                                             <Send className="w-5 h-5 -ml-20 mt-2" />
                                         )}

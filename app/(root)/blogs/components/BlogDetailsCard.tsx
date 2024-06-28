@@ -59,9 +59,9 @@ const BlogDetailsCard = ({ blogId }: { blogId: string }) => {
     }
 
     return (
-        <div className="w-full p-10">
+        <div className="w-full p-2 md:p-10">
             <div className="wrapper border rounded-md">
-                <div className="flex flex-col md:flex-row md:justify-between gap-2 p-10 space-y-8 md:space-y-0">
+                <div className="flex flex-col md:flex-row md:justify-between gap-6 space-y-8 md:space-y-0">
                     <div className="md:w-1/3 space-y-4">
                         <AuthorInformation blog={blog} />
                     </div>
@@ -115,7 +115,7 @@ const BlogDetailsCard = ({ blogId }: { blogId: string }) => {
                         </Button>
                         <div>
 
-                            <MyDialog triggerButton={<Button variant="link"> <MessageCircleMore /></Button>}>
+                            <MyDialog triggerButton={<Button variant="link"> <MessageCircleMore />{comments.length}</Button>}>
                                 <ShowComments authorId={authorId} comments={comments} newId={newId} />
                             </MyDialog>
                         </div>

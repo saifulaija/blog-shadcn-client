@@ -1,4 +1,5 @@
 import { Calendar, HandPlatter } from "lucide-react";
+import NewsLetterForm from "./NewsLetterForm";
 
 export default function NewsLetter() {
   return (
@@ -12,7 +13,7 @@ export default function NewsLetter() {
               engage with our community. No spam, just quality content.
             </p>
             <div className="mt-6 flex max-w-md gap-x-4">
-              <label htmlFor="email-address" className="sr-only">
+              {/* <label htmlFor="email-address" className="sr-only">
                 Email address
               </label>
               <input
@@ -29,7 +30,9 @@ export default function NewsLetter() {
                 className="flex-none rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-primary/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
               >
                 Subscribe
-              </button>
+              </button> */}
+
+              <NewsLetterForm/>
             </div>
           </div>
           <dl className="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:pt-2">

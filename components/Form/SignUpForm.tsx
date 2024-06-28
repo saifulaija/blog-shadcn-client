@@ -17,14 +17,14 @@ import { Button } from "../ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 
-import Link from "next/link";
+
 
 
 import { useRouter } from "next/navigation";
 
 import { toast, useToast } from "../ui/use-toast";
 import { uploadImage } from "@/utils/imgbb";
-import { Loader2 } from "lucide-react";
+import { Loader } from "lucide-react";
 import { useState } from "react";
 import { registerSubscriber } from "@/services/actions/registerSubscriber";
 const formSchema = z
@@ -81,7 +81,7 @@ const SignUpForm = () => {
             if (res?.statusCode===200) {
                 toast({
                     title: "Success!",
-                    description: `User created successfully`,
+                    description: `User created successfully please go to login`,
                 });
                 router.push("/signin");
             } else {
@@ -190,7 +190,7 @@ const SignUpForm = () => {
                     </div>
                     <Button type="submit" disabled={loading} className="w-full">
                         SignUp
-                        {loading && <Loader2 className="ml-6 h-5 w-5 animate-spin" />}
+                        {loading && <Loader className="ml-6 h-5 w-5 animate-spin" />}
                     </Button>
 
                     <div className="text-balance flex justify-center items-center gap-1 text-center">

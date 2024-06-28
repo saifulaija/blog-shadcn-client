@@ -5,7 +5,7 @@ import { FieldValues } from "react-hook-form";
 
 export const registerSubscriber = async (data: FieldValues) => {
   const res = await fetch(
-    "http://localhost:5000/api/v1/user/create-subscriber",
+    " http://localhost:5000/api/v1/user/create-subscriber",
     {
       method: "POST",
       headers: {

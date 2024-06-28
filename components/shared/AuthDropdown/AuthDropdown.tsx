@@ -14,7 +14,7 @@ import { useGetMYProfileQuery } from "@/redux/features/myProfile/myProfileApi";
 
 import { logoutUser } from "@/services/actions/logoutUser";
 import { getUserInfo } from "@/services/authServices";
-import { LogIn, LogOut, Mails, Settings } from "lucide-react";
+import {  LogOut, Mails, Settings } from "lucide-react";
 
 
 import Link from "next/link";

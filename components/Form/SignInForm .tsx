@@ -55,7 +55,7 @@ const SignInForm = () => {
 
       if (res?.data?.accessToken) {
         storeUserInfo({ accessToken: res?.data?.accessToken });
-        toast({ title: "Login", description: "User login successfully" });
+        toast({ color:'green', title: "Login", description: "User login successfully" });
         router.refresh();
       } else {
         setError(res?.message || "An unexpected error occurred.");
@@ -107,10 +107,10 @@ const SignInForm = () => {
               </FormItem>
             )}
           />
-          <Link href='/forgot-password'><p className="text-sm font-semibold mt-4 hover:underline text-end">Forgot password ?</p></Link>
+        
           <Button type="submit" disabled={loading} className="w-full">
-            {loading && <Loader className="animate-spin mr-2" />}
             Signin
+            {loading && <Loader className="animate-spin ml-6 h-4 w-4" />}
           </Button>
 
           <div className="text-balance flex justify-center items-center gap-1 text-center">

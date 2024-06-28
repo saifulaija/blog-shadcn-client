@@ -96,7 +96,7 @@ const AddBlogForm = () => {
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
-                <div className="w-full space-y-4 px-10 py-6">
+                <div className="w-full space-y-4 px-2 md:px-5 py-6">
                     <div className="grid grid-cols-1  gap-4 justify-center items-center">
                         <FormField
                             control={form.control}
@@ -204,7 +204,7 @@ const AddBlogForm = () => {
                     </div>
                     <div className="mt-6">
                         <Button type="submit" disabled={isLoading} className="w-full">
-                            {isLoading && <Loader className="ml-6 h-5 w-5 animate-spin" />}
+                            {isLoading && <Loader className="ml-6 h-4 w-4 animate-spin" />}
                             Add Now
                         </Button>
                     </div>
