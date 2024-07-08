@@ -6,14 +6,13 @@ import { useDeleteAdminMutation } from "@/redux/features/admin/adminApi";
 
 import { useDeleteModeratorMutation } from "@/redux/features/moderator/moderatorApi";
 
-
 interface DeleteFlatProps {
   adminId: string;
 }
 
 const DeleteAdmin: React.FC<DeleteFlatProps> = ({ adminId }) => {
   const { toast } = useToast();
-  const [deleteBlogger, { isLoading }] =useDeleteAdminMutation();
+  const [deleteBlogger, { isLoading }] = useDeleteAdminMutation();
 
   const handleDelete = async () => {
     try {

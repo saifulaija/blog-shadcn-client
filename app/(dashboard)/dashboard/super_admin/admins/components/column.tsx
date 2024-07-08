@@ -3,7 +3,6 @@
 import { ColumnDef } from "@tanstack/react-table";
 import Image from "next/image";
 
-
 import { Button } from "@/components/ui/button";
 
 import { formateDate, formateMoney } from "@/utils/common";
@@ -12,7 +11,6 @@ import BlogUpdateForm from "@/components/Form/BlogUpdateForm";
 
 import { MyBadge } from "@/components/shadcn/MyBadge";
 import { truncateTitle } from "@/utils/truncateTitle";
-
 
 import AuthorUpdateForm from "@/components/Form/AuthorUpdateForm";
 
@@ -24,12 +22,12 @@ import DeleteAdmin from "./deleteAdmin";
 export type TAuthor = {
   id: string;
   name: string;
- 
+
   email: string;
-  contactNumber:string;
-  gender:"MALE" | "FEMALE";
- profilePhoto:string;
-createdAt: Date;
+  contactNumber: string;
+  gender: "MALE" | "FEMALE";
+  profilePhoto: string;
+  createdAt: Date;
 };
 
 export const adminColumn: ColumnDef<TAdmin>[] = [
@@ -38,21 +36,21 @@ export const adminColumn: ColumnDef<TAdmin>[] = [
     header: "Image",
     cell: ({ row }) => {
       const image = row.original.profilePhoto;
-    
-     return(
-      <div className="flex justify-center items-center w-[50px] h-[40px]">
-      <Image
-        src={image || '/http'}
-        width={70}
-        height={70}
-        alt="flat image"
-        className="rounded-md object-cover"
-      />
-    </div>
-     )
+
+      return (
+        <div className="flex justify-center items-center w-[50px] h-[40px]">
+          <Image
+            src={image || "/http"}
+            width={70}
+            height={70}
+            alt="flat image"
+            className="rounded-md object-cover"
+          />
+        </div>
+      );
     },
   },
- 
+
   {
     accessorKey: "name",
     header: "Name",
@@ -66,9 +64,12 @@ export const adminColumn: ColumnDef<TAdmin>[] = [
     header: "Email",
     cell: ({ row }) => {
       const email = row.original.email;
-  
 
-      return <div><p>{email}</p></div>;
+      return (
+        <div>
+          <p>{email}</p>
+        </div>
+      );
     },
   },
 
@@ -77,10 +78,13 @@ export const adminColumn: ColumnDef<TAdmin>[] = [
     header: "ContactNumber",
     cell: ({ row }) => {
       const contactNumber = row.original.contactNumber;
-      return <div><p>{contactNumber}</p></div>;
+      return (
+        <div>
+          <p>{contactNumber}</p>
+        </div>
+      );
     },
   },
-
 
   // {
   //   accessorKey: "advanceAmount",
@@ -90,7 +94,7 @@ export const adminColumn: ColumnDef<TAdmin>[] = [
   //     return <div>{formateMoney(advanceAmount)}</div>;
   //   },
   // },
- 
+
   // {
   //   accessorKey: "space",
   //   header:"Space",
@@ -101,7 +105,7 @@ export const adminColumn: ColumnDef<TAdmin>[] = [
   // },
   {
     accessorKey: "createdAt",
-    header:"Created At",
+    header: "Created At",
     cell: ({ row }) => {
       const lastSeen = row.original.createdAt;
       return <div>{formateDate(lastSeen)}</div>;

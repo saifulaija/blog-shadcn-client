@@ -13,7 +13,6 @@ import { MoreHorizontal } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 import { useUpdateUserStatusMutation } from "@/redux/api/userApi";
 
-
 interface UpdateUserStatusProps {
   userId: string;
   currentStatus: "ACTIVE" | "BLOCKED" | "DELETED";
@@ -26,7 +25,9 @@ const UpdateUserStatus: React.FC<UpdateUserStatusProps> = ({
   const { toast } = useToast();
   const [updateUser, { isLoading }] = useUpdateUserStatusMutation();
 
-  const handleStatusChange = async (newStatus: "ACTIVE" | "BLOCKED" | "DELETED") => {
+  const handleStatusChange = async (
+    newStatus: "ACTIVE" | "BLOCKED" | "DELETED",
+  ) => {
     const updateData = {
       id: userId,
       body: {

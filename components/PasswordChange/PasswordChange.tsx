@@ -1,4 +1,3 @@
-
 "use client";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
@@ -20,17 +19,14 @@ import { useToast } from "@/components/ui/use-toast";
 import { Loader } from "lucide-react";
 import { useChangePasswordMutation } from "@/redux/features/auth/authApi";
 
-const formSchema = z
-  .object({
-    oldPassword: z.string().min(6, {
-      message: "Old password must be at least 6 characters",
-    }),
-    newPassword: z.string().min(6, {
-      message: "New password must be at least 6 characters",
-    }),
-
-  })
-
+const formSchema = z.object({
+  oldPassword: z.string().min(6, {
+    message: "Old password must be at least 6 characters",
+  }),
+  newPassword: z.string().min(6, {
+    message: "New password must be at least 6 characters",
+  }),
+});
 
 const ChangePassword = () => {
   const { toast } = useToast();
@@ -54,7 +50,7 @@ const ChangePassword = () => {
         logoutUser(router);
         toast({
           title: "Success",
-          variant: 'destructive',
+          variant: "destructive",
           description:
             "Password changed successfully. You have been logged out.",
         });
@@ -74,9 +70,7 @@ const ChangePassword = () => {
     <div className="flex items-center justify-center p-10">
       <div className="w-full  space-y-4 p-4 md:p-6 border rounded-md">
         <div className="space-y-1 text-center">
-
           <p className="text-xl md:text-2xl font-semibold">Change Password</p>
-
         </div>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
@@ -162,14 +156,9 @@ const ChangePassword = () => {
                   )}
                 />
               </div>
-
             </div>
             <div className="w-full md:w-auto md:max-w-[40%] flex justify-center items-center mx-auto  sm:max-w-[60%]">
-              <Button
-                type="submit"
-                disabled={isLoading}
-                className="w-full"
-              >
+              <Button type="submit" disabled={isLoading} className="w-full">
                 {isLoading && <Loader className="ml-10 h-4 w-4 animate-spin" />}
                 Submit
               </Button>

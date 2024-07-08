@@ -1,5 +1,3 @@
-
-
 import { authKey } from "@/constants/authKey";
 import setAccessToken from "@/services/actions/setAccessToken";
 import { getNewAccessToken } from "@/services/authServices";
@@ -27,7 +25,7 @@ instance.interceptors.request.use(
   function (error) {
     // Do something with request error
     return Promise.reject(error);
-  }
+  },
 );
 
 // Add a response interceptor
@@ -49,12 +47,12 @@ instance.interceptors.response.use(
     // Do something with response error
     const config = error.config;
     if (error?.response?.status === 500 && !config.sent) {
-      config.sent= true;
+      config.sent = true;
       const response = await getNewAccessToken();
       const accessToken = response?.data?.accessToken;
       config.headers["Authorization"] = accessToken;
       setToLocalStorage(authKey, accessToken);
-      setAccessToken(accessToken)
+      setAccessToken(accessToken);
       return instance(config);
     } else {
       const responseObject: IGenericErrorResponse = {
@@ -65,7 +63,7 @@ instance.interceptors.response.use(
       // return Promise.reject(error);
       return responseObject;
     }
-  }
+  },
 );
 
 export { instance };

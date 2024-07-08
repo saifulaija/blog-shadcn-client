@@ -1,11 +1,12 @@
-
 import { authKey } from "@/constants/authKey";
 import { instance as axiosInstance } from "@/helpers/axiosInstance";
 
-
 import { decodedToken } from "@/utils/jwt";
-import { getFromLocalStorage, removeFromLocalStorage, setToLocalStorage } from "@/utils/local-storage";
-
+import {
+  getFromLocalStorage,
+  removeFromLocalStorage,
+  setToLocalStorage,
+} from "@/utils/local-storage";
 
 export const storeUserInfo = ({ accessToken }: { accessToken: string }) => {
   return setToLocalStorage(authKey, accessToken);

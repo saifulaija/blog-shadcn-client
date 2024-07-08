@@ -8,7 +8,7 @@ export const metaApi = baseApi.injectEndpoints({
         url: "/metadata",
         method: "GET",
       }),
-      providesTags: [tagTypes.blog,tagTypes.comment],
+      providesTags: [tagTypes.blog, tagTypes.comment],
     }),
   }),
 });

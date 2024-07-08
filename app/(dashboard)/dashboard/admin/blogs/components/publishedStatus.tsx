@@ -13,10 +13,9 @@ import { MoreHorizontal } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 import { useUpdateStatusApproveMutation } from "@/redux/features/blog/blogApi";
 
-
 interface UpdateUserStatusProps {
   userId: string;
-  currentStatus: "PENDING"|"APPROVED" | "CANCEL";
+  currentStatus: "PENDING" | "APPROVED" | "CANCEL";
 }
 
 const UpdatePublishedStatus: React.FC<UpdateUserStatusProps> = ({
@@ -46,8 +45,8 @@ const UpdatePublishedStatus: React.FC<UpdateUserStatusProps> = ({
     } catch (error: any) {
       toast({
         title: "Success",
-        variant:'destructive',
-        description:'can not updated already canceled',
+        variant: "destructive",
+        description: "can not updated already canceled",
       });
     }
   };
@@ -64,7 +63,7 @@ const UpdatePublishedStatus: React.FC<UpdateUserStatusProps> = ({
           Published Approved
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => handleStatusChange("CANCEL")}>
-        Published Cancel
+          Published Cancel
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

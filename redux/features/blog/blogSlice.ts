@@ -1,6 +1,3 @@
-
-
-
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 type BlogItem = {
@@ -38,4 +35,3 @@ const blogSlice = createSlice({
 export const { addBlog, getBlog, clearBlogItems } = blogSlice.actions;
 
 export default blogSlice.reducer;
-

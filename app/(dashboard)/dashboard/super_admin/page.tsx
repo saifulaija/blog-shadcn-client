@@ -1,26 +1,50 @@
+"use client";
 
-'use client'
+import React from "react";
+import { Bar, Pie } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  ArcElement,
+  Tooltip,
+  Legend,
+  Title,
+  TimeScale,
+} from "chart.js";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useGetMetaQuery } from "@/redux/api/metaDataApi";
+import {
+  CheckCheck,
+  CircleEllipsis,
+  NotebookPen,
+  User,
+  View,
+} from "lucide-react";
+import "chartjs-adapter-date-fns";
 
-import React from 'react';
-import { Bar, Pie } from 'react-chartjs-2';
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, ArcElement, Tooltip, Legend, Title, TimeScale } from 'chart.js';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { useGetMetaQuery } from '@/redux/api/metaDataApi';
-import { CheckCheck, CircleEllipsis, NotebookPen, User, View } from 'lucide-react';
-import 'chartjs-adapter-date-fns';
-
-ChartJS.register(CategoryScale, LinearScale, BarElement, ArcElement, Tooltip, Legend, Title, TimeScale);
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  ArcElement,
+  Tooltip,
+  Legend,
+  Title,
+  TimeScale,
+);
 
 const SuperAdminDashboardPage = () => {
   const { data, isLoading } = useGetMetaQuery(undefined);
   const barChartData = {
-    labels: data?.barChartData?.map((item:any) => new Date(item.day)) || [],
+    labels: data?.barChartData?.map((item: any) => new Date(item.day)) || [],
     datasets: [
       {
-        label: 'Counts by Date',
-        data: data?.barChartData?.map((item:any) => item.count) || [],
-        backgroundColor: 'rgba(75, 192, 192, 0.6)',
-        borderColor: 'rgba(75, 192, 192, 1)',
+        label: "Counts by Date",
+        data: data?.barChartData?.map((item: any) => item.count) || [],
+        backgroundColor: "rgba(75, 192, 192, 0.6)",
+        borderColor: "rgba(75, 192, 192, 1)",
         borderWidth: 1,
       },
     ],
@@ -29,73 +53,72 @@ const SuperAdminDashboardPage = () => {
   const barChartOptions = {
     scales: {
       x: {
-        type: 'time',
+        type: "time",
         time: {
-          unit: 'day',
+          unit: "day",
         },
         title: {
           display: true,
-          text: 'Date',
+          text: "Date",
         },
       },
       y: {
         title: {
           display: true,
-          text: 'Count',
+          text: "Count",
         },
       },
     },
     responsive: true,
   } as const;
-  
 
   const pieChartData = {
     labels: [
-      'Admin Count', 
-      'Approved Blog Count', 
-      'Blog Count', 
-      'Blogger Count', 
-      'Cancel Blog Count', 
-      'Comment Count', 
-      'Like Count', 
-      'Moderator Count', 
-      'Pending Blog Count'
+      "Admin Count",
+      "Approved Blog Count",
+      "Blog Count",
+      "Blogger Count",
+      "Cancel Blog Count",
+      "Comment Count",
+      "Like Count",
+      "Moderator Count",
+      "Pending Blog Count",
     ],
     datasets: [
       {
-        label: 'Counts',
+        label: "Counts",
         data: [
-          data?.adminCount, 
-          data?.approvedBlogCount, 
-          data?.blogCount, 
-          data?.bloggerCount, 
-          data?.cancelBlogCount, 
-          data?.commentCount, 
-          data?.likeCount, 
-          data?.moderatorCount, 
-          data?.pendingBlogCount
+          data?.adminCount,
+          data?.approvedBlogCount,
+          data?.blogCount,
+          data?.bloggerCount,
+          data?.cancelBlogCount,
+          data?.commentCount,
+          data?.likeCount,
+          data?.moderatorCount,
+          data?.pendingBlogCount,
         ],
         backgroundColor: [
-          'rgba(255, 99, 132, 0.6)',
-          'rgba(54, 162, 235, 0.6)',
-          'rgba(255, 206, 86, 0.6)',
-          'rgba(75, 192, 192, 0.6)',
-          'rgba(153, 102, 255, 0.6)',
-          'rgba(255, 159, 64, 0.6)',
-          'rgba(199, 199, 199, 0.6)',
-          'rgba(83, 102, 255, 0.6)',
-          'rgba(155, 99, 132, 0.6)'
+          "rgba(255, 99, 132, 0.6)",
+          "rgba(54, 162, 235, 0.6)",
+          "rgba(255, 206, 86, 0.6)",
+          "rgba(75, 192, 192, 0.6)",
+          "rgba(153, 102, 255, 0.6)",
+          "rgba(255, 159, 64, 0.6)",
+          "rgba(199, 199, 199, 0.6)",
+          "rgba(83, 102, 255, 0.6)",
+          "rgba(155, 99, 132, 0.6)",
         ],
         borderColor: [
-          'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)',
-          'rgba(199, 199, 199, 1)',
-          'rgba(83, 102, 255, 1)',
-          'rgba(155, 99, 132, 1)'
+          "rgba(255, 99, 132, 1)",
+          "rgba(54, 162, 235, 1)",
+          "rgba(255, 206, 86, 1)",
+          "rgba(75, 192, 192, 1)",
+          "rgba(153, 102, 255, 1)",
+          "rgba(255, 159, 64, 1)",
+          "rgba(199, 199, 199, 1)",
+          "rgba(83, 102, 255, 1)",
+          "rgba(155, 99, 132, 1)",
         ],
         borderWidth: 1,
       },
@@ -112,17 +135,17 @@ const SuperAdminDashboardPage = () => {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{data?.blogCount}</div>
-           
           </CardContent>
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Approved Blogs</CardTitle>
+            <CardTitle className="text-sm font-medium">
+              Approved Blogs
+            </CardTitle>
             <CheckCheck className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{data?.approvedBlogCount}</div>
-           
           </CardContent>
         </Card>
         <Card>
@@ -132,7 +155,6 @@ const SuperAdminDashboardPage = () => {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{data?.pendingBlogCount}</div>
-           
           </CardContent>
         </Card>
         <Card>
@@ -142,7 +164,6 @@ const SuperAdminDashboardPage = () => {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{data?.userCount}</div>
-          
           </CardContent>
         </Card>
       </div>

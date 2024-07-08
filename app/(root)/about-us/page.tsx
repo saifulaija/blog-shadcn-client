@@ -1,9 +1,9 @@
 // components/AboutUs.tsx
 
-import React from 'react';
-import { ScrollArea } from '@/components/ui/scroll-area';
-import { Separator } from '@/components/ui/separator';
-import { LucideIcon, Briefcase, Users, Globe } from 'lucide-react';
+import React from "react";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Separator } from "@/components/ui/separator";
+import { LucideIcon, Briefcase, Users, Globe } from "lucide-react";
 
 const AboutUs = () => {
   return (
@@ -22,7 +22,9 @@ const AboutUs = () => {
             Our Mission
           </h2>
           <p className="mt-2 text-gray-600">
-            At BloxPlex, our mission is to revolutionize the digital landscape by providing cutting-edge solutions that empower businesses and individuals alike.
+            At BloxPlex, our mission is to revolutionize the digital landscape
+            by providing cutting-edge solutions that empower businesses and
+            individuals alike.
           </p>
         </section>
         <Separator />
@@ -32,7 +34,8 @@ const AboutUs = () => {
             Our Team
           </h2>
           <p className="mt-2 text-gray-600">
-            Our team is composed of passionate and talented professionals dedicated to pushing the boundaries of technology and design.
+            Our team is composed of passionate and talented professionals
+            dedicated to pushing the boundaries of technology and design.
           </p>
         </section>
         <Separator />
@@ -42,7 +45,9 @@ const AboutUs = () => {
             Our Vision
           </h2>
           <p className="mt-2 text-gray-600">
-            We envision a world where technology seamlessly integrates with daily life, enhancing productivity, creativity, and connectivity for everyone.
+            We envision a world where technology seamlessly integrates with
+            daily life, enhancing productivity, creativity, and connectivity for
+            everyone.
           </p>
         </section>
       </div>

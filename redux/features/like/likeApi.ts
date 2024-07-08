@@ -16,7 +16,7 @@ const likesApi = baseApi.injectEndpoints({
         headers: {
           "Content-type": "application/json",
         },
-        data:{userId:userData.userId}
+        data: { userId: userData.userId },
       }),
       invalidatesTags: [tagTypes.blog],
     }),

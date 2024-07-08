@@ -3,7 +3,6 @@
 import { ColumnDef } from "@tanstack/react-table";
 import Image from "next/image";
 
-
 import { Button } from "@/components/ui/button";
 
 import { formateDate, formateMoney } from "@/utils/common";
@@ -21,12 +20,12 @@ import ModeratorUpdateForm from "@/components/Form/ModeratorUpdateForm";
 export type TAuthor = {
   id: string;
   name: string;
- 
+
   email: string;
-  contactNumber:string;
-  gender:"MALE" | "FEMALE";
- profilePhoto:string;
-createdAt: Date;
+  contactNumber: string;
+  gender: "MALE" | "FEMALE";
+  profilePhoto: string;
+  createdAt: Date;
 };
 
 export const moderatorColumn: ColumnDef<TAuthor>[] = [
@@ -35,21 +34,21 @@ export const moderatorColumn: ColumnDef<TAuthor>[] = [
     header: "Image",
     cell: ({ row }) => {
       const image = row.original.profilePhoto;
-    
-     return(
-      <div className="flex justify-center items-center w-[50px] h-[40px]">
-      <Image
-        src={image || '/http'}
-        width={70}
-        height={70}
-        alt="flat image"
-        className="rounded-md object-cover"
-      />
-    </div>
-     )
+
+      return (
+        <div className="flex justify-center items-center w-[50px] h-[40px]">
+          <Image
+            src={image || "/http"}
+            width={70}
+            height={70}
+            alt="flat image"
+            className="rounded-md object-cover"
+          />
+        </div>
+      );
     },
   },
- 
+
   {
     accessorKey: "name",
     header: "Name",
@@ -63,9 +62,12 @@ export const moderatorColumn: ColumnDef<TAuthor>[] = [
     header: "Email",
     cell: ({ row }) => {
       const email = row.original.email;
-  
 
-      return <div><p>{email}</p></div>;
+      return (
+        <div>
+          <p>{email}</p>
+        </div>
+      );
     },
   },
 
@@ -73,8 +75,12 @@ export const moderatorColumn: ColumnDef<TAuthor>[] = [
     accessorKey: "gender",
     header: "Gender",
     cell: ({ row }) => {
-      const gender= row.original.gender;
-      return <div><p>{gender}</p></div>;
+      const gender = row.original.gender;
+      return (
+        <div>
+          <p>{gender}</p>
+        </div>
+      );
     },
   },
   {
@@ -82,10 +88,13 @@ export const moderatorColumn: ColumnDef<TAuthor>[] = [
     header: "ContactNumber",
     cell: ({ row }) => {
       const contactNumber = row.original.contactNumber;
-      return <div><p>{contactNumber}</p></div>;
+      return (
+        <div>
+          <p>{contactNumber}</p>
+        </div>
+      );
     },
   },
-
 
   // {
   //   accessorKey: "advanceAmount",
@@ -95,7 +104,7 @@ export const moderatorColumn: ColumnDef<TAuthor>[] = [
   //     return <div>{formateMoney(advanceAmount)}</div>;
   //   },
   // },
- 
+
   // {
   //   accessorKey: "space",
   //   header:"Space",
@@ -106,7 +115,7 @@ export const moderatorColumn: ColumnDef<TAuthor>[] = [
   // },
   {
     accessorKey: "createdAt",
-    header:"Created At",
+    header: "Created At",
     cell: ({ row }) => {
       const lastSeen = row.original.createdAt;
       return <div>{formateDate(lastSeen)}</div>;

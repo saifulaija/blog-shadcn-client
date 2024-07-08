@@ -14,25 +14,26 @@ import { useGetMYProfileQuery } from "@/redux/features/myProfile/myProfileApi";
 
 import { logoutUser } from "@/services/actions/logoutUser";
 import { getUserInfo } from "@/services/authServices";
-import {  LogOut, Mails, Settings } from "lucide-react";
-
+import { LogOut, Mails, Settings } from "lucide-react";
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 const AuthDropdown = () => {
   const { toast } = useToast();
-  const { data:user, isLoading,error } = useGetMYProfileQuery({});
-
+  const { data: user, isLoading, error } = useGetMYProfileQuery({});
 
   const router = useRouter();
   const handleLogout = () => {
     logoutUser(router);
-    toast({ title: "Logout", variant:'destructive', description: "User logged out successfully" });
+    toast({
+      title: "Logout",
+      variant: "destructive",
+      description: "User logged out successfully",
+    });
   };
 
-
-  const role= user?.role.toLowerCase()
+  const role = user?.role.toLowerCase();
 
   return (
     <>
@@ -45,23 +46,24 @@ const AuthDropdown = () => {
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="px-4">
-          <DropdownMenuItem className="flex items-center gap-3 text-muted-foreground">
-          <Mails />
-               <p>{user?.email}</p>
-               
-              </DropdownMenuItem>
+            <DropdownMenuItem className="flex items-center gap-3 text-muted-foreground">
+              <Mails />
+              <p>{user?.email}</p>
+            </DropdownMenuItem>
             <Link href={`/dashboard/${role}/profile`}>
               <DropdownMenuItem className="flex items-center gap-3 cursor-pointer text-muted-foreground">
-                <Settings/>
+                <Settings />
                 <p>Setting</p>
               </DropdownMenuItem>
-              
             </Link>
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={handleLogout}  className="flex items-center gap-3 cursor-pointer text-muted-foreground">
-            <LogOut />
-               <p> Logout</p>
-                </DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={handleLogout}
+              className="flex items-center gap-3 cursor-pointer text-muted-foreground"
+            >
+              <LogOut />
+              <p> Logout</p>
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       ) : (

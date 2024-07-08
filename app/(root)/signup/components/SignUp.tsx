@@ -1,8 +1,4 @@
-
-
-
-'use client';
-
+"use client";
 
 import SignUpForm from "@/components/Form/SignUpForm";
 import { AnimatePresence, motion } from "framer-motion";
@@ -29,7 +25,9 @@ const SignUp = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeInOut" }}
           >
-            <h2 className="text-xl md:text-2xl text-primary font-semibold">Register Now</h2>
+            <h2 className="text-xl md:text-2xl text-primary font-semibold">
+              Register Now
+            </h2>
           </motion.div>
           <motion.div
             className="pb-2 px-4  rounded-lg sm:px-6 "

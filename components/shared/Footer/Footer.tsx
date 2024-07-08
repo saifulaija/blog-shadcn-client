@@ -1,4 +1,4 @@
-import { APP_NAME } from '@/lib/constants'
+import { APP_NAME } from "@/lib/constants";
 
 const Footer = () => {
   return (
@@ -7,7 +7,7 @@ const Footer = () => {
         2024 {APP_NAME}. All Rights reserved.
       </div>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

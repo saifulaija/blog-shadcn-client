@@ -12,10 +12,8 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-
 import Link from "next/link";
 import { useState } from "react";
-
 
 import { useToast } from "../ui/use-toast";
 import { useRouter } from "next/navigation";
@@ -55,7 +53,11 @@ const SignInForm = () => {
 
       if (res?.data?.accessToken) {
         storeUserInfo({ accessToken: res?.data?.accessToken });
-        toast({ color:'green', title: "Login", description: "User login successfully" });
+        toast({
+          color: "green",
+          title: "Login",
+          description: "User login successfully",
+        });
         router.refresh();
       } else {
         setError(res?.message || "An unexpected error occurred.");
@@ -107,18 +109,11 @@ const SignInForm = () => {
               </FormItem>
             )}
           />
-        
+
           <Button type="submit" disabled={loading} className="w-full">
             Signin
             {loading && <Loader className="animate-spin ml-6 h-4 w-4" />}
           </Button>
-
-          <div className="text-balance flex justify-center items-center gap-1 text-center">
-            <span>New user?</span>
-
-            <span className="text-primary">
-              Go Sign Up</span>
-          </div>
         </div>
       </form>
     </Form>

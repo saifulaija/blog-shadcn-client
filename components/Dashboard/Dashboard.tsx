@@ -1,32 +1,29 @@
+"use client";
+import React, { useEffect, useState } from "react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Menu, Bell } from "lucide-react";
+import { getUserInfo } from "@/services/authServices";
+import { headerItems } from "@/utils/headerItems";
+import HeaderLink from "./HeaderLink";
+import { UserRole } from "@/types";
+import AuthDropdown from "../shared/AuthDropdown/AuthDropdown";
+import Image from "next/image";
+import assets from "@/public";
+import { APP_NAME } from "@/lib/constants";
+import { ModeToggle } from "../shared/header/ModeToggle";
 
-'use client'
-import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { Menu, Bell } from 'lucide-react';
-import { getUserInfo } from '@/services/authServices';
-import { headerItems } from '@/utils/headerItems';
-import HeaderLink from './HeaderLink';
-import { UserRole } from '@/types';
-import AuthDropdown from '../shared/AuthDropdown/AuthDropdown';
-import Image from 'next/image';
-import assets from '@/public';
-import { APP_NAME } from '@/lib/constants';
-import { ModeToggle } from '../shared/header/ModeToggle';
-
-
-import NotificationDropdown from '../shared/NotificationDropdown/NotificationDropwon';
-import { useAppSelector } from '@/redux/hooks';
-import { RootState } from '@/redux/store';
-import { Badge } from '../ui/badge';
-
+import NotificationDropdown from "../shared/NotificationDropdown/NotificationDropwon";
+import { useAppSelector } from "@/redux/hooks";
+import { RootState } from "@/redux/store";
+import { Badge } from "../ui/badge";
 
 export function Dashboard({ children }: { children: React.ReactNode }) {
   const [userRole, setUserRole] = useState("");
   const [scrolled, setScrolled] = useState(false);
   const blogs = useAppSelector((state: RootState) => state.blog.blogItems);
-  console.log(blogs)
+  console.log(blogs);
 
   useEffect(() => {
     const { role } = getUserInfo();
@@ -47,7 +44,9 @@ export function Dashboard({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="flex min-h-screen w-full flex-col">
-      <header className={`sticky top-0 flex h-16 items-center z-50 transition-shadow duration-300 justify-between gap-4 border-b  px-4 md:px-6 ${scrolled ? "shadow-md border-b bg-background/90 backdrop-blur-lg" : "bg-background/70 border-b"}`}>
+      <header
+        className={`sticky top-0 flex h-16 items-center z-50 transition-shadow duration-300 justify-between gap-4 border-b  px-4 md:px-6 ${scrolled ? "shadow-md border-b bg-background/90 backdrop-blur-lg" : "bg-background/70 border-b"}`}
+      >
         <div className="hidden sm:block">
           <Link href="/" className="flex-start">
             <Image
@@ -95,14 +94,12 @@ export function Dashboard({ children }: { children: React.ReactNode }) {
           </Link>
         </div>
         <div className="flex items-center gap-2">
-          <ModeToggle/>
-          <div className='relative'>
-            <Badge className='fixed ml-4 cursor-pointer animate-bounce'>
-           
-           {blogs?.length}
-        
+          <ModeToggle />
+          <div className="relative">
+            <Badge className="fixed ml-4 cursor-pointer animate-bounce">
+              {blogs?.length}
             </Badge>
-           {userRole !=='blogger' &&  <NotificationDropdown/>}
+            {userRole !== "blogger" && <NotificationDropdown />}
           </div>
           <AuthDropdown />
         </div>
@@ -113,4 +110,3 @@ export function Dashboard({ children }: { children: React.ReactNode }) {
     </div>
   );
 }
-

@@ -7,5 +7,3 @@ export const deleteCookies = (keys: string[]) => {
     cookies().delete(key);
   });
 };
-
-

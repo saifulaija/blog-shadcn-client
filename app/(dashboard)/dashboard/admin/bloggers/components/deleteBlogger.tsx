@@ -4,14 +4,13 @@ import MyAlertDialog from "@/components/shadcn/MyAlertDialog";
 import { useToast } from "@/components/ui/use-toast";
 import { useDeleteAuthorMutation } from "@/redux/features/author/authorApi";
 
-
 interface DeleteFlatProps {
   authorId: string;
 }
 
 const DeleteBlogger: React.FC<DeleteFlatProps> = ({ authorId }) => {
   const { toast } = useToast();
-  const [deleteBlogger, { isLoading }] =useDeleteAuthorMutation();
+  const [deleteBlogger, { isLoading }] = useDeleteAuthorMutation();
 
   const handleDelete = async () => {
     try {

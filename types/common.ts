@@ -1,6 +1,5 @@
 import { USER_ROLE } from "@/constants/role";
 
-
 export type IMeta = {
   page: number;
   limit: number;
@@ -9,12 +8,10 @@ export type IMeta = {
 
 export type UserRole = keyof typeof USER_ROLE;
 
-
-
 export interface IHeaderItem {
   title: string;
-  path?: string ;
-  subMenu?: IHeaderItem[]; 
+  path?: string;
+  subMenu?: IHeaderItem[];
 }
 export type ResponseSuccessType = {
   data: any;
@@ -29,9 +26,17 @@ export type IGenericErrorResponse = {
 
 export type IGenericErrorMessage = {
   path: string | number;
-  message:string
+  message: string;
 };
 
-export const Gender=["MALE","FEMALE"];
-export const ApproveStatus=["APPROVED","CANCEL"];
-export const BlogCategory=["programming","Technology","Travel","Food","Lifestyle","Fashion","Fitness"];
+export const Gender = ["MALE", "FEMALE"];
+export const ApproveStatus = ["APPROVED", "CANCEL"];
+export const BlogCategory = [
+  "programming",
+  "Technology",
+  "Travel",
+  "Food",
+  "Lifestyle",
+  "Fashion",
+  "Fitness",
+];

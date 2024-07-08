@@ -3,7 +3,6 @@
 import { ColumnDef } from "@tanstack/react-table";
 import Image from "next/image";
 
-
 import { Button } from "@/components/ui/button";
 
 import { formateDate, formateMoney } from "@/utils/common";
@@ -20,9 +19,9 @@ export type Blog = {
   content: string;
   title: string;
   conclusion: string;
-  category:string;
-  publishedStatus:"PENDING" | "APPROVED" | "CANCEL";
- image:string;
+  category: string;
+  publishedStatus: "PENDING" | "APPROVED" | "CANCEL";
+  image: string;
   createdAt: Date;
 };
 
@@ -32,7 +31,7 @@ export const allBlogsColumn: ColumnDef<Blog>[] = [
     header: "Image",
     cell: ({ row }) => {
       const image = row.original.image;
-    
+
       return (
         <Image
           src={image}
@@ -44,13 +43,17 @@ export const allBlogsColumn: ColumnDef<Blog>[] = [
       );
     },
   },
- 
+
   {
     accessorKey: "category",
     header: "Category",
     cell: ({ row }) => {
       const status = row.original.category;
-      return <div><MyBadge title={status}/></div>;
+      return (
+        <div>
+          <MyBadge title={status} />
+        </div>
+      );
     },
   },
   {
@@ -58,9 +61,13 @@ export const allBlogsColumn: ColumnDef<Blog>[] = [
     header: "Title",
     cell: ({ row }) => {
       const title = row.original.title;
-      const smallTitle=truncateTitle(title,30)
+      const smallTitle = truncateTitle(title, 30);
 
-      return <div><p>{smallTitle}</p></div>;
+      return (
+        <div>
+          <p>{smallTitle}</p>
+        </div>
+      );
     },
   },
   {
@@ -68,7 +75,11 @@ export const allBlogsColumn: ColumnDef<Blog>[] = [
     header: "publishedStatus",
     cell: ({ row }) => {
       const status = row.original.publishedStatus;
-      return <div><MyBadge title={status}/></div>;
+      return (
+        <div>
+          <MyBadge title={status} />
+        </div>
+      );
     },
   },
   // {
@@ -79,7 +90,7 @@ export const allBlogsColumn: ColumnDef<Blog>[] = [
   //     return <div>{formateMoney(advanceAmount)}</div>;
   //   },
   // },
- 
+
   // {
   //   accessorKey: "space",
   //   header:"Space",
@@ -90,7 +101,7 @@ export const allBlogsColumn: ColumnDef<Blog>[] = [
   // },
   {
     accessorKey: "createdAt",
-    header:"Created At",
+    header: "Created At",
     cell: ({ row }) => {
       const lastSeen = row.original.createdAt;
       return <div>{formateDate(lastSeen)}</div>;
@@ -102,7 +113,12 @@ export const allBlogsColumn: ColumnDef<Blog>[] = [
     header: "Change PublishedStatus",
     cell: ({ row }) => {
       const blog = row.original;
-      return <UpdatePublishedStatus userId={blog.id} currentStatus={blog.publishedStatus} />;
+      return (
+        <UpdatePublishedStatus
+          userId={blog.id}
+          currentStatus={blog.publishedStatus}
+        />
+      );
     },
   },
 
@@ -126,7 +142,11 @@ export const allBlogsColumn: ColumnDef<Blog>[] = [
     cell: ({ row }) => {
       const blogId = row.original.id;
       return (
-        <Button variant='outline'><Link href={`/dashboard/moderator/show-blogs/details/${blogId}`}>Details</Link></Button>
+        <Button variant="outline">
+          <Link href={`/dashboard/moderator/show-blogs/details/${blogId}`}>
+            Details
+          </Link>
+        </Button>
       );
     },
   },

@@ -16,7 +16,6 @@
 //   );
 // }
 
-
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 type TProps = {
@@ -27,14 +26,14 @@ type TProps = {
 function getInitials(name: string | undefined): string {
   if (!name) return "CN"; // Default fallback text
   const words = name.split(" ");
-  const initials = words.map(word => word.charAt(0).toUpperCase()).join("");
+  const initials = words.map((word) => word.charAt(0).toUpperCase()).join("");
   return initials.slice(0, 2); // Return the first two initials
 }
 
 export function MyAvatar({ url, alt }: TProps) {
   const imageUrl = url || "";
   const initials = getInitials(alt);
-  console.log(alt)
+  console.log(alt);
 
   return (
     <Avatar>

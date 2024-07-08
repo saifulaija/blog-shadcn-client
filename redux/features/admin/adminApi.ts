@@ -3,14 +3,8 @@ import { tagTypes } from "@/redux/tag-types";
 import { IMeta } from "@/types";
 import { TAdmin } from "@/types/admin";
 
-
-
-
-
 export const adminApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
-   
-
     getAllAdmins: build.query({
       query: (arg: Record<string, any>) => ({
         url: "/admin",
@@ -35,9 +29,9 @@ export const adminApi = baseApi.injectEndpoints({
     }),
     createAdmin: build.mutation({
       query: (data) => ({
-        url:'/user/create-admin',
+        url: "/user/create-admin",
         method: "POST",
-        data
+        data,
       }),
       invalidatesTags: [tagTypes.admin],
     }),
@@ -56,16 +50,15 @@ export const adminApi = baseApi.injectEndpoints({
         method: "PATCH",
         data: data.body,
       }),
-      invalidatesTags: [tagTypes.admin,tagTypes.user],
+      invalidatesTags: [tagTypes.admin, tagTypes.user],
     }),
   }),
 });
 
 export const {
-
   useGetAllAdminsQuery,
   useDeleteAdminMutation,
-useGetSingleAdminQuery,
+  useGetSingleAdminQuery,
   useUpdateAdminMutation,
-  useCreateAdminMutation
+  useCreateAdminMutation,
 } = adminApi;

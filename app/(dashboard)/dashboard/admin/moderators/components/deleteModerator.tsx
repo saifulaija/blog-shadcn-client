@@ -5,14 +5,13 @@ import { useToast } from "@/components/ui/use-toast";
 
 import { useDeleteModeratorMutation } from "@/redux/features/moderator/moderatorApi";
 
-
 interface DeleteFlatProps {
   moderatorId: string;
 }
 
 const DeleteModerator: React.FC<DeleteFlatProps> = ({ moderatorId }) => {
   const { toast } = useToast();
-  const [deleteBlogger, { isLoading }] =useDeleteModeratorMutation();
+  const [deleteBlogger, { isLoading }] = useDeleteModeratorMutation();
 
   const handleDelete = async () => {
     try {

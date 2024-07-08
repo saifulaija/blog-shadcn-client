@@ -1,4 +1,3 @@
-
 "use client";
 import React from "react";
 import { UserDataTable } from "./components/userDataTable";
@@ -13,7 +12,9 @@ const UserManagementPage = () => {
   return (
     <section className="py-5 px-2">
       <div>
-        <h3 className="text-xl md:text-3xl font-bold mb-5 text-center">All users</h3>
+        <h3 className="text-xl md:text-3xl font-bold mb-5 text-center">
+          All users
+        </h3>
         {isLoading ? (
           <CustomLoader />
         ) : (
@@ -25,4 +26,3 @@ const UserManagementPage = () => {
 };
 
 export default UserManagementPage;
-

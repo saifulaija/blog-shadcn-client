@@ -3,14 +3,8 @@ import { tagTypes } from "@/redux/tag-types";
 import { IMeta } from "@/types";
 import { IAuthor } from "@/types/author";
 
-
-
-
-
 export const authorApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
-   
-
     getAllAuthors: build.query({
       query: (arg: Record<string, any>) => ({
         url: "/author",
@@ -35,9 +29,9 @@ export const authorApi = baseApi.injectEndpoints({
     }),
     createAuthor: build.mutation({
       query: (data) => ({
-        url:'/user/create-author',
+        url: "/user/create-author",
         method: "POST",
-        data
+        data,
       }),
       invalidatesTags: [tagTypes.blogger],
     }),
@@ -56,16 +50,15 @@ export const authorApi = baseApi.injectEndpoints({
         method: "PATCH",
         data: data.body,
       }),
-      invalidatesTags: [tagTypes.blogger,tagTypes.user],
+      invalidatesTags: [tagTypes.blogger, tagTypes.user],
     }),
   }),
 });
 
 export const {
-
   useGetAllAuthorsQuery,
   useDeleteAuthorMutation,
-useGetSingleAuthorQuery,
+  useGetSingleAuthorQuery,
   useUpdateAuthorMutation,
-  useCreateAuthorMutation
+  useCreateAuthorMutation,
 } = authorApi;

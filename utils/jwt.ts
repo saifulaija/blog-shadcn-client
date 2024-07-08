@@ -1,4 +1,3 @@
-
 import { jwtDecode, InvalidTokenError } from "jwt-decode";
 
 export const decodedToken = (token: string) => {
@@ -12,4 +11,4 @@ export const decodedToken = (token: string) => {
     }
     return null; // Or handle the error in an appropriate way
   }
-}
+};

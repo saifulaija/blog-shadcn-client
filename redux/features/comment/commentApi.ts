@@ -16,39 +16,35 @@ const commentApi = baseApi.injectEndpoints({
         headers: {
           "Content-type": "application/json",
         },
-        data
+        data,
       }),
-      invalidatesTags: [tagTypes.comment,tagTypes.blog,tagTypes.user],
+      invalidatesTags: [tagTypes.comment, tagTypes.blog, tagTypes.user],
     }),
     getAllComments: build.query({
       query: (blogId) => ({
         url: `/comment/${blogId}`,
         method: "GET",
-       
       }),
-     
-      providesTags: [tagTypes.comment,tagTypes.user],
-    }),
 
+      providesTags: [tagTypes.comment, tagTypes.user],
+    }),
 
     getSingleComment: build.query({
       query: (commentId) => ({
         url: `/comment/get-single-comment/${commentId}`,
         method: "GET",
-       
       }),
-     
-      providesTags: [tagTypes.comment,tagTypes.user],
+
+      providesTags: [tagTypes.comment, tagTypes.user],
     }),
     updateComment: build.mutation({
       query: (updateCommentData) => ({
         url: `/comment/update-comment/${updateCommentData.id}`,
         method: "PATCH",
-        data: updateCommentData.body
-       
+        data: updateCommentData.body,
       }),
-     
-      invalidatesTags: [tagTypes.comment,tagTypes.user],
+
+      invalidatesTags: [tagTypes.comment, tagTypes.user],
     }),
 
     getMyBlogs: build.query({
@@ -81,7 +77,6 @@ const commentApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: [tagTypes.comment],
     }),
- 
   }),
 });
 
@@ -92,5 +87,5 @@ export const {
   useGetSingleBlogQuery,
   useDeleteCommentMutation,
   useGetSingleCommentQuery,
-  useUpdateCommentMutation
+  useUpdateCommentMutation,
 } = commentApi;

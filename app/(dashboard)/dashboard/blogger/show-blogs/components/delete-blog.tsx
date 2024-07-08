@@ -4,10 +4,6 @@ import MyAlertDialog from "@/components/shadcn/MyAlertDialog";
 import { useToast } from "@/components/ui/use-toast";
 import { useDeleteBlogMutation } from "@/redux/features/blog/blogApi";
 
-
-
-
-
 interface DeleteFlatProps {
   flatId: string;
 }

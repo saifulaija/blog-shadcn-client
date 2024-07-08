@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 import {
   AlertDialog,
@@ -18,7 +18,11 @@ interface MyAlertDialogProps {
   onConfirm: () => void;
 }
 
-const MyAlertDialog: React.FC<MyAlertDialogProps> = ({ title, description, onConfirm }) => {
+const MyAlertDialog: React.FC<MyAlertDialogProps> = ({
+  title,
+  description,
+  onConfirm,
+}) => {
   return (
     <AlertDialog>
       <AlertDialogTrigger className="border px-4 py-2 rounded-md border-input bg-background hover:bg-accent hover:text-accent-foreground">
@@ -31,9 +35,7 @@ const MyAlertDialog: React.FC<MyAlertDialogProps> = ({ title, description, onCon
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={onConfirm}>
-            Continue
-          </AlertDialogAction>
+          <AlertDialogAction onClick={onConfirm}>Continue</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

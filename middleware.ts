@@ -24,8 +24,6 @@ export function middleware(request: NextRequest) {
     }
   }
 
-  
-
   if (accessToken && commonPrivateRoutes.includes(pathname)) {
     return NextResponse.next();
   }
@@ -40,7 +38,7 @@ export function middleware(request: NextRequest) {
   console.log(
     role,
     pathname,
-    "================================================="
+    "=================================================",
   );
 
   //   if(role==='ADMIN' && pathname.startsWith('/dashboard/admin')){

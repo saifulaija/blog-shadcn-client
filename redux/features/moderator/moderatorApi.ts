@@ -3,8 +3,6 @@ import { tagTypes } from "@/redux/tag-types";
 import { IMeta } from "@/types";
 import { TModerator } from "@/types/moderator";
 
-
-
 export const moderatorApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     getAllModerators: build.query({
@@ -39,9 +37,9 @@ export const moderatorApi = baseApi.injectEndpoints({
     }),
     createModerator: build.mutation({
       query: (data) => ({
-        url:'/user/create-moderator',
+        url: "/user/create-moderator",
         method: "POST",
-        data
+        data,
       }),
       invalidatesTags: [tagTypes.moderator],
     }),
@@ -62,5 +60,5 @@ export const {
   useDeleteModeratorMutation,
   useGetSingleModeratorQuery,
   useUpdateModeratorMutation,
-  useCreateModeratorMutation
+  useCreateModeratorMutation,
 } = moderatorApi;

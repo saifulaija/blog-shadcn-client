@@ -1,12 +1,12 @@
 // BlogCardSkeleton.jsx or BlogCardSkeleton.tsx
-import { Card, CardContent, CardHeader } from "@/components/ui/card"
-import { Skeleton } from "@/components/ui/skeleton"
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const BlogCardSkeleton = () => {
   return (
     <Card className="w-full max-w-sm">
       <CardHeader className="p-0 items-center">
-        <div className="relative w-full" style={{ height: '200px' }}>
+        <div className="relative w-full" style={{ height: "200px" }}>
           <Skeleton className="h-full w-full rounded" />
         </div>
       </CardHeader>
@@ -26,7 +26,7 @@ const BlogCardSkeleton = () => {
         <Skeleton className="h-8 w-20" />
       </div>
     </Card>
-  )
-}
+  );
+};
 
-export default BlogCardSkeleton
+export default BlogCardSkeleton;

@@ -6,8 +6,6 @@ import { baseApi } from "@/redux/api/baseApi";
 import { tagTypes } from "@/redux/tag-types";
 import { IBlog } from "@/types/blog";
 
-
-
 const blogsApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     createBlog: build.mutation({
@@ -28,7 +26,7 @@ const blogsApi = baseApi.injectEndpoints({
         method: "GET",
         params: arg,
       }),
-      transformResponse: (response:IBlog[], meta: IMeta) => {
+      transformResponse: (response: IBlog[], meta: IMeta) => {
         return {
           blogs: response,
           meta,
@@ -42,7 +40,7 @@ const blogsApi = baseApi.injectEndpoints({
         method: "GET",
         params: arg,
       }),
-      transformResponse: (response:IBlog[], meta: IMeta) => {
+      transformResponse: (response: IBlog[], meta: IMeta) => {
         return {
           blogs: response,
           meta,
@@ -54,18 +52,16 @@ const blogsApi = baseApi.injectEndpoints({
       query: (id) => ({
         url: `/blog/${id}`,
         method: "GET",
-       
       }),
-   
+
       providesTags: [tagTypes.blog],
     }),
     getSingleBlogForModerator: build.query({
       query: (id) => ({
         url: `/blog/get-single-blog/${id}`,
         method: "GET",
-       
       }),
-   
+
       providesTags: [tagTypes.blog],
     }),
 
@@ -76,18 +72,20 @@ const blogsApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: [tagTypes.blog],
     }),
-    // getSingleDoctor: build.query({
-    //   query: (id: string | string[] | undefined) => ({
-    //     url: `/doctor/${id}`,
-    //     method: "GET",
-    //   }),
-    //   providesTags: [tagTypes.doctor],
-    // }),
+
     updateBlog: build.mutation({
       query: (data) => ({
         url: `/blog/update-blog/${data.id}`,
         method: "PATCH",
         data: data.body,
+      }),
+      invalidatesTags: [tagTypes.blog],
+    }),
+    countBlogVote: build.mutation({
+      query: (options) => ({
+        url: `/blog/vote-blog/${options.id}`,
+        method: "PATCH",
+        data: { action: options.action },
       }),
       invalidatesTags: [tagTypes.blog],
     }),
@@ -102,4 +100,14 @@ const blogsApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useCreateBlogMutation, useGetAllBlogsQuery,useGetMyBlogsQuery,useGetSingleBlogQuery,useDeleteBlogMutation,useUpdateBlogMutation,useGetSingleBlogForModeratorQuery,useUpdateStatusApproveMutation } = blogsApi;
+export const {
+  useCreateBlogMutation,
+  useGetAllBlogsQuery,
+  useGetMyBlogsQuery,
+  useGetSingleBlogQuery,
+  useDeleteBlogMutation,
+  useUpdateBlogMutation,
+  useGetSingleBlogForModeratorQuery,
+  useUpdateStatusApproveMutation,
+  useCountBlogVoteMutation,
+} = blogsApi;

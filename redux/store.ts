@@ -1,6 +1,4 @@
-
 import { configureStore } from "@reduxjs/toolkit";
-
 
 import {
   persistStore,
@@ -18,7 +16,6 @@ import { baseApi } from "./api/baseApi";
 import approveReducer from "./features/blog/approveSlice";
 import blogSReducer from "./features/blog/blogSlice";
 
-
 const persistConfig = {
   key: "root",
   storage,
@@ -32,8 +29,7 @@ export const store = configureStore({
   reducer: {
     [baseApi.reducerPath]: baseApi.reducer,
     approve: persistedApproveReducer,
-    blog:persistedBlogReducer
-   
+    blog: persistedBlogReducer,
   },
 
   middleware: (getDefaultMiddleware) =>
@@ -50,4 +46,3 @@ export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 
 export const persistor = persistStore(store);
-

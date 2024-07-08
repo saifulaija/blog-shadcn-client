@@ -1,15 +1,10 @@
-
 import React from "react";
 import { FaPaperPlane } from "react-icons/fa";
 import { Button } from "../ui/button";
 
-export default function SubmitBtn({ loading }:{loading:any}) {
+export default function SubmitBtn({ loading }: { loading: any }) {
   return (
-    <Button
-      type="submit"
-      
-      disabled={loading}
-    >
+    <Button type="submit" disabled={loading}>
       {loading ? (
         <div className="h-5 w-5 animate-spin rounded-full border-b-2 border-white"></div>
       ) : (
