@@ -1,5 +1,3 @@
-
-
 "use client";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -14,7 +12,14 @@ import { MyAvatar } from "@/components/shadcn/MyAvatar";
 
 import { truncateTitle } from "@/utils/truncateTitle";
 import { Button } from "@/components/ui/button";
-import { Bookmark, BookmarkCheck, Copy, ArrowBigUp, Clipboard } from "lucide-react";
+import {
+  Bookmark,
+  BookmarkCheck,
+  Copy,
+  ArrowBigUp,
+  Clipboard,
+  View,
+} from "lucide-react";
 
 import { useState, useEffect } from "react";
 import { useToast } from "@/components/ui/use-toast";
@@ -124,6 +129,10 @@ const BestBlogCard = ({ blog }: { blog: IBlog }) => {
         <p className="text-lg font-semibold">{truncatedTitle}</p>
       </CardContent>
       <CardFooter className="flex justify-between items-center gap-2 p-2">
+        {/* <Button asChild>
+          <View/>
+         <p> {blog?.views}</p>
+        </Button> */}
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
@@ -182,7 +191,7 @@ const BestBlogCard = ({ blog }: { blog: IBlog }) => {
           <Tooltip>
             <TooltipTrigger asChild>
               <Button variant="link" onClick={handleCopyLink}>
-                <Clipboard className="w-5 h-5" />
+                <Clipboard className="w-5 h-5  text-gray-600" />
               </Button>
             </TooltipTrigger>
             <TooltipContent>
@@ -195,7 +204,7 @@ const BestBlogCard = ({ blog }: { blog: IBlog }) => {
             <TooltipTrigger asChild>
               <Button variant="link" onClick={handleBookmark}>
                 {isBookmarked ? (
-                  <BookmarkCheck className="w-5 h-5" />
+                  <BookmarkCheck className="w-5 h-5 text-gray-600" />
                 ) : (
                   <Bookmark className="w-5 h-5" />
                 )}

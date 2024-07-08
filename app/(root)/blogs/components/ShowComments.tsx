@@ -12,7 +12,7 @@ import { getUserInfo } from "@/services/authServices";
 import { comment } from "postcss";
 import { MyAvatar } from "@/components/shadcn/MyAvatar";
 import { Button } from "@/components/ui/button";
-import { Loader, Send } from "lucide-react";
+import { Loader, Loader2, Send } from "lucide-react";
 
 import {
   Form,
@@ -28,6 +28,8 @@ import { Input } from "@/components/ui/input";
 
 import MyDialog from "@/components/shadcn/MyDialog";
 import CommentUpdateForm from "@/components/Form/CommentUpdateForm";
+import CustomLoader from "@/components/shared/CustomLoader/CustomLoader";
+import { cn } from "@/lib/utils";
 
 const formSchema = z.object({
   content: z.string(),
@@ -56,7 +58,7 @@ const ShowComments = ({
   const { data, isLoading: update } = useGetSingleCommentQuery(commentId);
 
   const myCommentData = comments.filter(
-    (item) => item.comment.id === user.userId,
+    (item) => item.comment.id === user?.userId,
   );
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -82,7 +84,7 @@ const ShowComments = ({
   };
 
   return (
-    <div className="">
+    <div className="max-w-[800px] w-full">
       {user ? (
         <div>
           {comments?.map((comment, index) => (
@@ -90,7 +92,7 @@ const ShowComments = ({
               key={comment.id}
               className={`p-2 rounded ${comment.comment.id === user?.userId ? "bg-background/50" : "bg-background"}`}
             >
-              <div className=" flex flex-col border border-gray-300 rounded-md p-4 max-w-[400px] w-full">
+              <div className=" flex flex-col border border-gray-300 rounded-lg p-4">
                 <div className="flex justify-start items-center gap-2">
                   {/* <Image src={}/> */}
                   <MyAvatar url={comment?.comment?.profilePhoto} alt="user" />
@@ -100,7 +102,7 @@ const ShowComments = ({
                 <div className="flex items-center justify-between">
                   <p
                     className={`text-sm text-right p-2 rounded-lg ${
-                      comment.comment.id === user.userId
+                      comment?.comment?.id === user?.userId
                         ? "bg-background"
                         : "bg-background"
                     }`}
@@ -137,37 +139,41 @@ const ShowComments = ({
             </div>
           ))}
           {/* Form to add a new comment */}
-          <div>
+          <div className="w-full">
             <Form {...form}>
               <form
                 onSubmit={form.handleSubmit(handleSendComment)}
                 className="w-full"
               >
-                <div className="flex items-center">
+                <div className="flex w-full items-center justify-center">
                   <FormField
                     control={form.control}
                     name="content"
                     render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="sr-only">Content</FormLabel>{" "}
-                        {/* Screen-reader only label */}
+                      <FormItem className="flex-grow">
+                        <FormLabel className="sr-only">Content</FormLabel>
                         <FormControl>
                           <Input
                             placeholder="Enter your comment"
                             required={true}
                             {...field}
-                            className="w-[400px]"
+                            className={cn(
+                              "focus-visible:ring-0 text-gray-500 bg-gray-200 rounded-lg w-full",
+                            )}
                           />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
-                  <Button type="submit" variant="link">
+                  <Button
+                    type="submit"
+                    className={cn("flex items-center justify-center mt-2")}
+                  >
                     {isLoading ? (
-                      <Loader className="h-3 w-3 animate-spin -ml-20 mt-2" />
+                      <Loader2 className="h-5 w-5 animate-spin" />
                     ) : (
-                      <Send className="w-5 h-5 -ml-20 mt-2" />
+                      "Post"
                     )}
                   </Button>
                 </div>
