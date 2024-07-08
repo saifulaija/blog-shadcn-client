@@ -1,5 +1,6 @@
 "use client";
 
+import CreateAuthorForm from "@/components/Form/AuthorCreateForm";
 import SignUpForm from "@/components/Form/SignUpForm";
 import { buttonVariants } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -8,13 +9,12 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
-
 const sectionVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0 },
 };
 
-const SignUp = () => {
+const BloggerRegister = () => {
   return (
     <AnimatePresence>
       <motion.div
@@ -32,7 +32,7 @@ const SignUp = () => {
             transition={{ duration: 0.6, ease: "easeInOut" }}
           >
             <h2 className="text-xl md:text-2xl mb-2 text-primary font-semibold">
-              Register Now
+              Register as Blogger
             </h2>
             <div className="text-balance flex justify-center items-center gap-1 -mt-3 text-center">
               <Link
@@ -58,7 +58,7 @@ const SignUp = () => {
           >
             <div className="flex flex-col md:flex-row items-center justify-center">
               <div className="w-full md:w-2xl">
-                <SignUpForm />
+                <CreateAuthorForm />
               </div>
             </div>
           </motion.div>
@@ -68,4 +68,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default BloggerRegister;

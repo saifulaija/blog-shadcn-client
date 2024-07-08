@@ -12,16 +12,17 @@ import {
 } from "../ui/form";
 import { useForm } from "react-hook-form";
 import { Input } from "../ui/input";
-import { Button } from "../ui/button";
+import { Button, buttonVariants } from "../ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { useRouter } from "next/navigation";
 
 import { toast, useToast } from "../ui/use-toast";
 import { uploadImage } from "@/utils/imgbb";
-import { Loader } from "lucide-react";
+import { ArrowRight, Loader } from "lucide-react";
 import { useState } from "react";
 import { registerSubscriber } from "@/services/actions/registerSubscriber";
+import Link from "next/link";
 const formSchema = z.object({
   email: z.string().email({
     message: "Please enter valid email",
@@ -174,7 +175,7 @@ const SignUpForm = () => {
                       type="file"
                       accept="image/*"
                       onChange={(e) => field.onChange(e.target.files)}
-                      className="w-full flex-1"
+                      className=" max:w-[680px] w-full"
                     />
                   </FormControl>
                   <FormMessage />
@@ -187,10 +188,7 @@ const SignUpForm = () => {
             {loading && <Loader className="ml-6 h-5 w-5 animate-spin" />}
           </Button>
 
-          <div className="text-balance flex justify-center items-center gap-1 text-center">
-            <span>Old user?</span>
-            <span className="text-primary">Go Sign In</span>
-          </div>
+          
         </div>
       </form>
     </Form>

@@ -46,6 +46,7 @@
 import SignInForm from "@/components/Form/SignInForm ";
 import SignUpForm from "@/components/Form/SignUpForm";
 import { buttonVariants } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 import { APP_NAME } from "@/lib/constants";
 import assets from "@/public";
 import { AnimatePresence, motion } from "framer-motion";
@@ -76,14 +77,8 @@ const SignIn = () => {
             transition={{ duration: 0.6, ease: "easeInOut" }}
           >
             <div className="flex flex-col items-center space-y-1 text-center">
-              <Image
-                src={assets.images.logo}
-                width={40}
-                height={40}
-                alt={`${APP_NAME} logo`}
-                className="rounded-md mr-1"
-              />
-              <h1 className="text-2xl font-semibold tracking-tight capitalize">
+             
+              <h1 className="text-2xl font-semibold tracking-tight text-primary capitalize">
                 Sign in to your account
               </h1>
 
@@ -97,6 +92,7 @@ const SignIn = () => {
                 Don&apos;t have an account?
                 <ArrowRight className="h-4 w-4" />
               </Link>
+              <Separator/>
             </div>
           </motion.div>
           <motion.div

@@ -28,6 +28,10 @@ import {
 } from "../ui/select";
 import { Gender } from "@/types";
 import { useCreateAuthorMutation } from "@/redux/features/blogger/bloggerApi";
+import { getUserInfo } from "@/services/authServices";
+import { Card } from "../ui/card";
+import { cn } from "@/lib/utils";
+import { Separator } from "../ui/separator";
 const formSchema = z.object({
   email: z.string().email({
     message: "Please enter valid email",
@@ -52,7 +56,7 @@ const CreateAuthorForm = () => {
   const router = useRouter();
   const [error, setError] = useState("");
   const {} = useToast();
-  // const [createUser, { isLoading, isError }] = useCreateUserMutation();
+  const user = getUserInfo();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -84,6 +88,7 @@ const CreateAuthorForm = () => {
           title: "Success!",
           description: `Author created successfully`,
         });
+        if (!user) router.push("/signin");
       } else {
         // setError(res?.error.error || "An unexpected error occurred.");
       }
@@ -94,136 +99,141 @@ const CreateAuthorForm = () => {
     }
   };
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
-        <div className="w-full space-y-4 md:px-4 py-6">
-          {error && <p className="text-red-500">{error}</p>}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 justify-center items-center">
-            <FormField
-              control={form.control}
-              name="name"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Name</FormLabel>
-                  <FormControl>
-                    <Input
-                      type="text"
-                      placeholder="Enter your name"
-                      {...field}
-                    />
-                  </FormControl>
+  
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
+          <div className="w-full space-y-4 md:px-4 py-6">
+           
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 justify-center items-center">
+              <FormField
+                control={form.control}
+                name="name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Name</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="text"
+                        placeholder="Enter your name"
+                        {...field}
+                      />
+                    </FormControl>
 
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Email</FormLabel>
-                  <FormControl>
-                    <Input
-                      type="email"
-                      placeholder="Enter your email"
-                      {...field}
-                    />
-                  </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Email</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="email"
+                        placeholder="Enter your email"
+                        {...field}
+                      />
+                    </FormControl>
 
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="password"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>password</FormLabel>
-                  <FormControl>
-                    <Input
-                      type="password"
-                      placeholder="Enter your password"
-                      {...field}
-                    />
-                  </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>password</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="password"
+                        placeholder="Enter your password"
+                        {...field}
+                      />
+                    </FormControl>
 
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="contactNumber"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>contactNumber</FormLabel>
-                  <FormControl>
-                    <Input
-                      type="text"
-                      placeholder="Contact Number.."
-                      {...field}
-                    />
-                  </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="contactNumber"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>contactNumber</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="text"
+                        placeholder="Contact Number.."
+                        {...field}
+                      />
+                    </FormControl>
 
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="gender"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Gender</FormLabel>
-                  <FormControl>
-                    <Select onValueChange={field.onChange} value={field.value}>
-                      <SelectTrigger className="w-full">
-                        <SelectValue placeholder="Select your gender" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectGroup>
-                          <SelectLabel>Gender</SelectLabel>
-                          {Gender.map((item) => (
-                            <SelectItem key={item} value={item}>
-                              {item}
-                            </SelectItem>
-                          ))}
-                        </SelectGroup>
-                      </SelectContent>
-                    </Select>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="profilePhoto"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>profilePhoto</FormLabel>
-                  <FormControl>
-                    <Input
-                      type="file"
-                      accept="image/*"
-                      onChange={(e) => field.onChange(e.target.files)}
-                      className="w-full"
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="gender"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Gender</FormLabel>
+                    <FormControl>
+                      <Select
+                        onValueChange={field.onChange}
+                        value={field.value}
+                      >
+                        <SelectTrigger className="w-full">
+                          <SelectValue placeholder="Select your gender" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectGroup>
+                            <SelectLabel>Gender</SelectLabel>
+                            {Gender.map((item) => (
+                              <SelectItem key={item} value={item}>
+                                {item}
+                              </SelectItem>
+                            ))}
+                          </SelectGroup>
+                        </SelectContent>
+                      </Select>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="profilePhoto"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>profilePhoto</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => field.onChange(e.target.files)}
+                        className="w-full"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <Button type="submit" disabled={loading} className="w-full">
+              Create Now
+              {loading && <Loader className="ml-6 h-5 w-5 animate-spin" />}
+            </Button>
           </div>
-          <Button type="submit" disabled={loading} className="w-full">
-            Create Now
-            {loading && <Loader className="ml-6 h-5 w-5 animate-spin" />}
-          </Button>
-        </div>
-      </form>
-    </Form>
+        </form>
+      </Form>
+   
   );
 };
 
