@@ -1,336 +1,8 @@
-// "use client";
-// import { useGetSingleBlogQuery } from "@/redux/features/blog/blogApi";
-// import { useGetAllCommentsQuery } from "@/redux/features/comment/commentApi";
-// import { useCreateLikeMutation } from "@/redux/features/like/likeApi";
-// import { getUserInfo } from "@/services/authServices";
-// import { TBlogResponse } from "@/types/blog";
-
-// import Image from "next/image";
-// import ReactHtmlParser from "html-react-parser";
-// import { useState } from "react";
-// import AuthorInformation from "./AuthorInformation";
-
-// import {
-//   MessageCircleMore,
-//   ThumbsUp,
-//   Bookmark,
-//   Clipboard,
-//   BookmarkCheck,
-// } from "lucide-react";
-// import { Button } from "@/components/ui/button";
-
-// import ShowComments from "./ShowComments";
-// import BlogDetailsSkeleton from "./BlogDetailsSkeleton";
-// import MyDialog from "@/components/shadcn/MyDialog";
-// import { useToast } from "@/components/ui/use-toast";
-
-// const BlogDetailsCard = ({ blogId }: { blogId: string }) => {
-//   const { toast } = useToast();
-//   const [isOpen, setIsOpen] = useState(false);
-//   const [isBookmarked, setIsBookmarked] = useState(() => {
-//     const bookmarks = JSON.parse(localStorage.getItem("bookmarks") || "[]");
-//     return bookmarks.includes(blogId);
-//   });
-
-//   const user = getUserInfo();
-
-//   const { data: comments } = useGetAllCommentsQuery(blogId);
-//   const { data, isLoading } = useGetSingleBlogQuery(blogId);
-//   const [createLike] = useCreateLikeMutation();
-//   const [isLiked, setIsLiked] = useState(false);
-
-//   const blog = data as TBlogResponse;
-//   const newId = blogId;
-//   const authorId = blog?.authorId;
-
-//   const handleCreateLike = async (id: string) => {
-//     const userData = {
-//       userId: user?.userId,
-//       blogId: id,
-//     };
-
-//     try {
-//       await createLike(userData);
-//       setIsLiked(!isLiked);
-//     } catch (error) {
-//       console.error("Error liking the blog:", error);
-//     }
-//   };
-
-//   const handleBookmark = () => {
-//     const bookmarks = JSON.parse(localStorage.getItem("bookmarks") || "[]");
-//     if (bookmarks.includes(blogId)) {
-//       const updatedBookmarks = bookmarks.filter((id: string) => id !== blogId);
-//       localStorage.setItem("bookmarks", JSON.stringify(updatedBookmarks));
-//       setIsBookmarked(false);
-//     } else {
-//       bookmarks.push(blogId);
-//       localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
-//       setIsBookmarked(true);
-//     }
-//   };
-
-//   const handleCopyURL = () => {
-//     const url = `${window.location.origin}/blogs/details/${blogId}`;
-//     navigator.clipboard
-//       .writeText(url)
-//       .then(() => {
-//         // alert('URL copied to clipboard!');
-//         toast({
-//           title: "Success",
-//           description: "Url copied successfully",
-//         });
-//       })
-//       .catch((err) => {
-//         console.error("Failed to copy URL: ", err);
-//       });
-//   };
-
-//   if (isLoading) {
-//     return <BlogDetailsSkeleton />;
-//   }
-
-//   return (
-//     <div className="w-full p-2 md:p-10">
-//       <div className="wrapper border rounded-md">
-//         <div className="flex flex-col md:flex-row md:justify-between gap-6 space-y-8 md:space-y-0">
-//           <div className="md:w-1/3 space-y-4">
-//             <AuthorInformation blog={blog} />
-//           </div>
-//           <div className="md:w-2/3 space-y-4">
-//             <div className="relative w-full h-[400px]">
-//               <Image
-//                 src={blog?.image || "/placeholder-image.jpg"}
-//                 alt="Blog Image"
-//                 layout="fill"
-//                 objectFit="cover"
-//                 quality={100}
-//                 className="rounded-t-md"
-//               />
-//             </div>
-//             <div>
-//               <p className="text-xl font-semibold">Category:</p>
-//               <p className="text-sm text-muted-foreground/90 font-medium capitalize">
-//                 {blog?.category}
-//               </p>
-//             </div>
-//             <div>
-//               <p className="text-xl font-semibold">Title:</p>
-//               <p className="text-sm text-muted-foreground/90 font-medium capitalize">
-//                 {blog?.title}
-//               </p>
-//             </div>
-//             <div>
-//               <p className="text-xl font-semibold">Description:</p>
-//               <div className="text-sm text-muted-foreground/90 font-medium capitalize">
-//                 {blog?.content
-//                   ? ReactHtmlParser(blog.content)
-//                   : "No description available"}
-//               </div>
-//             </div>
-//             <div>
-//               <p className="text-xl font-semibold">Conclusion:</p>
-//               <p className="text-sm text-muted-foreground/90 font-medium capitalize">
-//                 {blog?.conclusion
-//                   ? ReactHtmlParser(blog.conclusion)
-//                   : "No conclusion available"}
-//               </p>
-//             </div>
-//           </div>
-//         </div>
-//         <div>
-//           <div className="flex space-x-2">
-//             <Button
-//               variant="link"
-//               asChild
-//               onClick={() => handleCreateLike(blog?.id)}
-//               className={`cursor-pointer ${isLiked ? "text-blue-500" : ""}`}
-//             >
-//               <div className="flex items-center justify-center">
-//                 <ThumbsUp className="mr-1" />
-//                 <span>{blog?.likeCount}</span>
-//               </div>
-//             </Button>
-//             <Button
-//               variant="link"
-//               asChild
-//               onClick={handleBookmark}
-//               className="cursor-pointer"
-//             >
-//               <div className="flex items-center justify-center">
-//                 {isBookmarked ? (
-//                   <BookmarkCheck className="mr-1" />
-//                 ) : (
-//                   <Bookmark className="mr-1" />
-//                 )}
-//                 <span>{isBookmarked ? "Bookmarked" : "Bookmark"}</span>
-//               </div>
-//             </Button>
-//             <Button
-//               variant="link"
-//               asChild
-//               onClick={handleCopyURL}
-//               className="cursor-pointer"
-//             >
-//               <div className="flex items-center justify-center">
-//                 <Clipboard className="mr-1" />
-//                 <span>Copy URL</span>
-//               </div>
-//             </Button>
-//             <div>
-//               <MyDialog
-//                 triggerButton={
-//                   <Button variant="link">
-//                     {" "}
-//                     <MessageCircleMore />
-//                     {comments.length}
-//                   </Button>
-//                 }
-//               >
-//                 <ShowComments
-//                   authorId={authorId}
-//                   comments={comments}
-//                   newId={newId}
-//                 />
-//               </MyDialog>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default BlogDetailsCard;
-
-// // 'use client'
-// // import { useGetSingleBlogQuery } from "@/redux/features/blog/blogApi";
-// // import { useGetAllCommentsQuery } from "@/redux/features/comment/commentApi";
-// // import { useCreateLikeMutation } from "@/redux/features/like/likeApi";
-// // import { getUserInfo } from "@/services/authServices";
-// // import { TBlogResponse } from "@/types/blog";
-
-// // import Image from "next/image";
-// // import ReactHtmlParser from "html-react-parser";
-// // import { useState } from "react";
-// // import AuthorInformation from "./AuthorInformation";
-
-// // import { MessageCircleMore, ThumbsUp } from "lucide-react";
-// // import { Button } from "@/components/ui/button";
-
-// // import ShowComments from "./ShowComments";
-// // import BlogDetailsSkeleton from "./BlogDetailsSkeleton";
-// // import MyDialog from "@/components/shadcn/MyDialog";
-
-// // type TParams = {
-// //     params: {
-// //         blogId: string;
-// //     }
-// // };
-
-// // const BlogDetailsCard = ({ blogId }: { blogId: string }) => {
-// //     const [isOpen, setIsOpen] = useState(false)
-
-// //     const user = getUserInfo();
-
-// //     const { data: comments } = useGetAllCommentsQuery(blogId);
-// //     const { data, isLoading } = useGetSingleBlogQuery(blogId);
-// //     const [createLike] = useCreateLikeMutation();
-// //     const [isLiked, setIsLiked] = useState(false);
-
-// //     const blog = data as TBlogResponse;
-// //     const newId = blogId;
-// //     const authorId = blog?.authorId;
-
-// //     const handleCreateLike = async (id: string) => {
-// //         const userData = {
-// //             userId: user?.userId,
-// //             blogId: id,
-// //         };
-
-// //         try {
-// //             await createLike(userData);
-// //             setIsLiked(!isLiked);
-// //         } catch (error) {
-// //             console.error("Error liking the blog:", error);
-// //         }
-// //     };
-
-// //     if (isLoading) {
-// //         return <BlogDetailsSkeleton />
-// //     }
-
-// //     return (
-// //         <div className="w-full p-2 md:p-10">
-// //             <div className="wrapper border rounded-md">
-// //                 <div className="flex flex-col md:flex-row md:justify-between gap-6 space-y-8 md:space-y-0">
-// //                     <div className="md:w-1/3 space-y-4">
-// //                         <AuthorInformation blog={blog} />
-// //                     </div>
-// //                     <div className="md:w-2/3 space-y-4">
-// //                         <div className="relative w-full max-w-[800px] h-[300px] overflow-hidden rounded-md">
-// //                             <Image
-// //                                 src={blog?.image || "/placeholder-image.jpg"}
-// //                                 alt="Blog Image"
-// //                                 layout="fill"
-// //                                 objectFit="cover"
-// //                                 quality={100}
-// //                             />
-// //                         </div>
-// //                         <div>
-// //                             <p className="text-xl font-semibold">Category:</p>
-// //                             <p className="text-sm text-muted-foreground/90 font-medium capitalize">{blog?.category}</p>
-// //                         </div>
-// //                         <div>
-// //                             <p className="text-xl font-semibold">Title:</p>
-// //                             <p className="text-sm text-muted-foreground/90 font-medium capitalize">{blog?.title}</p>
-// //                         </div>
-// //                         <div>
-// //                             <p className="text-xl font-semibold">Description:</p>
-// //                             <div className="text-sm text-muted-foreground/90 font-medium capitalize">
-
-// //                                 {blog?.content ? ReactHtmlParser(blog.content) : "No description available"}
-// //                             </div>
-// //                         </div>
-// //                         <div>
-// //                             <p className="text-xl font-semibold">Conclusion:</p>
-// //                             <p className="text-sm text-muted-foreground/90 font-medium capitalize">
-
-// //                                 {blog?.conclusion ? ReactHtmlParser(blog.conclusion) : "No conclusion available"}
-
-// //                             </p>
-// //                         </div>
-// //                     </div>
-// //                 </div>
-// //                 <div>
-// //                     <div className="flex">
-// //                         <Button
-// //                             variant='link'
-// //                             asChild
-// //                             onClick={() => handleCreateLike(blog?.id)}
-// //                             className={`cursor-pointer ${isLiked ? 'text-blue-500' : ''}`}
-// //                         >
-// //                             <div className="flex items-center justify-center">
-// //                                 <ThumbsUp className="mr-1" />
-// //                                 <span>{blog?.likeCount}</span>
-// //                             </div>
-// //                         </Button>
-// //                         <div>
-
-// //                             <MyDialog triggerButton={<Button variant="link"> <MessageCircleMore />{comments.length}</Button>}>
-// //                                 <ShowComments authorId={authorId} comments={comments} newId={newId} />
-// //                             </MyDialog>
-// //                         </div>
-// //                     </div>
-// //                 </div>
-// //             </div>
-// //         </div>
-// //     );
-// // };
-
-// // export default BlogDetailsCard;
 "use client";
-import { useCountBlogVoteMutation, useGetSingleBlogQuery } from "@/redux/features/blog/blogApi";
+import {
+  useCountBlogVoteMutation,
+  useGetSingleBlogQuery,
+} from "@/redux/features/blog/blogApi";
 import { useGetAllCommentsQuery } from "@/redux/features/comment/commentApi";
 import { useCreateLikeMutation } from "@/redux/features/like/likeApi";
 import { getUserInfo } from "@/services/authServices";
@@ -352,14 +24,12 @@ import {
 } from "@/components/ui/alert-dialog";
 
 import {
-  MessageCircleMore,
-  ThumbsUp,
   Bookmark,
   Clipboard,
   BookmarkCheck,
-  MessageCircleMoreIcon,
   MessageCircle,
   ArrowBigUp,
+  Eye,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -375,18 +45,23 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { Card } from "@/components/ui/card";
+import { MyAvatar } from "@/components/shadcn/MyAvatar";
+import { formateDate } from "@/utils/common";
+import { Separator } from "@/components/ui/separator";
 
 interface BlogDetailsProps {
   blogId: string;
 }
 
+import { format } from "date-fns";
+
 const BlogDetailsCard: React.FC<BlogDetailsProps> = ({ blogId }) => {
-  
   const { toast } = useToast();
   const [showComments, setShowComments] = useState(false);
   const [isUpvoted, setIsUpvoted] = useState(false);
-  const [voteCountNumber, {  isError }] = useCountBlogVoteMutation();
-  const[isCopy,setIsCopy]=useState(false)
+  const [voteCountNumber, { isError }] = useCountBlogVoteMutation();
+  const [isCopy, setIsCopy] = useState(false);
   const handleVote = async (e: React.MouseEvent) => {
     e.stopPropagation();
     const newValue = !isUpvoted;
@@ -411,14 +86,10 @@ const BlogDetailsCard: React.FC<BlogDetailsProps> = ({ blogId }) => {
   });
 
   const user = getUserInfo();
-  console.log(user);
-  
+
   const router = useRouter();
   const handleLogin = () => {
     router.push("/signin");
-  };
-  const handleShareFlat = () => {
-    router.push(`/dashboard/${user?.role}/flats`);
   };
 
   const { data: comments } = useGetAllCommentsQuery(blogId);
@@ -429,20 +100,9 @@ const BlogDetailsCard: React.FC<BlogDetailsProps> = ({ blogId }) => {
   const blog = data as TBlogResponse;
   const newId = blogId;
   const authorId = blog?.authorId;
-
-  const handleCreateLike = async (id: string) => {
-    const userData = {
-      userId: user?.userId,
-      blogId: id,
-    };
-
-    try {
-      await createLike(userData);
-      setIsLiked(!isLiked);
-    } catch (error) {
-      console.error("Error liking the blog:", error);
-    }
-  };
+   const formattedDate = blog?.createdAt
+     ? format(new Date(blog.createdAt), "dd/MM/yyyy")
+     : "";
 
   const handleBookmark = () => {
     const bookmarks = JSON.parse(localStorage.getItem("bookmarks") || "[]");
@@ -468,7 +128,7 @@ const BlogDetailsCard: React.FC<BlogDetailsProps> = ({ blogId }) => {
           description: "Url copied successfully",
         });
       })
-      
+
       .catch((err) => {
         console.error("Failed to copy URL: ", err);
       });
@@ -483,39 +143,51 @@ const BlogDetailsCard: React.FC<BlogDetailsProps> = ({ blogId }) => {
       <div className="wrapper border rounded-md">
         <div className="">
           <div className="w-full space-y-4">
-            <div className="relative w-full h-[400px]">
+            <div className="relative w-full h-[700px]">
               <Image
                 src={blog?.image || "/placeholder-image.jpg"}
                 alt="Blog Image"
                 layout="fill"
                 objectFit="cover"
                 quality={100}
-                className="rounded-t-md"
+                className="rounded-lg"
               />
             </div>
+
+            
+              <div className="flex justify-between items-center p-1">
+                <div className="flex items-center gap-2">
+                  <MyAvatar
+                    url={blog?.author?.profilePhoto || "/photo"}
+                    alt={blog?.author?.name || "author"}
+                  />
+                  <p className="text-sm font-medium">{blog?.author?.name}</p>
+                </div>
+                <div className="flex items-center gap-0.5">
+                  <Eye/>
+                  <p>{blog?.views}</p>
+                </div>
+                <p className="text-sm">{formattedDate}</p>
+              </div>
+            <Separator/>
             <div>
               <p className="text-xl font-semibold">Category:</p>
-              <p className="text-sm text-muted-foreground/90 font-medium capitalize">
+              <p className="text-sm text-muted-foreground font-medium capitalize">
                 {blog?.category}
               </p>
             </div>
             <div>
-              <p className="text-xl font-semibold">Title:</p>
-              <p className="text-sm text-muted-foreground/90 font-medium capitalize">
-                {blog?.title}
-              </p>
+              <p className="md:text-md text-xl font-semibold">{blog?.title}</p>
             </div>
             <div>
-              <p className="text-xl font-semibold">Description:</p>
-              <div className="text-sm text-muted-foreground/90 font-medium capitalize">
+              <div className="text-sm text-muted-foreground font-medium capitalize">
                 {blog?.content
                   ? ReactHtmlParser(blog.content)
                   : "No description available"}
               </div>
             </div>
             <div>
-              <p className="text-xl font-semibold">Conclusion:</p>
-              <p className="text-sm text-muted-foreground/90 font-medium capitalize">
+              <p className="text-sm text-muted-foreground font-medium capitalize">
                 {blog?.conclusion
                   ? ReactHtmlParser(blog.conclusion)
                   : "No conclusion available"}
@@ -525,7 +197,6 @@ const BlogDetailsCard: React.FC<BlogDetailsProps> = ({ blogId }) => {
         </div>
         <div>
           <div className="flex items-center space-x-4">
-           
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
@@ -563,7 +234,10 @@ const BlogDetailsCard: React.FC<BlogDetailsProps> = ({ blogId }) => {
                   <MessageCircle
                     className={`w-5 h-5 ${showComments ? "text-green-600" : "text-gray-500"}`}
                   />
-                  <p className="text-gray-600 font-bold ml-1 text-md"> {comments?.length}</p>
+                  <p className="text-gray-600 font-bold ml-1 text-md">
+                    {" "}
+                    {comments?.length}
+                  </p>
                 </div>
               </Button>
             ) : (
@@ -603,7 +277,7 @@ const BlogDetailsCard: React.FC<BlogDetailsProps> = ({ blogId }) => {
                 </AlertDialogContent>
               </AlertDialog>
             )}
-          
+
             <Button
               variant="link"
               asChild
@@ -616,7 +290,9 @@ const BlogDetailsCard: React.FC<BlogDetailsProps> = ({ blogId }) => {
                 ) : (
                   <Bookmark className="mr-1 text-gray-600" />
                 )}
-                <span className="text-gray-600">{isBookmarked ? "Bookmarked" : "Bookmark"}</span>
+                <span className="text-gray-600">
+                  {isBookmarked ? "Bookmarked" : "Bookmark"}
+                </span>
               </div>
             </Button>
             <Button
@@ -626,7 +302,9 @@ const BlogDetailsCard: React.FC<BlogDetailsProps> = ({ blogId }) => {
               className="cursor-pointer"
             >
               <div className="flex items-center justify-center">
-                <Clipboard className={`mr-1 ${isCopy? 'text-green-600':'text-gray-600'}`} />
+                <Clipboard
+                  className={`mr-1 ${isCopy ? "text-green-600" : "text-gray-600"}`}
+                />
                 <span className="text-gray-600">Copy URL</span>
               </div>
             </Button>

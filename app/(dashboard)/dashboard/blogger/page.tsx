@@ -1,3 +1,5 @@
+
+
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -11,9 +13,12 @@ import {
   View,
 } from "lucide-react";
 import React from "react";
+import { BloggerDashboardChart } from "./components/BloggerDashboardChart";
 
 const BloggerDashboardPage = () => {
   const { data, isLoading } = useGetMetaQuery(undefined);
+  console.log(data);
+
   return (
     <div>
       <div className="grid gap-4 md:grid-cols-2 md:gap-8 lg:grid-cols-4">
@@ -21,7 +26,7 @@ const BloggerDashboardPage = () => {
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Blogs</CardTitle>
 
-            <NotebookPen className="h-4 w-4 text-muted-foreground" />
+            <NotebookPen className="h-4 w-4 text-primary" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold"> {data?.blogCount}</div>
@@ -31,7 +36,7 @@ const BloggerDashboardPage = () => {
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Approve Blogs</CardTitle>
 
-            <CheckCheck className="h-4 w-4 text-muted-foreground" />
+            <CheckCheck className="h-4 w-4 text-primary" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{data?.approvedBlogCount}</div>
@@ -41,7 +46,7 @@ const BloggerDashboardPage = () => {
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Pending Blogs</CardTitle>
             {/* <CreditCard className="h-4 w-4 text-muted-foreground" /> */}
-            <CircleEllipsis className="h-4 w-4 text-muted-foreground" />
+            <CircleEllipsis className="h-4 w-4 text-primary" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{data?.pendingBlogCount}</div>
@@ -51,13 +56,14 @@ const BloggerDashboardPage = () => {
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Views</CardTitle>
             {/* <Activity className="h-4 w-4 text-muted-foreground" /> */}
-            <View className="h-4 w-4 text-muted-foreground" />
+            <View className="h-4 w-4 text-primary" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold"> {data?.totalViews}</div>
           </CardContent>
         </Card>
       </div>
+        <BloggerDashboardChart/>
     </div>
   );
 };

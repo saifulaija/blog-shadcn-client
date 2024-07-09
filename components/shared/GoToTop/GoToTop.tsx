@@ -27,7 +27,7 @@ const GoToTop = () => {
       {isVisible && (
         <div className="fixed bottom-10 right-10 z-50">
           <button
-            className="bg-primary text-white rounded-full w-10 h-10 flex justify-center items-center shadow-md focus:outline-none hover:bg-primary-dark transition-colors duration-300"
+            className=" bg-secondary text-primary rounded-full w-10 h-10 flex justify-center items-center shadow-md focus:outline-none hover:bg-primary-dark transition-colors duration-300"
             onClick={goToBtn}
           >
             <ArrowUp className="animate-bounce" />

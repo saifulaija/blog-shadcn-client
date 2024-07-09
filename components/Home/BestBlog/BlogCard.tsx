@@ -19,6 +19,8 @@ import {
   ArrowBigUp,
   Clipboard,
   View,
+  ViewIcon,
+  Eye,
 } from "lucide-react";
 
 import { useState, useEffect } from "react";
@@ -35,8 +37,12 @@ import {
 import { formateDate } from "@/utils/common";
 import { useCountBlogVoteMutation } from "@/redux/features/blog/blogApi";
 import { IBlog } from "@/types/blog";
+import { cn } from "@/lib/utils";
+import { Separator } from "@/components/ui/separator";
 
 const BestBlogCard = ({ blog }: { blog: IBlog }) => {
+  console.log(blog);
+  
   const [voteCountNumber, { isLoading, isError }] = useCountBlogVoteMutation();
   const { toast } = useToast();
   const router = useRouter();
@@ -99,7 +105,9 @@ const BestBlogCard = ({ blog }: { blog: IBlog }) => {
   return (
     <Card
       onClick={handleDetails}
-      className="w-full hover:cursor-pointer max-w-md outline-0 focus:ring-2 ring-primary transition duration-300 rounded-md relative group"
+      className={cn(
+        "w-full hover:cursor-pointer max-w-md outline-0 focus:ring-2 ring-primary transition duration-300 rounded-lg shadow-sm hover:shadow-xl relative group hover:border-2 hover:border-primary "
+      )}
     >
       <CardHeader className="p-0 items-center">
         <div className="relative w-full" style={{ height: "200px" }}>
@@ -119,20 +127,15 @@ const BestBlogCard = ({ blog }: { blog: IBlog }) => {
             url={blog?.author?.profilePhoto || "/photo"}
             alt={blog?.author?.name || "author"}
           />
-          <p className="text-sm font-medium text-gray-700">
-            {blog?.author?.name}
-          </p>
+          <p className="text-sm font-medium">{blog?.author?.name}</p>
         </div>
-        <p className="text-sm text-gray-500">{formateDate(blog?.createdAt)}</p>
+        <p className="text-sm">{formateDate(blog?.createdAt)}</p>
       </div>
+      <Separator />
       <CardContent className="p-2">
         <p className="text-lg font-semibold">{truncatedTitle}</p>
       </CardContent>
-      <CardFooter className="flex justify-between items-center gap-2 p-2">
-        {/* <Button asChild>
-          <View/>
-         <p> {blog?.views}</p>
-        </Button> */}
+      <CardFooter className={cn("flex justify-between items-center p-2 mb-0")}>
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>

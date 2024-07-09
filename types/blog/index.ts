@@ -71,7 +71,7 @@ export type TBlogResponse = {
   authorId: string;
   likeCount: number;
   visibility: string;
-  createdAt: string;
+  createdAt: Date;
   updatedAt: string;
   views: number;
   author: {

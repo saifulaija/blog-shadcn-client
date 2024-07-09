@@ -59,11 +59,9 @@ const Blogs = () => {
 
           <div className="w-full flex justify-center items-center my-5">
             <div className="my-5 w-full max-w-md md:max-w-lg">
-              <motion.div
+              <div
                 className="relative w-full"
-                initial={{ y: 0 }}
-                animate={{ y: isFocused ? 10 : 0 }}
-                transition={{ type: "spring", stiffness: 300 }}
+                
               >
                 <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
                 <Input
@@ -71,10 +69,10 @@ const Blogs = () => {
                   onChange={(e) => setQ(e.target.value)}
                   onFocus={() => setIsFocused(true)}
                   onBlur={() => setIsFocused(false)}
-                  placeholder="Search by location, rent price..."
+                  placeholder="Search by category, description..."
                   className="w-full appearance-none bg-background pl-8 shadow-none"
                 />
-              </motion.div>
+              </div>
             </div>
           </div>
 

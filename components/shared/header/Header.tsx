@@ -269,7 +269,7 @@ const Header = () => {
                       >
                         {menuItem.label}
                       </Link>
-                    ) : null,
+                    ) : null
                   )}
                 </div>
               </SheetContent>
@@ -309,7 +309,7 @@ const Header = () => {
                 >
                   {menuItem.label}
                 </Link>
-              ) : null,
+              ) : null
             )}
           </nav>
 
@@ -328,12 +328,12 @@ const Header = () => {
                 </span>
               </Button>
             ) : (
-              <Button asChild variant="link" className="group">
+              <Button asChild className="group">
                 <Link href="/signin" className="flex items-center gap-2">
-                  <UserRoundPlus
-                    size={30}
-                    className="transition-transform duration-300 ease-in-out transform group-hover:translate-x-1"
-                  />
+                  <span className="flex items-center justify-center gap-2 font-semibold tracking-wide">
+                    Login
+                    <UserRoundPlus className="transition-transform duration-300 ease-in-out transform group-hover:translate-x-1" />
+                  </span>
                 </Link>
               </Button>
             )}
