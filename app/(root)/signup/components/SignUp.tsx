@@ -18,7 +18,7 @@ const SignUp = () => {
   return (
     <AnimatePresence>
       <motion.div
-        className="flex items-center justify-center mt-5 md:p-4 "
+        className="flex items-center justify-center p-[4px] "
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}

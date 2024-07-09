@@ -66,6 +66,7 @@ export type TBlogResponse = {
   content: string;
   category: string;
   image: string;
+  votes:number;
   conclusion: string;
   authorId: string;
   likeCount: number;

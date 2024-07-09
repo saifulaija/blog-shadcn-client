@@ -330,7 +330,7 @@
 
 // // export default BlogDetailsCard;
 "use client";
-import { useGetSingleBlogQuery } from "@/redux/features/blog/blogApi";
+import { useCountBlogVoteMutation, useGetSingleBlogQuery } from "@/redux/features/blog/blogApi";
 import { useGetAllCommentsQuery } from "@/redux/features/comment/commentApi";
 import { useCreateLikeMutation } from "@/redux/features/like/likeApi";
 import { getUserInfo } from "@/services/authServices";
@@ -359,6 +359,7 @@ import {
   BookmarkCheck,
   MessageCircleMoreIcon,
   MessageCircle,
+  ArrowBigUp,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -368,14 +369,37 @@ import MyDialog from "@/components/shadcn/MyDialog";
 import { useToast } from "@/components/ui/use-toast";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 interface BlogDetailsProps {
   blogId: string;
 }
 
 const BlogDetailsCard: React.FC<BlogDetailsProps> = ({ blogId }) => {
+  
   const { toast } = useToast();
   const [showComments, setShowComments] = useState(false);
+  const [isUpvoted, setIsUpvoted] = useState(false);
+  const [voteCountNumber, {  isError }] = useCountBlogVoteMutation();
+  const[isCopy,setIsCopy]=useState(false)
+  const handleVote = async (e: React.MouseEvent) => {
+    e.stopPropagation();
+    const newValue = !isUpvoted;
+    setIsUpvoted(newValue);
+    const action = newValue ? "upvote" : "downvote";
+
+    try {
+      const response = await voteCountNumber({ id: blog?.id, action }).unwrap();
+      localStorage.setItem(`vote-${blog?.id}`, newValue ? "upvote" : "");
+    } catch (error) {
+      console.error("Error updating vote count:", error);
+    }
+  };
 
   const toggleComments = () => {
     setShowComments(!showComments);
@@ -387,6 +411,8 @@ const BlogDetailsCard: React.FC<BlogDetailsProps> = ({ blogId }) => {
   });
 
   const user = getUserInfo();
+  console.log(user);
+  
   const router = useRouter();
   const handleLogin = () => {
     router.push("/signin");
@@ -433,6 +459,7 @@ const BlogDetailsCard: React.FC<BlogDetailsProps> = ({ blogId }) => {
 
   const handleCopyURL = () => {
     const url = `${window.location.origin}/blogs/details/${blogId}`;
+    setIsCopy(!isCopy);
     navigator.clipboard
       .writeText(url)
       .then(() => {
@@ -441,6 +468,7 @@ const BlogDetailsCard: React.FC<BlogDetailsProps> = ({ blogId }) => {
           description: "Url copied successfully",
         });
       })
+      
       .catch((err) => {
         console.error("Failed to copy URL: ", err);
       });
@@ -497,17 +525,32 @@ const BlogDetailsCard: React.FC<BlogDetailsProps> = ({ blogId }) => {
         </div>
         <div>
           <div className="flex items-center space-x-4">
-            <Button
-              variant="link"
-              asChild
-              onClick={() => handleCreateLike(blog?.id)}
-              className={`cursor-pointer ${isLiked ? "text-blue-500" : ""}`}
-            >
-              <div className="flex items-center justify-center">
-                <ThumbsUp className="mr-1" />
-                <span>{blog?.likeCount}</span>
-              </div>
-            </Button>
+           
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <motion.div
+                    initial={{ scale: 1 }}
+                    animate={{ scale: 1.2 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Button
+                      variant="ghost"
+                      className="text-gray-500 font-bold"
+                      onClick={handleVote}
+                    >
+                      <ArrowBigUp
+                        className={`w-5 h-5 ${isUpvoted ? "text-green-600" : ""}`}
+                      />
+                      {blog?.votes}
+                    </Button>
+                  </motion.div>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>{isUpvoted ? "Remove Vote" : "Vote"}</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
 
             {user?.userId ? (
               <Button
@@ -516,9 +559,11 @@ const BlogDetailsCard: React.FC<BlogDetailsProps> = ({ blogId }) => {
                 onClick={toggleComments}
                 className="cursor-pointer"
               >
-                <div>
-                  <MessageCircle className="mr-1" />
-                  <p> {comments.length}</p>
+                <div className="text-gray-500">
+                  <MessageCircle
+                    className={`w-5 h-5 ${showComments ? "text-green-600" : "text-gray-500"}`}
+                  />
+                  <p className="text-gray-600 font-bold ml-1 text-md"> {comments?.length}</p>
                 </div>
               </Button>
             ) : (
@@ -528,18 +573,21 @@ const BlogDetailsCard: React.FC<BlogDetailsProps> = ({ blogId }) => {
                     className="cursor-pointer"
                     asChild
                     variant="link"
-                    onClick={handleLogin}
+                    // onClick={handleLogin}
                   >
                     <div>
                       <MessageCircle className="mr-1" />
-                      <p> {comments.length}</p>
+                      <p className="fond-bold text-md text-gray-600">
+                        {" "}
+                        {comments?.length}
+                      </p>
                     </div>
                   </Button>
                 </AlertDialogTrigger>
                 <AlertDialogContent>
                   <AlertDialogHeader>
                     <AlertDialogTitle>
-                      Are you want to share flat?
+                      Are you want to comments?
                     </AlertDialogTitle>
                     <AlertDialogDescription>
                       You need to login at first. Would you like to go to the
@@ -555,15 +603,7 @@ const BlogDetailsCard: React.FC<BlogDetailsProps> = ({ blogId }) => {
                 </AlertDialogContent>
               </AlertDialog>
             )}
-            {/* <div>
-             
-              <Button asChild variant="link" onClick={toggleComments}>
-               <div>
-                  <MessageCircle className="mr-1" />
-                 <p> {comments.length}</p>
-               </div>
-              </Button>
-            </div> */}
+          
             <Button
               variant="link"
               asChild
@@ -572,11 +612,11 @@ const BlogDetailsCard: React.FC<BlogDetailsProps> = ({ blogId }) => {
             >
               <div className="flex items-center justify-center">
                 {isBookmarked ? (
-                  <BookmarkCheck className="mr-1" />
+                  <BookmarkCheck className="text-green-600" />
                 ) : (
-                  <Bookmark className="mr-1" />
+                  <Bookmark className="mr-1 text-gray-600" />
                 )}
-                <span>{isBookmarked ? "Bookmarked" : "Bookmark"}</span>
+                <span className="text-gray-600">{isBookmarked ? "Bookmarked" : "Bookmark"}</span>
               </div>
             </Button>
             <Button
@@ -586,8 +626,8 @@ const BlogDetailsCard: React.FC<BlogDetailsProps> = ({ blogId }) => {
               className="cursor-pointer"
             >
               <div className="flex items-center justify-center">
-                <Clipboard className="mr-1" />
-                <span>Copy URL</span>
+                <Clipboard className={`mr-1 ${isCopy? 'text-green-600':'text-gray-600'}`} />
+                <span className="text-gray-600">Copy URL</span>
               </div>
             </Button>
           </div>

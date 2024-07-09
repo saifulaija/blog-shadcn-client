@@ -227,7 +227,7 @@ const CreateAuthorForm = () => {
               />
             </div>
             <Button type="submit" disabled={loading} className="w-full">
-              Create Now
+              Register Now
               {loading && <Loader className="ml-6 h-5 w-5 animate-spin" />}
             </Button>
           </div>
