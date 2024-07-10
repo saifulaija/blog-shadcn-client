@@ -37,6 +37,12 @@ export type TComment = {
   updatedAt: Date;
 };
 
+export type TTag={
+  id:string,
+  blogId:string,
+  name:string
+}
+
 export interface IBlog {
   id: string;
   title: string;
@@ -54,6 +60,7 @@ export interface IBlog {
   views?: number;
   author?: Author;
   comment?: TComment[];
+  tag:TTag[]
 }
 
 export interface IBlogUpdateProps {
@@ -66,7 +73,7 @@ export type TBlogResponse = {
   content: string;
   category: string;
   image: string;
-  votes:number;
+  votes: number;
   conclusion: string;
   authorId: string;
   likeCount: number;
@@ -74,6 +81,7 @@ export type TBlogResponse = {
   createdAt: Date;
   updatedAt: string;
   views: number;
+  tag?:TTag[];
   author: {
     id: string;
     name: string;
@@ -94,6 +102,7 @@ export type TBlogResponse = {
     createdAt: string;
     updatedAt: string;
   };
+
   comment: {
     id: string;
     content: string;
@@ -102,6 +111,7 @@ export type TBlogResponse = {
     blogId: string;
     createdAt: string;
     updatedAt: string;
+
     comment: {
       id: string;
       email: string;

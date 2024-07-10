@@ -6,7 +6,7 @@ import {
 import { useGetAllCommentsQuery } from "@/redux/features/comment/commentApi";
 import { useCreateLikeMutation } from "@/redux/features/like/likeApi";
 import { getUserInfo } from "@/services/authServices";
-import { TBlogResponse } from "@/types/blog";
+import { TBlogResponse, TTag } from "@/types/blog";
 
 import Image from "next/image";
 import ReactHtmlParser from "html-react-parser";
@@ -55,6 +55,8 @@ interface BlogDetailsProps {
 }
 
 import { format } from "date-fns";
+import Link from "next/link";
+import { Badge } from "@/components/ui/badge";
 
 const BlogDetailsCard: React.FC<BlogDetailsProps> = ({ blogId }) => {
   const { toast } = useToast();
@@ -191,6 +193,15 @@ const BlogDetailsCard: React.FC<BlogDetailsProps> = ({ blogId }) => {
                   ? ReactHtmlParser(blog.conclusion)
                   : "No conclusion available"}
               </p>
+            </div>
+            <div className="flex items-center gap-1.5">
+              {blog?.tag &&
+                blog?.tag?.map((item: TTag, index: number) => (
+                  <div key={index}>
+                    {" "}
+                    <Badge variant="secondary">#{item.name}</Badge>
+                  </div>
+                ))}
             </div>
           </div>
         </div>
