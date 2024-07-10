@@ -332,7 +332,7 @@ const Header = () => {
                 <Link href="/signin" className="flex items-center gap-2">
                   <span className="flex items-center justify-center gap-2 font-semibold tracking-wide">
                     Login
-                    <UserRoundPlus className="transition-transform duration-300 ease-in-out transform group-hover:translate-x-1" />
+                    <ChevronRight className="transition-transform duration-300 ease-in-out transform group-hover:translate-x-1" />
                   </span>
                 </Link>
               </Button>

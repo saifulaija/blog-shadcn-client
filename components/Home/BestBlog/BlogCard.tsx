@@ -105,9 +105,15 @@ const BestBlogCard = ({ blog }: { blog: IBlog }) => {
   return (
     <Card
       onClick={handleDetails}
-      className={cn(
-        "w-full hover:cursor-pointer max-w-md outline-0 focus:ring-2 ring-primary transition duration-300 rounded-lg shadow-sm hover:shadow-xl relative group hover:border-2 hover:border-primary "
-      )}
+      className=
+        "w-full hover:cursor-pointer max-w-md outline-0 focus:ring-2 ring-primary transition duration-300 rounded-lg shadow-sm hover:shadow-xl relative group "
+      
+
+      // className={cn(
+      //   "w-full max-w-md rounded-lg shadow-sm relative transition duration-300",
+      //   "hover:cursor-pointer hover:shadow-xl  hover:border-b-2 hover:border-b-primary",
+      
+      // )}
     >
       <CardHeader className="p-0 items-center">
         <div className="relative w-full" style={{ height: "200px" }}>

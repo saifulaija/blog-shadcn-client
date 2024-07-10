@@ -84,7 +84,7 @@ const ShowComments = ({
   };
 
   return (
-    <div className="max-w-[800px] w-full">
+    <div className="max-w-[800px] w-full mb-5">
       {user ? (
         <div>
           {comments?.map((comment, index) => (

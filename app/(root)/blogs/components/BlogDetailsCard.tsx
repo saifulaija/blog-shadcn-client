@@ -100,9 +100,9 @@ const BlogDetailsCard: React.FC<BlogDetailsProps> = ({ blogId }) => {
   const blog = data as TBlogResponse;
   const newId = blogId;
   const authorId = blog?.authorId;
-   const formattedDate = blog?.createdAt
-     ? format(new Date(blog.createdAt), "dd/MM/yyyy")
-     : "";
+  const formattedDate = blog?.createdAt
+    ? format(new Date(blog.createdAt), "dd/MM/yyyy")
+    : "";
 
   const handleBookmark = () => {
     const bookmarks = JSON.parse(localStorage.getItem("bookmarks") || "[]");
@@ -140,36 +140,35 @@ const BlogDetailsCard: React.FC<BlogDetailsProps> = ({ blogId }) => {
 
   return (
     <div className="w-full p-2 md:p-10">
-      <div className="wrapper border rounded-md">
-        <div className="">
-          <div className="w-full space-y-4">
-            <div className="relative w-full h-[700px]">
-              <Image
-                src={blog?.image || "/placeholder-image.jpg"}
-                alt="Blog Image"
-                layout="fill"
-                objectFit="cover"
-                quality={100}
-                className="rounded-lg"
-              />
-            </div>
+      <Card>
+        <div className="w-full space-y-4">
+          <div className="relative w-full h-[700px]">
+            <Image
+              src={blog?.image || "/placeholder-image.jpg"}
+              alt="Blog Image"
+              layout="fill"
+              objectFit="cover"
+              quality={100}
+              className="rounded-t-lg"
+            />
+          </div>
 
-            
-              <div className="flex justify-between items-center p-1">
-                <div className="flex items-center gap-2">
-                  <MyAvatar
-                    url={blog?.author?.profilePhoto || "/photo"}
-                    alt={blog?.author?.name || "author"}
-                  />
-                  <p className="text-sm font-medium">{blog?.author?.name}</p>
-                </div>
-                <div className="flex items-center gap-0.5">
-                  <Eye/>
-                  <p>{blog?.views}</p>
-                </div>
-                <p className="text-sm">{formattedDate}</p>
-              </div>
-            <Separator/>
+          <div className="flex justify-between items-center px-2">
+            <div className="flex items-center gap-2">
+              <MyAvatar
+                url={blog?.author?.profilePhoto || "/photo"}
+                alt={blog?.author?.name || "author"}
+              />
+              <p className="text-sm font-medium">{blog?.author?.name}</p>
+            </div>
+            <div className="flex items-center gap-0.5">
+              <Eye />
+              <p>{blog?.views}</p>
+            </div>
+            <p className="text-sm">{formattedDate}</p>
+          </div>
+          <Separator />
+          <div className="px-2">
             <div>
               <p className="text-xl font-semibold">Category:</p>
               <p className="text-sm text-muted-foreground font-medium capitalize">
@@ -195,7 +194,9 @@ const BlogDetailsCard: React.FC<BlogDetailsProps> = ({ blogId }) => {
             </div>
           </div>
         </div>
+
         <div>
+          <Separator className="mt-10" />
           <div className="flex items-center space-x-4">
             <TooltipProvider>
               <Tooltip>
@@ -234,10 +235,7 @@ const BlogDetailsCard: React.FC<BlogDetailsProps> = ({ blogId }) => {
                   <MessageCircle
                     className={`w-5 h-5 ${showComments ? "text-green-600" : "text-gray-500"}`}
                   />
-                  <p className="text-gray-600 font-bold ml-1 text-md">
-                    {" "}
-                    {comments?.length}
-                  </p>
+                  <p className="text-gray-500 font-bold"> {comments?.length}</p>
                 </div>
               </Button>
             ) : (
@@ -250,9 +248,8 @@ const BlogDetailsCard: React.FC<BlogDetailsProps> = ({ blogId }) => {
                     // onClick={handleLogin}
                   >
                     <div>
-                      <MessageCircle className="mr-1" />
-                      <p className="fond-bold text-md text-gray-600">
-                        {" "}
+                      <MessageCircle className="mr-1 text-gray-500 font-bold" />
+                      <p className="text-gray-500 font-bold">
                         {comments?.length}
                       </p>
                     </div>
@@ -327,7 +324,7 @@ const BlogDetailsCard: React.FC<BlogDetailsProps> = ({ blogId }) => {
             )}
           </AnimatePresence>
         </div>
-      </div>
+      </Card>
     </div>
   );
 };

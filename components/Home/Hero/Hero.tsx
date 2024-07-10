@@ -4,7 +4,7 @@ import assets from "@/public";
 import { Button } from "@/components/ui/button";
 import { APP_NAME } from "@/lib/constants";
 import Link from "next/link";
-import { SendHorizonal } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 
 const Hero = () => {
   return (
@@ -30,7 +30,7 @@ const Hero = () => {
             <Button asChild className="group animate-in zoom-in duration-500">
               <Link href="/all_blogs" className="flex items-center gap-2">
                 Explore More
-                <SendHorizonal className="transition-transform duration-300 ease-in-out transform group-hover:translate-x-1" />
+                <ChevronRight className="transition-transform duration-300 ease-in-out transform group-hover:translate-x-1" />
               </Link>
             </Button>
           </div>

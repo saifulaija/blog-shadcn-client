@@ -3,7 +3,7 @@ import { IBlog } from "@/types/blog";
 import BestBlogCard from "./BlogCard";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { SendHorizonal } from "lucide-react";
+import { ChevronDown, ChevronRight, SendHorizonal } from "lucide-react";
 import { useGetAllBlogsQuery } from "@/redux/features/blog/blogApi";
 
 const BestBlogsServer = () => {
@@ -24,7 +24,7 @@ const BestBlogsServer = () => {
               className="flex items-center gap-2 font-semibold"
             >
               View All
-              <SendHorizonal className="transition-transform duration-300 ease-in-out transform group-hover:translate-x-1" />
+              <ChevronRight className="transition-transform duration-300 ease-in-out transform group-hover:translate-x-1" />
             </Link>
           </Button>
         </div>
