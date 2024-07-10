@@ -1,4 +1,5 @@
 # BlogPlex
+## For more details, visit the [BlogPlex Backend Repository](https://github.com/saifulaija/nextBlog-server).
 
 Welcome to **BlogPlex**, a comprehensive platform for reading, writing, liking, and commenting on blogs. Built with modern technologies, BlogPlex offers a seamless and intuitive user experience.
 
