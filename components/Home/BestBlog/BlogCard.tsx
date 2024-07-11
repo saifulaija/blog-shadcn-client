@@ -12,16 +12,7 @@ import { MyAvatar } from '@/components/shadcn/MyAvatar';
 
 import { truncateTitle } from '@/utils/truncateTitle';
 import { Button } from '@/components/ui/button';
-import {
-  Bookmark,
-  BookmarkCheck,
-  Copy,
-  ArrowBigUp,
-  Clipboard,
-  View,
-  ViewIcon,
-  Eye,
-} from 'lucide-react';
+import { Bookmark, BookmarkCheck, ArrowBigUp, Clipboard } from 'lucide-react';
 
 import { useState, useEffect } from 'react';
 import { useToast } from '@/components/ui/use-toast';

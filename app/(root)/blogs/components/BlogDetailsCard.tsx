@@ -47,9 +47,7 @@ import {
 } from '@/components/ui/tooltip';
 import { Card } from '@/components/ui/card';
 import { MyAvatar } from '@/components/shadcn/MyAvatar';
-import { formateDate } from '@/utils/common';
 import { Separator } from '@/components/ui/separator';
-
 interface BlogDetailsProps {
   blogId: string;
 }
@@ -58,6 +56,7 @@ import { format } from 'date-fns';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
+import { FaSpinner } from 'react-icons/fa';
 
 const BlogDetailsCard: React.FC<BlogDetailsProps> = ({ blogId }) => {
   const { toast } = useToast();
@@ -65,6 +64,8 @@ const BlogDetailsCard: React.FC<BlogDetailsProps> = ({ blogId }) => {
   const [isUpvoted, setIsUpvoted] = useState(false);
   const [voteCountNumber, { isError }] = useCountBlogVoteMutation();
   const [isCopy, setIsCopy] = useState(false);
+  const [loading, setLoading] = useState(false);
+
   const handleVote = async (e: React.MouseEvent) => {
     e.stopPropagation();
     const newValue = !isUpvoted;
@@ -142,10 +143,10 @@ const BlogDetailsCard: React.FC<BlogDetailsProps> = ({ blogId }) => {
   }
 
   return (
-    <div className="w-full p-2 md:p-10">
+    <div className="w-full p-2 ">
       <Card>
         <div className="w-full space-y-4">
-          <div className="relative w-full h-[700px]">
+          {/* <div className="relative w-full h-[700px]">
             <Image
               src={blog?.image || '/placeholder-image.jpg'}
               alt="Blog Image"
@@ -154,8 +155,33 @@ const BlogDetailsCard: React.FC<BlogDetailsProps> = ({ blogId }) => {
               quality={100}
               className="rounded-t-lg"
             />
+          </div> */}
+          {/* <div className="relative w-full">
+            <img
+              src={blog?.image || '/placeholder-image.jpg'}
+              alt={'photo'}
+              loading="lazy"
+              className="rounded-t-md object-fill h-[500px] max-w-[1200px] w-full"
+            />
+          </div> */}
+
+          <div className="relative w-full h-[500px] max-w-[1200px]">
+            {loading && (
+              <div className="absolute inset-0 flex items-center justify-center">
+                <FaSpinner className="animate-spin" />
+              </div>
+            )}
+            <img
+              src={blog?.image || '/placeholder-image.jpg'}
+              alt={'image'}
+              loading="lazy"
+              className={`rounded-t-md object-cover w-full h-full transition-opacity duration-300 ${
+                loading ? 'opacity-0' : 'opacity-100'
+              }`}
+              onLoad={() => setLoading(false)}
+              onError={() => setLoading(false)} // Handle error case
+            />
           </div>
-          <Separator />
 
           <div className="flex justify-between items-center px-2">
             <div className="flex items-center gap-2">

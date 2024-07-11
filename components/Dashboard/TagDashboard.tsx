@@ -46,9 +46,9 @@ import GlobalSearch from '../shared/GlobalSearch/GlobalSearch';
 export function TagDashboard({ children }: { children: React.ReactNode }) {
   const { data } = useGetAllBlogsQuery({});
   const blogs = data?.blogs || [];
-   const [q, setQ] = useState('');
+  const [q, setQ] = useState('');
 
-  const router=useRouter();
+  const router = useRouter();
 
   const technology = blogs.filter((item) => item.category === 'Technology');
   const programming = blogs.filter((item) => item.category === 'programming');
@@ -69,19 +69,14 @@ export function TagDashboard({ children }: { children: React.ReactNode }) {
     };
   }, []);
 
-
   console.log(q);
-  
-
 
   //  const handleSearch = (e:any) => {
   //   console.log(e);
-    
+
   //    e.preventDefault();
   //    router.push(`/blogs?q=${encodeURIComponent(searchText)}`);
   //  };
-
-
 
   return (
     <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
@@ -288,7 +283,7 @@ export function TagDashboard({ children }: { children: React.ReactNode }) {
                 className="w-full appearance-none bg-background pl-8 shadow-none md:w-2/3 lg:w-1/3"
               /> */}
 
-              <GlobalSearch placeholder='Search blog...........'/>
+              <GlobalSearch placeholder="Search blog..........." />
             </div>
           </div>
           <DropdownMenu>
