@@ -1,13 +1,13 @@
-import { baseApi } from "@/redux/api/baseApi";
-import { tagTypes } from "@/redux/tag-types";
+import { baseApi } from '@/redux/api/baseApi';
+import { tagTypes } from '@/redux/tag-types';
 
 export const profileAPi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     getMYProfile: build.query({
       query: () => {
         return {
-          url: "/user/me",
-          method: "GET",
+          url: '/user/me',
+          method: 'GET',
         };
       },
       providesTags: [tagTypes.user],
@@ -15,8 +15,8 @@ export const profileAPi = baseApi.injectEndpoints({
     updateMYProfile: build.mutation({
       query: (data) => {
         return {
-          url: "/user/update-my-profile",
-          method: "PATCH",
+          url: '/user/update-my-profile',
+          method: 'PATCH',
           data,
         };
       },

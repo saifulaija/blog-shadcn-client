@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from 'zod';
 import {
   Form,
   FormControl,
@@ -6,47 +6,47 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "../ui/form";
-import { useForm } from "react-hook-form";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
-import { zodResolver } from "@hookform/resolvers/zod";
+} from '../ui/form';
+import { useForm } from 'react-hook-form';
+import { Input } from '../ui/input';
+import { Button } from '../ui/button';
+import { zodResolver } from '@hookform/resolvers/zod';
 
-import Link from "next/link";
-import { useState } from "react";
+import Link from 'next/link';
+import { useState } from 'react';
 
-import { useToast } from "../ui/use-toast";
-import { useRouter } from "next/navigation";
-import { Loader } from "lucide-react";
-import { signInUser } from "@/services/actions/signInUser";
-import { storeUserInfo } from "@/services/authServices";
+import { useToast } from '../ui/use-toast';
+import { useRouter } from 'next/navigation';
+import { Loader } from 'lucide-react';
+import { signInUser } from '@/services/actions/signInUser';
+import { storeUserInfo } from '@/services/authServices';
 
 const formSchema = z.object({
   email: z.string().email({
-    message: "Please enter a valid email",
+    message: 'Please enter a valid email',
   }),
   password: z.string().min(6, {
-    message: "Password must be at least 6 characters",
+    message: 'Password must be at least 6 characters',
   }),
 });
 
 const SignInForm = () => {
   const router = useRouter();
   const { toast } = useToast();
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
     },
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setLoading(true);
-    setError("");
+    setError('');
 
     try {
       const res = await signInUser(values);
@@ -54,16 +54,16 @@ const SignInForm = () => {
       if (res?.data?.accessToken) {
         storeUserInfo({ accessToken: res?.data?.accessToken });
         toast({
-          color: "green",
-          title: "Login",
-          description: "User login successfully",
+          color: 'green',
+          title: 'Login',
+          description: 'User login successfully',
         });
         router.refresh();
       } else {
-        setError(res?.message || "An unexpected error occurred.");
+        setError(res?.message || 'An unexpected error occurred.');
       }
     } catch (err: any) {
-      setError(err?.message || "An unexpected error occurred.");
+      setError(err?.message || 'An unexpected error occurred.');
     } finally {
       setLoading(false);
     }

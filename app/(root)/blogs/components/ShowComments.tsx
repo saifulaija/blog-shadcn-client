@@ -1,18 +1,18 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import { FieldValues, useForm } from "react-hook-form";
+import { FieldValues, useForm } from 'react-hook-form';
 
 import {
   useCreateCommentMutation,
   useDeleteCommentMutation,
   useGetSingleCommentQuery,
-} from "@/redux/features/comment/commentApi";
+} from '@/redux/features/comment/commentApi';
 
-import { getUserInfo } from "@/services/authServices";
-import { comment } from "postcss";
-import { MyAvatar } from "@/components/shadcn/MyAvatar";
-import { Button } from "@/components/ui/button";
-import { Loader, Loader2, Send } from "lucide-react";
+import { getUserInfo } from '@/services/authServices';
+import { comment } from 'postcss';
+import { MyAvatar } from '@/components/shadcn/MyAvatar';
+import { Button } from '@/components/ui/button';
+import { Loader, Loader2, Send } from 'lucide-react';
 
 import {
   Form,
@@ -21,15 +21,15 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Input } from "@/components/ui/input";
+} from '@/components/ui/form';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Input } from '@/components/ui/input';
 
-import MyDialog from "@/components/shadcn/MyDialog";
-import CommentUpdateForm from "@/components/Form/CommentUpdateForm";
-import CustomLoader from "@/components/shared/CustomLoader/CustomLoader";
-import { cn } from "@/lib/utils";
+import MyDialog from '@/components/shadcn/MyDialog';
+import CommentUpdateForm from '@/components/Form/CommentUpdateForm';
+import CustomLoader from '@/components/shared/CustomLoader/CustomLoader';
+import { cn } from '@/lib/utils';
 
 const formSchema = z.object({
   content: z.string(),
@@ -37,7 +37,7 @@ const formSchema = z.object({
 
 // Default form values
 const defaultValues = {
-  content: "",
+  content: '',
 };
 
 // Component to display comments and add new ones
@@ -51,7 +51,7 @@ const ShowComments = ({
   newId: string;
 }) => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [commentId, setCommentId] = useState<string>("");
+  const [commentId, setCommentId] = useState<string>('');
   const [createComment, { isLoading }] = useCreateCommentMutation();
   const [deleteComment] = useDeleteCommentMutation();
   const user = getUserInfo();
@@ -63,7 +63,7 @@ const ShowComments = ({
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      content: "",
+      content: '',
     },
   });
 
@@ -90,7 +90,7 @@ const ShowComments = ({
           {comments?.map((comment, index) => (
             <div
               key={comment.id}
-              className={`p-2 rounded ${comment.comment.id === user?.userId ? "bg-background/50" : "bg-background"}`}
+              className={`p-2 rounded ${comment.comment.id === user?.userId ? 'bg-background/50' : 'bg-background'}`}
             >
               <div className=" flex flex-col border border-gray-300 rounded-lg p-4">
                 <div className="flex justify-start items-center gap-2">
@@ -103,8 +103,8 @@ const ShowComments = ({
                   <p
                     className={`text-sm text-right p-2 rounded-lg ${
                       comment?.comment?.id === user?.userId
-                        ? "bg-background"
-                        : "bg-background"
+                        ? 'bg-background'
+                        : 'bg-background'
                     }`}
                   >
                     {comment?.content}
@@ -158,7 +158,7 @@ const ShowComments = ({
                             required={true}
                             {...field}
                             className={cn(
-                              "focus-visible:ring-0 text-gray-500 bg-gray-200 rounded-lg w-full",
+                              'focus-visible:ring-0 text-gray-500 bg-gray-200 rounded-lg w-full',
                             )}
                           />
                         </FormControl>
@@ -168,12 +168,12 @@ const ShowComments = ({
                   />
                   <Button
                     type="submit"
-                    className={cn("flex items-center justify-center mt-2")}
+                    className={cn('flex items-center justify-center mt-2')}
                   >
                     {isLoading ? (
                       <Loader2 className="h-5 w-5 animate-spin" />
                     ) : (
-                      "Post"
+                      'Post'
                     )}
                   </Button>
                 </div>
@@ -182,7 +182,7 @@ const ShowComments = ({
           </div>
         </div>
       ) : (
-        ""
+        ''
       )}
     </div>
   );

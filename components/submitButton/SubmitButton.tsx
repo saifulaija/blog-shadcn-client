@@ -1,6 +1,6 @@
-import React from "react";
-import { FaPaperPlane } from "react-icons/fa";
-import { Button } from "../ui/button";
+import React from 'react';
+import { FaPaperPlane } from 'react-icons/fa';
+import { Button } from '../ui/button';
 
 export default function SubmitBtn({ loading }: { loading: any }) {
   return (
@@ -10,7 +10,7 @@ export default function SubmitBtn({ loading }: { loading: any }) {
       ) : (
         <>
           Subscribe
-          <FaPaperPlane className="text-xs opacity-70 ml-4 transition-all group-hover:translate-x-1 group-hover:-translate-y-1" />{" "}
+          <FaPaperPlane className="text-xs opacity-70 ml-4 transition-all group-hover:translate-x-1 group-hover:-translate-y-1" />{' '}
         </>
       )}
     </Button>

@@ -1,8 +1,8 @@
 // pages/404.tsx
-import Link from "next/link";
+import Link from 'next/link';
 
-import { HomeIcon, StickyNote } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { HomeIcon, StickyNote } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 const Custom404 = () => {
   return (

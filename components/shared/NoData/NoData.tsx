@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/button";
-import { AlertCircle, RefreshCcw } from "lucide-react";
+import { Button } from '@/components/ui/button';
+import { AlertCircle, RefreshCcw } from 'lucide-react';
 
 // Enhanced NoData component
 interface NoDataProps {
@@ -10,9 +10,9 @@ interface NoDataProps {
 }
 
 export function NoData({
-  message = "No Data Available",
-  description = "There is no data to display at the moment.",
-  buttonText = "Reload",
+  message = 'No Data Available',
+  description = 'There is no data to display at the moment.',
+  buttonText = 'Reload',
   onButtonClick = () => window.location.reload(),
 }: NoDataProps) {
   return (

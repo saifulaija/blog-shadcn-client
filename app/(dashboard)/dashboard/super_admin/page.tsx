@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import React from "react";
-import { Bar, Pie } from "react-chartjs-2";
+import React from 'react';
+import { Bar, Pie } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -12,17 +12,17 @@ import {
   Legend,
   Title,
   TimeScale,
-} from "chart.js";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useGetMetaQuery } from "@/redux/api/metaDataApi";
+} from 'chart.js';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { useGetMetaQuery } from '@/redux/api/metaDataApi';
 import {
   CheckCheck,
   CircleEllipsis,
   NotebookPen,
   User,
   View,
-} from "lucide-react";
-import "chartjs-adapter-date-fns";
+} from 'lucide-react';
+import 'chartjs-adapter-date-fns';
 
 ChartJS.register(
   CategoryScale,
@@ -41,10 +41,10 @@ const SuperAdminDashboardPage = () => {
     labels: data?.barChartData?.map((item: any) => new Date(item.day)) || [],
     datasets: [
       {
-        label: "Counts by Date",
+        label: 'Counts by Date',
         data: data?.barChartData?.map((item: any) => item.count) || [],
-        backgroundColor: "rgba(75, 192, 192, 0.6)",
-        borderColor: "rgba(75, 192, 192, 1)",
+        backgroundColor: 'rgba(75, 192, 192, 0.6)',
+        borderColor: 'rgba(75, 192, 192, 1)',
         borderWidth: 1,
       },
     ],
@@ -53,19 +53,19 @@ const SuperAdminDashboardPage = () => {
   const barChartOptions = {
     scales: {
       x: {
-        type: "time",
+        type: 'time',
         time: {
-          unit: "day",
+          unit: 'day',
         },
         title: {
           display: true,
-          text: "Date",
+          text: 'Date',
         },
       },
       y: {
         title: {
           display: true,
-          text: "Count",
+          text: 'Count',
         },
       },
     },
@@ -74,19 +74,19 @@ const SuperAdminDashboardPage = () => {
 
   const pieChartData = {
     labels: [
-      "Admin Count",
-      "Approved Blog Count",
-      "Blog Count",
-      "Blogger Count",
-      "Cancel Blog Count",
-      "Comment Count",
-      "Like Count",
-      "Moderator Count",
-      "Pending Blog Count",
+      'Admin Count',
+      'Approved Blog Count',
+      'Blog Count',
+      'Blogger Count',
+      'Cancel Blog Count',
+      'Comment Count',
+      'Like Count',
+      'Moderator Count',
+      'Pending Blog Count',
     ],
     datasets: [
       {
-        label: "Counts",
+        label: 'Counts',
         data: [
           data?.adminCount,
           data?.approvedBlogCount,
@@ -99,26 +99,26 @@ const SuperAdminDashboardPage = () => {
           data?.pendingBlogCount,
         ],
         backgroundColor: [
-          "rgba(255, 99, 132, 0.6)",
-          "rgba(54, 162, 235, 0.6)",
-          "rgba(255, 206, 86, 0.6)",
-          "rgba(75, 192, 192, 0.6)",
-          "rgba(153, 102, 255, 0.6)",
-          "rgba(255, 159, 64, 0.6)",
-          "rgba(199, 199, 199, 0.6)",
-          "rgba(83, 102, 255, 0.6)",
-          "rgba(155, 99, 132, 0.6)",
+          'rgba(255, 99, 132, 0.6)',
+          'rgba(54, 162, 235, 0.6)',
+          'rgba(255, 206, 86, 0.6)',
+          'rgba(75, 192, 192, 0.6)',
+          'rgba(153, 102, 255, 0.6)',
+          'rgba(255, 159, 64, 0.6)',
+          'rgba(199, 199, 199, 0.6)',
+          'rgba(83, 102, 255, 0.6)',
+          'rgba(155, 99, 132, 0.6)',
         ],
         borderColor: [
-          "rgba(255, 99, 132, 1)",
-          "rgba(54, 162, 235, 1)",
-          "rgba(255, 206, 86, 1)",
-          "rgba(75, 192, 192, 1)",
-          "rgba(153, 102, 255, 1)",
-          "rgba(255, 159, 64, 1)",
-          "rgba(199, 199, 199, 1)",
-          "rgba(83, 102, 255, 1)",
-          "rgba(155, 99, 132, 1)",
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)',
+          'rgba(199, 199, 199, 1)',
+          'rgba(83, 102, 255, 1)',
+          'rgba(155, 99, 132, 1)',
         ],
         borderWidth: 1,
       },

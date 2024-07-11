@@ -1,11 +1,11 @@
-"use client";
-import { ArrowUp } from "lucide-react";
-import { useEffect, useState } from "react";
+'use client';
+import { ArrowUp } from 'lucide-react';
+import { useEffect, useState } from 'react';
 
 const GoToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
   const goToBtn = () => {
-    window.scroll({ top: 0, left: 0, behavior: "smooth" });
+    window.scroll({ top: 0, left: 0, behavior: 'smooth' });
   };
   const listenToScroll = () => {
     const heightToHidden: number = 250;
@@ -18,8 +18,8 @@ const GoToTop = () => {
     }
   };
   useEffect(() => {
-    window.addEventListener("scroll", listenToScroll);
-    return () => window.removeEventListener("scroll", listenToScroll);
+    window.addEventListener('scroll', listenToScroll);
+    return () => window.removeEventListener('scroll', listenToScroll);
   }, []);
 
   return (

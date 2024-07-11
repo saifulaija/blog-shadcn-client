@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import AddBlogForm from "@/components/Form/AddBlogForm";
-import React from "react";
+import AddBlogForm from '@/components/Form/AddBlogForm';
+import React from 'react';
 
 const FlatSharePage = () => {
   return (

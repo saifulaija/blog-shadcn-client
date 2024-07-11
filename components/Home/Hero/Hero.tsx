@@ -1,10 +1,10 @@
-import React from "react";
-import Image from "next/image";
-import assets from "@/public";
-import { Button } from "@/components/ui/button";
-import { APP_NAME } from "@/lib/constants";
-import Link from "next/link";
-import { ChevronRight } from "lucide-react";
+import React from 'react';
+import Image from 'next/image';
+import assets from '@/public';
+import { Button } from '@/components/ui/button';
+import { APP_NAME } from '@/lib/constants';
+import Link from 'next/link';
+import { ChevronRight } from 'lucide-react';
 
 const Hero = () => {
   return (

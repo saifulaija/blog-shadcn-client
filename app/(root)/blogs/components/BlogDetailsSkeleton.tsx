@@ -1,6 +1,6 @@
 // components/shared/BlogDetailsSkeleton.tsx
 
-import { Skeleton } from "@/components/ui/skeleton";
+import { Skeleton } from '@/components/ui/skeleton';
 
 const BlogDetailsSkeleton = () => {
   return (

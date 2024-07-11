@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { z } from "zod";
+import { z } from 'zod';
 
 import {
   Form,
@@ -9,16 +9,16 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "../ui/form";
-import { useForm } from "react-hook-form";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
-import { toast, useToast } from "../ui/use-toast";
-import { uploadImage } from "@/utils/imgbb";
-import { Loader } from "lucide-react";
-import { useState } from "react";
+} from '../ui/form';
+import { useForm } from 'react-hook-form';
+import { Input } from '../ui/input';
+import { Button } from '../ui/button';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useRouter } from 'next/navigation';
+import { toast, useToast } from '../ui/use-toast';
+import { uploadImage } from '@/utils/imgbb';
+import { Loader } from 'lucide-react';
+import { useState } from 'react';
 import {
   Select,
   SelectContent,
@@ -27,23 +27,23 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from "../ui/select";
-import { Gender } from "@/types";
-import { useCreateAuthorMutation } from "@/redux/features/blogger/bloggerApi";
-import { useCreateModeratorMutation } from "@/redux/features/moderator/moderatorApi";
+} from '../ui/select';
+import { Gender } from '@/types';
+import { useCreateAuthorMutation } from '@/redux/features/blogger/bloggerApi';
+import { useCreateModeratorMutation } from '@/redux/features/moderator/moderatorApi';
 
 const formSchema = z.object({
   email: z.string().email({
-    message: "Please enter valid email",
+    message: 'Please enter valid email',
   }),
   password: z.string().min(6, {
-    message: "Password at least 6 characters",
+    message: 'Password at least 6 characters',
   }),
   name: z.string().min(1, {
-    message: "Enter your yserName",
+    message: 'Enter your yserName',
   }),
   contactNumber: z.string().min(1, {
-    message: "Enter your contact number",
+    message: 'Enter your contact number',
   }),
   // gender:z.enum(["MALE", "FEMALE"]),
   gender: z.string(),
@@ -54,45 +54,45 @@ const CreateModeratorForm = () => {
   const [createModerator, { isLoading }] = useCreateModeratorMutation();
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
   const {} = useToast();
   // const [createUser, { isLoading, isError }] = useCreateUserMutation();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: "",
-      email: "",
-      password: "",
-      contactNumber: "",
-      gender: "",
+      name: '',
+      email: '',
+      password: '',
+      contactNumber: '',
+      gender: '',
       profilePhoto: null,
     },
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setLoading(true);
-    setError("");
+    setError('');
     if (values.profilePhoto && values.profilePhoto.length > 0) {
       const url = await uploadImage(values.profilePhoto[0]);
       values.profilePhoto = url;
     } else {
-      values.profilePhoto = "";
+      values.profilePhoto = '';
     }
 
     try {
       const res = await createModerator(values);
-      console.log(res, "values.........");
+      console.log(res, 'values.........');
 
       if (res?.data) {
         toast({
-          title: "Success!",
+          title: 'Success!',
           description: `Author created successfully`,
         });
       } else {
         // setError(res?.error.error || "An unexpected error occurred.");
       }
     } catch (err: any) {
-      setError(err?.message || "An unexpected error occurred.");
+      setError(err?.message || 'An unexpected error occurred.');
     } finally {
       setLoading(false);
     }

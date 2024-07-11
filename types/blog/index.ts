@@ -10,7 +10,7 @@ export interface Author {
   profilePhoto: string | null;
   contactNumber: string;
   address: string | null;
-  gender: "MALE" | "FEMALE" | "OTHER";
+  gender: 'MALE' | 'FEMALE' | 'OTHER';
   isDeleted: boolean;
   bio?: string;
   website?: string;
@@ -37,11 +37,11 @@ export type TComment = {
   updatedAt: Date;
 };
 
-export type TTag={
-  id:string,
-  blogId:string,
-  name:string
-}
+export type TTag = {
+  id: string;
+  blogId: string;
+  name: string;
+};
 
 export interface IBlog {
   id: string;
@@ -52,15 +52,15 @@ export interface IBlog {
   votes?: number;
   image: string; // Make image property mandatory
   authorId?: string;
-  publishedStatus: "PENDING" | "APPROVED" | "CANCEL";
+  publishedStatus: 'PENDING' | 'APPROVED' | 'CANCEL';
   likeCount?: number;
-  visibility?: "PUBLIC" | "PRIVATE";
+  visibility?: 'PUBLIC' | 'PRIVATE';
   createdAt: Date;
   updatedAt?: string;
   views?: number;
   author?: Author;
   comment?: TComment[];
-  tag:TTag[]
+  tag: TTag[];
 }
 
 export interface IBlogUpdateProps {
@@ -81,7 +81,7 @@ export type TBlogResponse = {
   createdAt: Date;
   updatedAt: string;
   views: number;
-  tag?:TTag[];
+  tag?: TTag[];
   author: {
     id: string;
     name: string;

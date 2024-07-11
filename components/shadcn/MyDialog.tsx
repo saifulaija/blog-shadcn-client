@@ -1,5 +1,5 @@
-import { ReactNode } from "react";
-import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog";
+import { ReactNode } from 'react';
+import { Dialog, DialogContent, DialogTrigger } from '../ui/dialog';
 interface MyDialogProps {
   children: ReactNode;
   triggerButton: ReactNode;

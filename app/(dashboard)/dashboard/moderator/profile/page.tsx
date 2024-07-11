@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import React, { useState } from "react";
+import Image from 'next/image';
+import React, { useState } from 'react';
 
-import { Loader, UserRound } from "lucide-react";
+import { Loader, UserRound } from 'lucide-react';
 
-import { z } from "zod";
+import { z } from 'zod';
 
-import { uploadImage } from "@/utils/imgbb";
+import { uploadImage } from '@/utils/imgbb';
 import {
   Form,
   FormControl,
@@ -15,23 +15,23 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Button } from "@/components/ui/button";
-import { useToast } from "@/components/ui/use-toast";
-import { useForm } from "react-hook-form";
-import CustomLoader from "@/components/shared/CustomLoader/CustomLoader";
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Button } from '@/components/ui/button';
+import { useToast } from '@/components/ui/use-toast';
+import { useForm } from 'react-hook-form';
+import CustomLoader from '@/components/shared/CustomLoader/CustomLoader';
 import {
   useGetMYProfileQuery,
   useUpdateMYProfileMutation,
-} from "@/redux/features/myProfile/myProfileApi";
-import MyDialog from "@/components/shadcn/MyDialog";
+} from '@/redux/features/myProfile/myProfileApi';
+import MyDialog from '@/components/shadcn/MyDialog';
 
-import { Author } from "next/dist/lib/metadata/types/metadata-types";
-import ChangePassword from "@/components/PasswordChange/PasswordChange";
-import ModeratorProfileInformation from "./components/ModeratorProfileInformation";
-import ModeratorProfileUpdateForm from "@/components/Form/ModeratorProfileUpdateForm";
+import { Author } from 'next/dist/lib/metadata/types/metadata-types';
+import ChangePassword from '@/components/PasswordChange/PasswordChange';
+import ModeratorProfileInformation from './components/ModeratorProfileInformation';
+import ModeratorProfileUpdateForm from '@/components/Form/ModeratorProfileUpdateForm';
 const formSchema = z.object({
   profilePhoto: z.any(),
 });
@@ -63,7 +63,7 @@ const ProfilePage = () => {
       const profilePhoto = await uploadImage(values.profilePhoto[0]);
       values.profilePhoto = profilePhoto;
     } else {
-      values.profilePhoto = "";
+      values.profilePhoto = '';
     }
 
     const data = {
@@ -75,11 +75,11 @@ const ProfilePage = () => {
 
       if (res?.id) {
         toast({
-          title: "Success!",
+          title: 'Success!',
           description: `Image updated successfully`,
         });
 
-        form.setValue("profilePhoto", "");
+        form.setValue('profilePhoto', '');
       }
     } catch (err: any) {
       toast(err?.message);
@@ -154,7 +154,7 @@ const ProfilePage = () => {
         </div>
 
         <div className="md:max-w-[60%] w-full">
-          {" "}
+          {' '}
           <ModeratorProfileInformation data={userData} />
         </div>
       </div>

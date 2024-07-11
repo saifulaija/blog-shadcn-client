@@ -1,9 +1,7 @@
+'use client';
 
-
-"use client";
-
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useGetMetaQuery } from "@/redux/api/metaDataApi";
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { useGetMetaQuery } from '@/redux/api/metaDataApi';
 import {
   CheckCheck,
   CircleEllipsis,
@@ -11,9 +9,9 @@ import {
   NotebookPen,
   Users,
   View,
-} from "lucide-react";
-import React from "react";
-import { BloggerDashboardChart } from "./components/BloggerDashboardChart";
+} from 'lucide-react';
+import React from 'react';
+import { BloggerDashboardChart } from './components/BloggerDashboardChart';
 
 const BloggerDashboardPage = () => {
   const { data, isLoading } = useGetMetaQuery(undefined);
@@ -63,7 +61,7 @@ const BloggerDashboardPage = () => {
           </CardContent>
         </Card>
       </div>
-        <BloggerDashboardChart/>
+      <BloggerDashboardChart />
     </div>
   );
 };

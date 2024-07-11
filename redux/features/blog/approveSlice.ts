@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 type approveItem = {
   authorId: string | undefined;
@@ -16,7 +16,7 @@ const initialState: InitialState = {
 };
 
 const approveSlice = createSlice({
-  name: "approve",
+  name: 'approve',
   initialState,
   reducers: {
     addStatus: (state, action: PayloadAction<approveItem>) => {

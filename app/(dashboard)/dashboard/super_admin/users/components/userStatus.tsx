@@ -1,21 +1,21 @@
-"use client";
+'use client';
 
-import React from "react";
-import { Button } from "@/components/ui/button";
+import React from 'react';
+import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { MoreHorizontal } from "lucide-react";
+} from '@/components/ui/dropdown-menu';
+import { MoreHorizontal } from 'lucide-react';
 
-import { useToast } from "@/components/ui/use-toast";
-import { useUpdateUserStatusMutation } from "@/redux/api/userApi";
+import { useToast } from '@/components/ui/use-toast';
+import { useUpdateUserStatusMutation } from '@/redux/api/userApi';
 
 interface UpdateUserStatusProps {
   userId: string;
-  currentStatus: "ACTIVE" | "BLOCKED" | "DELETED";
+  currentStatus: 'ACTIVE' | 'BLOCKED' | 'DELETED';
 }
 
 const UpdateUserStatus: React.FC<UpdateUserStatusProps> = ({
@@ -26,7 +26,7 @@ const UpdateUserStatus: React.FC<UpdateUserStatusProps> = ({
   const [updateUser, { isLoading }] = useUpdateUserStatusMutation();
 
   const handleStatusChange = async (
-    newStatus: "ACTIVE" | "BLOCKED" | "DELETED",
+    newStatus: 'ACTIVE' | 'BLOCKED' | 'DELETED',
   ) => {
     const updateData = {
       id: userId,
@@ -40,13 +40,13 @@ const UpdateUserStatus: React.FC<UpdateUserStatusProps> = ({
 
       if (res.id) {
         toast({
-          title: "Success",
-          description: "User status changed successfully",
+          title: 'Success',
+          description: 'User status changed successfully',
         });
       }
     } catch (error: any) {
       toast({
-        title: "Success",
+        title: 'Success',
         description: error?.message,
       });
     }
@@ -60,13 +60,13 @@ const UpdateUserStatus: React.FC<UpdateUserStatusProps> = ({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => handleStatusChange("ACTIVE")}>
+        <DropdownMenuItem onClick={() => handleStatusChange('ACTIVE')}>
           Set as Active
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => handleStatusChange("BLOCKED")}>
+        <DropdownMenuItem onClick={() => handleStatusChange('BLOCKED')}>
           Set as Blocked
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => handleStatusChange("DELETED")}>
+        <DropdownMenuItem onClick={() => handleStatusChange('DELETED')}>
           Set as Deleted
         </DropdownMenuItem>
       </DropdownMenuContent>

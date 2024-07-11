@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
-import { Metadata } from "next";
-import BlogDetailsCard from "../../components/blogDetailsCard";
+import { Metadata } from 'next';
+import BlogDetailsCard from '../../components/blogDetailsCard';
 
 type TParams = {
   params: {
@@ -10,8 +10,8 @@ type TParams = {
 };
 
 export const metadata: Metadata = {
-  title: "Blog-details || Dashboard || BlogPlex ",
-  description: "An BlogPlex built with Next.js, Postgres, Shadcn signin",
+  title: 'Blog-details || Dashboard || BlogPlex ',
+  description: 'An BlogPlex built with Next.js, Postgres, Shadcn signin',
 };
 
 const BlogDetailsPage = ({ params }: TParams) => {

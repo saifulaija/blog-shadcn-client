@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import React from "react";
-import { z } from "zod";
+import React from 'react';
+import { z } from 'zod';
 import {
   Form,
   FormControl,
@@ -9,21 +9,21 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "../ui/form";
-import { useForm } from "react-hook-form";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
-import { zodResolver } from "@hookform/resolvers/zod";
+} from '../ui/form';
+import { useForm } from 'react-hook-form';
+import { Input } from '../ui/input';
+import { Button } from '../ui/button';
+import { zodResolver } from '@hookform/resolvers/zod';
 
-import { useRouter } from "next/navigation";
-import { toast } from "../ui/use-toast";
+import { useRouter } from 'next/navigation';
+import { toast } from '../ui/use-toast';
 
-import { uploadImage } from "@/utils/imgbb";
+import { uploadImage } from '@/utils/imgbb';
 
-import useUserInfo from "@/hooks/useUserInfo";
+import useUserInfo from '@/hooks/useUserInfo';
 
-import { Loader } from "lucide-react";
-import { useCreateBlogMutation } from "@/redux/features/blog/blogApi";
+import { Loader } from 'lucide-react';
+import { useCreateBlogMutation } from '@/redux/features/blog/blogApi';
 import {
   Select,
   SelectContent,
@@ -32,21 +32,21 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from "../ui/select";
+} from '../ui/select';
 
-import dynamic from "next/dynamic";
-import "react-quill/dist/quill.snow.css";
-import { BlogCategory } from "@/types";
-import { useDispatch } from "react-redux";
-import { addBlog } from "@/redux/features/blog/blogSlice";
+import dynamic from 'next/dynamic';
+import 'react-quill/dist/quill.snow.css';
+import { BlogCategory } from '@/types';
+import { useDispatch } from 'react-redux';
+import { addBlog } from '@/redux/features/blog/blogSlice';
 
-const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
+const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
 const formSchema = z.object({
-  title: z.string().min(6, { message: "Title must be at least 6 characters" }),
-  content: z.string().min(1, { message: "Content must be provided" }),
-  category: z.string().min(1, { message: "Category must be selected" }),
-  conclusion: z.string().min(1, { message: "Conclusion must be provided" }),
+  title: z.string().min(6, { message: 'Title must be at least 6 characters' }),
+  content: z.string().min(1, { message: 'Content must be provided' }),
+  category: z.string().min(1, { message: 'Category must be selected' }),
+  conclusion: z.string().min(1, { message: 'Conclusion must be provided' }),
   image: z.any(),
 });
 
@@ -58,10 +58,10 @@ const AddBlogForm = () => {
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      title: "",
-      content: "",
-      category: "",
-      conclusion: "",
+      title: '',
+      content: '',
+      category: '',
+      conclusion: '',
       image: null,
     },
   });
@@ -71,30 +71,30 @@ const AddBlogForm = () => {
       const url = await uploadImage(values.image[0]);
       values.image = url;
     } else {
-      values.image = "";
+      values.image = '';
     }
 
     try {
       const res = await createBlog(values).unwrap();
       if (res?.id) {
         toast({
-          title: "Success!",
-          description: "Blog created successfully",
+          title: 'Success!',
+          description: 'Blog created successfully',
         });
         router.push(`/dashboard/${user?.role}/show-blogs`);
         dispatch(
           addBlog({
             name: user?.name,
             category: values?.category,
-            message: "create a new blog",
+            message: 'create a new blog',
           }),
         );
       }
     } catch (error) {
       console.error(error);
       toast({
-        title: "Error",
-        description: "An error occurred while creating the blog",
+        title: 'Error',
+        description: 'An error occurred while creating the blog',
       });
     }
   };

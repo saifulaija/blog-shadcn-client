@@ -1,19 +1,19 @@
-"use client";
+'use client';
 
-import { ColumnDef } from "@tanstack/react-table";
-import Image from "next/image";
+import { ColumnDef } from '@tanstack/react-table';
+import Image from 'next/image';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 
-import { formateDate, formateMoney } from "@/utils/common";
-import MyDialog from "@/components/shadcn/MyDialog";
-import BlogUpdateForm from "@/components/Form/BlogUpdateForm";
+import { formateDate, formateMoney } from '@/utils/common';
+import MyDialog from '@/components/shadcn/MyDialog';
+import BlogUpdateForm from '@/components/Form/BlogUpdateForm';
 
-import { MyBadge } from "@/components/shadcn/MyBadge";
-import { truncateTitle } from "@/utils/truncateTitle";
-import DeleteBlogger from "./deleteBlogger";
-import { Author } from "@/types/blog";
-import AuthorUpdateForm from "@/components/Form/AuthorUpdateForm";
+import { MyBadge } from '@/components/shadcn/MyBadge';
+import { truncateTitle } from '@/utils/truncateTitle';
+import DeleteBlogger from './deleteBlogger';
+import { Author } from '@/types/blog';
+import AuthorUpdateForm from '@/components/Form/AuthorUpdateForm';
 
 export type TAuthor = {
   id: string;
@@ -21,21 +21,21 @@ export type TAuthor = {
 
   email: string;
   contactNumber: string;
-  gender: "MALE" | "FEMALE";
+  gender: 'MALE' | 'FEMALE';
   profilePhoto: string;
   createdAt: Date;
 };
 
 export const bloggerColumn: ColumnDef<TAuthor>[] = [
   {
-    accessorKey: "profilePhoto",
-    header: "Image",
+    accessorKey: 'profilePhoto',
+    header: 'Image',
     cell: ({ row }) => {
       const image = row.original.profilePhoto;
 
       return (
         <Image
-          src={image || "/http"}
+          src={image || '/http'}
           width={40}
           height={40}
           alt="flat image"
@@ -46,16 +46,16 @@ export const bloggerColumn: ColumnDef<TAuthor>[] = [
   },
 
   {
-    accessorKey: "name",
-    header: "Name",
+    accessorKey: 'name',
+    header: 'Name',
     cell: ({ row }) => {
       const name = row.original.name;
       return <div>{name}</div>;
     },
   },
   {
-    accessorKey: "email",
-    header: "Email",
+    accessorKey: 'email',
+    header: 'Email',
     cell: ({ row }) => {
       const email = row.original.email;
 
@@ -68,8 +68,8 @@ export const bloggerColumn: ColumnDef<TAuthor>[] = [
   },
 
   {
-    accessorKey: "gender",
-    header: "Gender",
+    accessorKey: 'gender',
+    header: 'Gender',
     cell: ({ row }) => {
       const gender = row.original.gender;
       return (
@@ -80,8 +80,8 @@ export const bloggerColumn: ColumnDef<TAuthor>[] = [
     },
   },
   {
-    accessorKey: "contactNumber",
-    header: "ContactNumber",
+    accessorKey: 'contactNumber',
+    header: 'ContactNumber',
     cell: ({ row }) => {
       const contactNumber = row.original.contactNumber;
       return (
@@ -110,8 +110,8 @@ export const bloggerColumn: ColumnDef<TAuthor>[] = [
   //   },
   // },
   {
-    accessorKey: "createdAt",
-    header: "Created At",
+    accessorKey: 'createdAt',
+    header: 'Created At',
     cell: ({ row }) => {
       const lastSeen = row.original.createdAt;
       return <div>{formateDate(lastSeen)}</div>;
@@ -119,8 +119,8 @@ export const bloggerColumn: ColumnDef<TAuthor>[] = [
   },
 
   {
-    id: "statusActions",
-    header: "Action",
+    id: 'statusActions',
+    header: 'Action',
     cell: ({ row }) => {
       const blogger = row.original;
       return <DeleteBlogger authorId={blogger.id} />;
@@ -128,8 +128,8 @@ export const bloggerColumn: ColumnDef<TAuthor>[] = [
   },
 
   {
-    id: "editActions",
-    header: "Action",
+    id: 'editActions',
+    header: 'Action',
     cell: ({ row }) => {
       const author = row.original;
       return (

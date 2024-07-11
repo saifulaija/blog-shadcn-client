@@ -1,31 +1,31 @@
-"use client";
+'use client';
 
-import CreateAuthorForm from "@/components/Form/AuthorCreateForm";
-import MyDialog from "@/components/shadcn/MyDialog";
-import CustomLoader from "@/components/shared/CustomLoader/CustomLoader";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { useGetAllAuthorsQuery } from "@/redux/features/author/authorApi";
-import { useDebounced } from "@/redux/hooks";
-import { ChevronRight, Search } from "lucide-react";
-import React, { useState } from "react";
+import CreateAuthorForm from '@/components/Form/AuthorCreateForm';
+import MyDialog from '@/components/shadcn/MyDialog';
+import CustomLoader from '@/components/shared/CustomLoader/CustomLoader';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { useGetAllAuthorsQuery } from '@/redux/features/author/authorApi';
+import { useDebounced } from '@/redux/hooks';
+import { ChevronRight, Search } from 'lucide-react';
+import React, { useState } from 'react';
 
-import { useGetAllModeratorsQuery } from "@/redux/features/moderator/moderatorApi";
-import CreateModeratorForm from "@/components/Form/ModeratorCreateForm";
-import { ModeratorDataTable } from "../../admin/moderators/components/moderatorDataTable";
-import { moderatorColumn } from "../../admin/moderators/components/column";
+import { useGetAllModeratorsQuery } from '@/redux/features/moderator/moderatorApi';
+import CreateModeratorForm from '@/components/Form/ModeratorCreateForm';
+import { ModeratorDataTable } from '../../admin/moderators/components/moderatorDataTable';
+import { moderatorColumn } from '../../admin/moderators/components/column';
 
 const ModeratorPage = () => {
   const query: Record<string, any> = {};
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(8);
-  query["page"] = page;
-  query["limit"] = limit;
-  const [q, setQ] = useState<string>("");
+  query['page'] = page;
+  query['limit'] = limit;
+  const [q, setQ] = useState<string>('');
   const debounceTerm = useDebounced({ searchQuery: q, delay: 700 });
 
   if (debounceTerm) {
-    query["q"] = q;
+    query['q'] = q;
   }
 
   const { data, isLoading } = useGetAllModeratorsQuery({ ...query });

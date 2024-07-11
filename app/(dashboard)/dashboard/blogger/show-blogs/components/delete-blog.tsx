@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import MyAlertDialog from "@/components/shadcn/MyAlertDialog";
-import { useToast } from "@/components/ui/use-toast";
-import { useDeleteBlogMutation } from "@/redux/features/blog/blogApi";
+import MyAlertDialog from '@/components/shadcn/MyAlertDialog';
+import { useToast } from '@/components/ui/use-toast';
+import { useDeleteBlogMutation } from '@/redux/features/blog/blogApi';
 
 interface DeleteFlatProps {
   flatId: string;
@@ -18,13 +18,13 @@ const DeleteBlog: React.FC<DeleteFlatProps> = ({ flatId }) => {
 
       if (res.id) {
         toast({
-          title: "Success",
-          description: "Flat deleted successfully",
+          title: 'Success',
+          description: 'Flat deleted successfully',
         });
       }
     } catch (error: any) {
       toast({
-        title: "Error",
+        title: 'Error',
         description: error?.message,
       });
     }

@@ -1,22 +1,22 @@
-import { baseApi } from "./baseApi";
-import { tagTypes } from "../tag-types";
+import { baseApi } from './baseApi';
+import { tagTypes } from '../tag-types';
 
-import { IMeta } from "@/types";
-import { TUser } from "@/types/user";
+import { IMeta } from '@/types';
+import { TUser } from '@/types/user';
 
 export const userApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     getSingleUser: build.query({
       query: () => ({
-        url: "/user/me",
-        method: "GET",
+        url: '/user/me',
+        method: 'GET',
       }),
       providesTags: [tagTypes.user],
     }),
     getAllUser: build.query({
       query: (arg: Record<string, any>) => ({
-        url: "/user",
-        method: "GET",
+        url: '/user',
+        method: 'GET',
         params: arg,
       }),
       transformResponse: (response: TUser[], meta: IMeta) => {
@@ -30,7 +30,7 @@ export const userApi = baseApi.injectEndpoints({
     updateUserStatus: build.mutation({
       query: (data) => ({
         url: `/user/${data.id}/status`,
-        method: "PATCH",
+        method: 'PATCH',
         data: data.body,
       }),
       invalidatesTags: [tagTypes.user],

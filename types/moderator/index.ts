@@ -5,7 +5,7 @@ export type TModerator = {
   profilePhoto?: string | null;
   contactNumber: string;
   address?: string | null;
-  gender: "MALE" | "FEMALE";
+  gender: 'MALE' | 'FEMALE';
   isDeleted: boolean;
   createdAt: Date;
   updatedAt: Date;

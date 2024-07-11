@@ -4,7 +4,7 @@ export type TUser = {
   email: string;
   profilePhoto?: string | null | undefined;
   role: string;
-  status: "ACTIVE" | "BLOCKED" | "DELETED";
+  status: 'ACTIVE' | 'BLOCKED' | 'DELETED';
   isDeleted: boolean;
   createdAt: Date;
   updatedAt: Date;

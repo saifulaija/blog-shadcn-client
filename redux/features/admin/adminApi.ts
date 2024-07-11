@@ -1,14 +1,14 @@
-import { baseApi } from "@/redux/api/baseApi";
-import { tagTypes } from "@/redux/tag-types";
-import { IMeta } from "@/types";
-import { TAdmin } from "@/types/admin";
+import { baseApi } from '@/redux/api/baseApi';
+import { tagTypes } from '@/redux/tag-types';
+import { IMeta } from '@/types';
+import { TAdmin } from '@/types/admin';
 
 export const adminApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     getAllAdmins: build.query({
       query: (arg: Record<string, any>) => ({
-        url: "/admin",
-        method: "GET",
+        url: '/admin',
+        method: 'GET',
         params: arg,
       }),
       // transformResponse: (response: TAdmin[], meta: IMeta) => {
@@ -23,14 +23,14 @@ export const adminApi = baseApi.injectEndpoints({
     deleteAdmin: build.mutation({
       query: (id) => ({
         url: `/admin/soft/${id}`,
-        method: "DELETE",
+        method: 'DELETE',
       }),
       invalidatesTags: [tagTypes.admin],
     }),
     createAdmin: build.mutation({
       query: (data) => ({
-        url: "/user/create-admin",
-        method: "POST",
+        url: '/user/create-admin',
+        method: 'POST',
         data,
       }),
       invalidatesTags: [tagTypes.admin],
@@ -39,7 +39,7 @@ export const adminApi = baseApi.injectEndpoints({
     getSingleAdmin: build.query({
       query: (id: string | string[] | undefined) => ({
         url: `/admin/${id}`,
-        method: "GET",
+        method: 'GET',
       }),
       providesTags: [tagTypes.admin],
     }),
@@ -47,7 +47,7 @@ export const adminApi = baseApi.injectEndpoints({
     updateAdmin: build.mutation({
       query: (data) => ({
         url: `/admin/${data.id}`,
-        method: "PATCH",
+        method: 'PATCH',
         data: data.body,
       }),
       invalidatesTags: [tagTypes.admin, tagTypes.user],

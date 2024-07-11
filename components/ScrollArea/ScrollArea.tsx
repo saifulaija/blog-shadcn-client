@@ -1,7 +1,7 @@
-import * as React from "react";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Separator } from "@/components/ui/separator";
-import { IBlog } from "@/types/blog"; // Ensure to import the appropriate type if needed
+import * as React from 'react';
+import { ScrollArea } from '@/components/ui/scroll-area';
+import { Separator } from '@/components/ui/separator';
+import { IBlog } from '@/types/blog'; // Ensure to import the appropriate type if needed
 
 interface ScrollAreaNotificationProps {
   blogs: any[]; // Define the type of blogs, replace with any if types are not available

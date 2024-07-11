@@ -5,7 +5,7 @@ export interface IAuthor {
   profilePhoto?: string | null;
   contactNumber: string;
   address?: string | null;
-  gender: "MALE" | "FEMALE";
+  gender: 'MALE' | 'FEMALE';
   isDeleted: boolean;
   bio?: string | null;
   website?: string | null;

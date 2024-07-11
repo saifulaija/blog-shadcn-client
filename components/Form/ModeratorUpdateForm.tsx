@@ -5,46 +5,46 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "../ui/form";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
-import { useToast } from "../ui/use-toast";
-import { useForm } from "react-hook-form";
-import { useEffect, useState } from "react";
-import { Gender } from "@/types";
-import { Loader } from "lucide-react";
-import { Select } from "@radix-ui/react-select";
+} from '../ui/form';
+import { Input } from '../ui/input';
+import { Button } from '../ui/button';
+import { useToast } from '../ui/use-toast';
+import { useForm } from 'react-hook-form';
+import { useEffect, useState } from 'react';
+import { Gender } from '@/types';
+import { Loader } from 'lucide-react';
+import { Select } from '@radix-ui/react-select';
 import {
   SelectContent,
   SelectGroup,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "../ui/select";
-import { useUpdateModeratorMutation } from "@/redux/features/moderator/moderatorApi";
+} from '../ui/select';
+import { useUpdateModeratorMutation } from '@/redux/features/moderator/moderatorApi';
 
 const ModeratorUpdateForm = ({ data }: { data: any }) => {
   const { toast } = useToast();
   const [updateProfile, { isLoading: update }] = useUpdateModeratorMutation();
   const [loading, setLoading] = useState(false);
-  const [submitError, setSubmitError] = useState("");
+  const [submitError, setSubmitError] = useState('');
 
   const form = useForm({
     defaultValues: {
-      name: "",
-      contactNumber: "",
-      address: "",
-      gender: "",
+      name: '',
+      contactNumber: '',
+      address: '',
+      gender: '',
     },
   });
 
   useEffect(() => {
     if (data) {
       form.reset({
-        name: data.name || "",
-        contactNumber: data.contactNumber || "",
-        address: data.address || "",
-        gender: data.gender || "",
+        name: data.name || '',
+        contactNumber: data.contactNumber || '',
+        address: data.address || '',
+        gender: data.gender || '',
       });
     }
   }, [data, form]);
@@ -59,15 +59,15 @@ const ModeratorUpdateForm = ({ data }: { data: any }) => {
 
       if (res?.id) {
         toast({
-          title: "Flat Request",
-          description: "Moderator updated  successfully",
+          title: 'Flat Request',
+          description: 'Moderator updated  successfully',
         });
       }
     } catch (err: any) {
-      setSubmitError("Something went wrong. Please try again."); // Set submit error message
+      setSubmitError('Something went wrong. Please try again.'); // Set submit error message
       toast({
-        title: "Error",
-        description: "Something went wrong",
+        title: 'Error',
+        description: 'Something went wrong',
       });
     } finally {
       setLoading(false);
@@ -166,7 +166,7 @@ const ModeratorUpdateForm = ({ data }: { data: any }) => {
         <div className="mt-6 flex justify-between">
           <Button type="submit" disabled={update} className="w-full">
             {update && <Loader className="ml-6 h-4 w-4 animate-spin" />}
-            {update ? "Updating..." : "Update"}
+            {update ? 'Updating...' : 'Update'}
           </Button>
         </div>
       </form>

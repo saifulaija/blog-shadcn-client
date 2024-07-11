@@ -1,4 +1,4 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore } from '@reduxjs/toolkit';
 
 import {
   persistStore,
@@ -9,15 +9,15 @@ import {
   PERSIST,
   PURGE,
   REGISTER,
-} from "redux-persist";
-import storage from "redux-persist/lib/storage";
+} from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
-import { baseApi } from "./api/baseApi";
-import approveReducer from "./features/blog/approveSlice";
-import blogSReducer from "./features/blog/blogSlice";
+import { baseApi } from './api/baseApi';
+import approveReducer from './features/blog/approveSlice';
+import blogSReducer from './features/blog/blogSlice';
 
 const persistConfig = {
-  key: "root",
+  key: 'root',
   storage,
 };
 

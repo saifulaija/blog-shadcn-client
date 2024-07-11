@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import * as React from "react";
-import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
+import * as React from 'react';
+import { Bar, BarChart, CartesianGrid, XAxis } from 'recharts';
 
 import {
   Card,
@@ -9,67 +9,63 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from '@/components/ui/card';
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from "@/components/ui/chart";
+} from '@/components/ui/chart';
 
+import { Separator } from '@/components/ui/separator';
+import { useGetMetaQuery } from '@/redux/api/metaDataApi';
 
-
-import { Separator } from "@/components/ui/separator";
-import { useGetMetaQuery } from "@/redux/api/metaDataApi";
-
-export const description = "An interactive bar chart";
+export const description = 'An interactive bar chart';
 
 const chartConfig: any = {
   projects: {
-    label: "Projects",
-    color: "hsl(var(--chart-1))",
+    label: 'Projects',
+    color: 'hsl(var(--chart-1))',
   },
   blogs: {
-    label: "Blogs",
-    color: "hsl(var(--chart-2))",
+    label: 'Blogs',
+    color: 'hsl(var(--chart-2))',
   },
   frontendSkills: {
-    label: "Frontend Skills",
-    color: "hsl(var(--chart-3))",
+    label: 'Frontend Skills',
+    color: 'hsl(var(--chart-3))',
   },
   backendSkills: {
-    label: "Backend Skills",
-    color: "hsl(var(--chart-4))",
+    label: 'Backend Skills',
+    color: 'hsl(var(--chart-4))',
   },
   toolsSkills: {
-    label: "Tools Skills",
-    color: "hsl(var(--chart-5))",
+    label: 'Tools Skills',
+    color: 'hsl(var(--chart-5))',
   },
 } satisfies ChartConfig;
 
 export function BloggerDashboardChart() {
- const { data, isLoading } = useGetMetaQuery(undefined);
- console.log(data);
- 
+  const { data, isLoading } = useGetMetaQuery(undefined);
+  console.log(data);
+
   console.log(data);
 
   const chartData = React.useMemo(() => {
     if (!data || isLoading) return [];
 
     return [
-      { name: "Blogs", value: data.blogCount },
-      { name: "ApprovedBlog", value: data.approvedBlogCount },
-      { name: "Pending Blog", value: data.pendingBlogCount },
-      { name: "Cancel Blog", value:data.cancelBlogCount },
-      { name: "Comments", value:data.commentCount },
+      { name: 'Blogs', value: data.blogCount },
+      { name: 'ApprovedBlog', value: data.approvedBlogCount },
+      { name: 'Pending Blog', value: data.pendingBlogCount },
+      { name: 'Cancel Blog', value: data.cancelBlogCount },
+      { name: 'Comments', value: data.commentCount },
     ];
   }, [data, isLoading]);
 
   return (
     <Card className="mt-10">
-      <div className="">
-        
-      </div>
+      <div className=""></div>
       <Separator />
       <CardContent className="px-2 sm:p-6">
         <ChartContainer
@@ -106,7 +102,7 @@ export function BloggerDashboardChart() {
                 key={key}
                 dataKey="value"
                 fill={chartConfig[key].color as any}
-                label={{ position: "top", formatter: (value: any) => value }}
+                label={{ position: 'top', formatter: (value: any) => value }}
               />
             ))}
           </BarChart>

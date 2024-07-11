@@ -1,9 +1,9 @@
 // components/AboutUs.tsx
 
-import React from "react";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Separator } from "@/components/ui/separator";
-import { LucideIcon, Briefcase, Users, Globe } from "lucide-react";
+import React from 'react';
+import { ScrollArea } from '@/components/ui/scroll-area';
+import { Separator } from '@/components/ui/separator';
+import { LucideIcon, Briefcase, Users, Globe } from 'lucide-react';
 
 const AboutUs = () => {
   return (

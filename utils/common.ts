@@ -1,10 +1,10 @@
-import { formatDistanceToNowStrict } from "date-fns";
+import { formatDistanceToNowStrict } from 'date-fns';
 
 export const formateMoney = (amount: string) => {
   const money = Number(amount);
-  return new Intl.NumberFormat("en-BD", {
-    style: "currency",
-    currency: "BDT",
+  return new Intl.NumberFormat('en-BD', {
+    style: 'currency',
+    currency: 'BDT',
   }).format(money);
 };
 
@@ -15,10 +15,10 @@ export const formateDate = (from: Date) => {
 export const dateFormat = (inputDate: string) => {
   const date = new Date(inputDate);
   const options: any = {
-    month: "long" as const,
-    day: "numeric",
-    year: "numeric" as const,
+    month: 'long' as const,
+    day: 'numeric',
+    year: 'numeric' as const,
   };
-  const formattedDate = date.toLocaleDateString("en-US", options);
+  const formattedDate = date.toLocaleDateString('en-US', options);
   return formattedDate;
 };

@@ -5,29 +5,29 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "../ui/form";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
+} from '../ui/form';
+import { Input } from '../ui/input';
+import { Button } from '../ui/button';
 
-import { useToast } from "../ui/use-toast";
+import { useToast } from '../ui/use-toast';
 
-import { useForm } from "react-hook-form";
-import { useEffect, useState } from "react";
-import { Gender } from "@/types";
-import { Loader } from "lucide-react";
+import { useForm } from 'react-hook-form';
+import { useEffect, useState } from 'react';
+import { Gender } from '@/types';
+import { Loader } from 'lucide-react';
 
-import { useUpdateMYProfileMutation } from "@/redux/features/myProfile/myProfileApi";
-import { Select } from "@radix-ui/react-select";
+import { useUpdateMYProfileMutation } from '@/redux/features/myProfile/myProfileApi';
+import { Select } from '@radix-ui/react-select';
 import {
   SelectContent,
   SelectGroup,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "../ui/select";
-import { Author } from "next/dist/lib/metadata/types/metadata-types";
-import { useUpdateAuthorMutation } from "@/redux/features/author/authorApi";
-import { useUpdateModeratorMutation } from "@/redux/features/moderator/moderatorApi";
+} from '../ui/select';
+import { Author } from 'next/dist/lib/metadata/types/metadata-types';
+import { useUpdateAuthorMutation } from '@/redux/features/author/authorApi';
+import { useUpdateModeratorMutation } from '@/redux/features/moderator/moderatorApi';
 // interface UserProfileInformationProps {
 //     data: IUser;
 // }
@@ -35,27 +35,27 @@ const ModeratorProfileUpdateForm = ({ data }: { data: any }) => {
   const { toast } = useToast();
   const [updateProfile, { isLoading: update }] = useUpdateModeratorMutation();
   const [loading, setLoading] = useState(false);
-  const [submitError, setSubmitError] = useState("");
+  const [submitError, setSubmitError] = useState('');
 
   const form = useForm({
     // resolver: zodResolver(formSchema),
     defaultValues: {
-      name: "",
-      contactNumber: "",
-      address: "",
+      name: '',
+      contactNumber: '',
+      address: '',
 
-      gender: "",
+      gender: '',
     },
   });
 
   useEffect(() => {
     if (data) {
       form.reset({
-        name: data.name || "",
-        contactNumber: data.contactNumber || "",
-        address: data.address || "",
+        name: data.name || '',
+        contactNumber: data.contactNumber || '',
+        address: data.address || '',
 
-        gender: data.gender || "",
+        gender: data.gender || '',
       });
     }
   }, [data, form]);
@@ -71,15 +71,15 @@ const ModeratorProfileUpdateForm = ({ data }: { data: any }) => {
 
       if (res?.id) {
         toast({
-          title: "Flat Request",
-          description: "Profile data updated  successfully",
+          title: 'Flat Request',
+          description: 'Profile data updated  successfully',
         });
       }
     } catch (err: any) {
-      setSubmitError("Something went wrong. Please try again."); // Set submit error message
+      setSubmitError('Something went wrong. Please try again.'); // Set submit error message
       toast({
-        title: "Error",
-        description: "Something went wrong",
+        title: 'Error',
+        description: 'Something went wrong',
       });
     } finally {
       setLoading(false);
@@ -178,7 +178,7 @@ const ModeratorProfileUpdateForm = ({ data }: { data: any }) => {
         <div className="mt-6 flex justify-between">
           <Button type="submit" disabled={update} className="w-full">
             {update && <Loader className="ml-6 h-4 w-4 animate-spin" />}
-            {update ? "Updating..." : "Update"}
+            {update ? 'Updating...' : 'Update'}
           </Button>
         </div>
       </form>

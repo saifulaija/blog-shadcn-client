@@ -1,10 +1,10 @@
-"use client";
-import { IBlog } from "@/types/blog";
-import BestBlogCard from "./BlogCard";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import { ChevronDown, ChevronRight, SendHorizonal } from "lucide-react";
-import { useGetAllBlogsQuery } from "@/redux/features/blog/blogApi";
+'use client';
+import { IBlog } from '@/types/blog';
+import BestBlogCard from './BlogCard';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+import { ChevronDown, ChevronRight, SendHorizonal } from 'lucide-react';
+import { useGetAllBlogsQuery } from '@/redux/features/blog/blogApi';
 
 const BestBlogsServer = () => {
   const { data } = useGetAllBlogsQuery({});

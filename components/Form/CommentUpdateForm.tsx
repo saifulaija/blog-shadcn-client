@@ -5,34 +5,34 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "../ui/form";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
+} from '../ui/form';
+import { Input } from '../ui/input';
+import { Button } from '../ui/button';
 
-import { useToast } from "../ui/use-toast";
+import { useToast } from '../ui/use-toast';
 
-import { useForm } from "react-hook-form";
-import { useEffect, useState } from "react";
+import { useForm } from 'react-hook-form';
+import { useEffect, useState } from 'react';
 
-import { Loader } from "lucide-react";
-import { useUpdateCommentMutation } from "@/redux/features/comment/commentApi";
+import { Loader } from 'lucide-react';
+import { useUpdateCommentMutation } from '@/redux/features/comment/commentApi';
 
 const CommentUpdateForm = ({ data }: { data: any }) => {
   const { toast } = useToast();
   const [updateFlat, { isLoading: update }] = useUpdateCommentMutation();
 
-  const [submitError, setSubmitError] = useState("");
+  const [submitError, setSubmitError] = useState('');
 
   const form = useForm({
     defaultValues: {
-      content: "",
+      content: '',
     },
   });
 
   useEffect(() => {
     if (data) {
       form.reset({
-        content: data.content || "",
+        content: data.content || '',
       });
     }
   }, [data, form]);
@@ -48,15 +48,15 @@ const CommentUpdateForm = ({ data }: { data: any }) => {
 
       if (res?.id) {
         toast({
-          title: "Flat Request",
-          description: "Your flat updated  successfully",
+          title: 'Flat Request',
+          description: 'Your flat updated  successfully',
         });
       }
     } catch (err: any) {
-      setSubmitError("Something went wrong. Please try again."); // Set submit error message
+      setSubmitError('Something went wrong. Please try again.'); // Set submit error message
       toast({
-        title: "Error",
-        description: "Something went wrong",
+        title: 'Error',
+        description: 'Something went wrong',
       });
     } finally {
     }
@@ -89,7 +89,7 @@ const CommentUpdateForm = ({ data }: { data: any }) => {
         <div className="mt-6 flex justify-between">
           <Button type="submit" disabled={update} className="w-full">
             {update && <Loader className="mr-2 h-4 w-4 animate-spin" />}
-            {update ? "Updating..." : "Edit"}
+            {update ? 'Updating...' : 'Edit'}
           </Button>
         </div>
       </form>

@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import React, { useRef, useState } from "react";
+import React, { useRef, useState } from 'react';
 
-import { motion } from "framer-motion";
-import { sendEmail } from "@/services/actions/sendEmail";
-import SubmitBtn from "@/components/submitButton/SubmitButton";
-import { useToast } from "@/components/ui/use-toast";
+import { motion } from 'framer-motion';
+import { sendEmail } from '@/services/actions/sendEmail';
+import SubmitBtn from '@/components/submitButton/SubmitButton';
+import { useToast } from '@/components/ui/use-toast';
 
 export default function NewsLetterForm() {
   const { toast } = useToast();
@@ -23,16 +23,16 @@ export default function NewsLetterForm() {
     setLoading(false);
     if (error) {
       toast({
-        variant: "destructive",
-        title: "Error",
+        variant: 'destructive',
+        title: 'Error',
         description: error,
       });
       return;
     }
 
     toast({
-      title: "Subscription",
-      description: "Congratulation subscription successfully",
+      title: 'Subscription',
+      description: 'Congratulation subscription successfully',
     });
     if (formRef.current) {
       formRef.current.reset(); // Reset the form after successful submission

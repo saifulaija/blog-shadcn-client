@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import MyAlertDialog from "@/components/shadcn/MyAlertDialog";
-import { useToast } from "@/components/ui/use-toast";
+import MyAlertDialog from '@/components/shadcn/MyAlertDialog';
+import { useToast } from '@/components/ui/use-toast';
 
-import { useDeleteModeratorMutation } from "@/redux/features/moderator/moderatorApi";
+import { useDeleteModeratorMutation } from '@/redux/features/moderator/moderatorApi';
 
 interface DeleteFlatProps {
   moderatorId: string;
@@ -19,13 +19,13 @@ const DeleteModerator: React.FC<DeleteFlatProps> = ({ moderatorId }) => {
 
       if (res.id) {
         toast({
-          title: "Success",
-          description: "Moderator deleted successfully",
+          title: 'Success',
+          description: 'Moderator deleted successfully',
         });
       }
     } catch (error: any) {
       toast({
-        title: "Error",
+        title: 'Error',
         description: error?.message,
       });
     }

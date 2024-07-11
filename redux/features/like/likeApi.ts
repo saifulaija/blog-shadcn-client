@@ -1,20 +1,20 @@
-import build from "next/dist/build";
+import build from 'next/dist/build';
 
-import { IMeta } from "@/types";
+import { IMeta } from '@/types';
 
-import { baseApi } from "@/redux/api/baseApi";
-import { tagTypes } from "@/redux/tag-types";
-import { IBlog } from "@/types/blog";
-import { getUserInfo } from "@/services/authServices";
+import { baseApi } from '@/redux/api/baseApi';
+import { tagTypes } from '@/redux/tag-types';
+import { IBlog } from '@/types/blog';
+import { getUserInfo } from '@/services/authServices';
 
 const likesApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     createLike: build.mutation({
       query: (userData) => ({
         url: `/like/${userData.blogId}`,
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-type": "application/json",
+          'Content-type': 'application/json',
         },
         data: { userId: userData.userId },
       }),
@@ -22,8 +22,8 @@ const likesApi = baseApi.injectEndpoints({
     }),
     getAllBlogs: build.query({
       query: (arg: Record<string, any>) => ({
-        url: "/blog",
-        method: "GET",
+        url: '/blog',
+        method: 'GET',
         params: arg,
       }),
       transformResponse: (response: IBlog[], meta: IMeta) => {
@@ -37,7 +37,7 @@ const likesApi = baseApi.injectEndpoints({
     getMyBlogs: build.query({
       query: (arg: Record<string, any>) => ({
         url: `/my-blogs/${arg}`,
-        method: "GET",
+        method: 'GET',
         params: arg,
       }),
       transformResponse: (response: IBlog[], meta: IMeta) => {
@@ -51,7 +51,7 @@ const likesApi = baseApi.injectEndpoints({
     getSingleBlog: build.query({
       query: (id) => ({
         url: `/blog/${id}`,
-        method: "GET",
+        method: 'GET',
       }),
 
       providesTags: [tagTypes.blog],

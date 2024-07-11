@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 import {
   AlertDialog,
@@ -10,7 +10,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
+} from '@/components/ui/alert-dialog';
 
 interface MyAlertDialogProps {
   title: string;

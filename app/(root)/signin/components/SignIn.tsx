@@ -1,13 +1,13 @@
-"use client";
-import SignInForm from "@/components/Form/SignInForm ";
+'use client';
+import SignInForm from '@/components/Form/SignInForm ';
 
-import { buttonVariants } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
+import { buttonVariants } from '@/components/ui/button';
+import { Separator } from '@/components/ui/separator';
 
-import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { AnimatePresence, motion } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
 
-import Link from "next/link";
+import Link from 'next/link';
 
 const sectionVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -22,14 +22,14 @@ const SignIn = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        transition={{ duration: 0.5, ease: "easeInOut" }}
+        transition={{ duration: 0.5, ease: 'easeInOut' }}
       >
         <div className="max-w-xl w-full space-y-4 rounded-lg  border py-4">
           <motion.div
             className="text-center"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeInOut" }}
+            transition={{ duration: 0.6, ease: 'easeInOut' }}
           >
             <div className="flex flex-col items-center space-y-1 text-center">
               <h1 className="text-2xl font-semibold tracking-tight text-primary capitalize">
@@ -38,8 +38,8 @@ const SignIn = () => {
 
               <Link
                 className={buttonVariants({
-                  variant: "link",
-                  className: "gap-1.5",
+                  variant: 'link',
+                  className: 'gap-1.5',
                 })}
                 href="/signup"
               >
@@ -55,7 +55,7 @@ const SignIn = () => {
             initial="hidden"
             animate="visible"
             exit="exit"
-            transition={{ ease: "easeInOut", duration: 0.8, delay: 0.5 }}
+            transition={{ ease: 'easeInOut', duration: 0.8, delay: 0.5 }}
           >
             <div className="flex flex-col md:flex-row items-center justify-center">
               <div className="w-full md:w-2xl">

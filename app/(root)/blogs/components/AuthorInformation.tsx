@@ -1,7 +1,7 @@
-import { Separator } from "@/components/ui/separator";
-import { IBlog, TBlogResponse } from "@/types/blog";
-import { UserIcon } from "lucide-react";
-import Image from "next/image";
+import { Separator } from '@/components/ui/separator';
+import { IBlog, TBlogResponse } from '@/types/blog';
+import { UserIcon } from 'lucide-react';
+import Image from 'next/image';
 
 const AuthorInformation = ({ blog }: { blog: TBlogResponse }) => {
   return (

@@ -18,16 +18,16 @@
 
 // export default SignInPage
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
-import SignUp from "../signup/components/SignUp";
+import SignUp from '../signup/components/SignUp';
 
-import { Metadata } from "next";
-import SignIn from "./components/SignIn";
+import { Metadata } from 'next';
+import SignIn from './components/SignIn';
 
 export const metadata: Metadata = {
-  title: "SignIn || BlogPlex ",
-  description: "An BlogPlex built with Next.js, Postgres, Shadcn signin",
+  title: 'SignIn || BlogPlex ',
+  description: 'An BlogPlex built with Next.js, Postgres, Shadcn signin',
 };
 
 const SignInPage = () => {

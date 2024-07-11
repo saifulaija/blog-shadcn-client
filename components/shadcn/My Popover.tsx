@@ -1,11 +1,11 @@
 // MyPopover.jsx or MyPopover.tsx
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover";
-import { ReactNode } from "react";
+} from '@/components/ui/popover';
+import { ReactNode } from 'react';
 
 interface MyPopoverProps {
   buttonLabel: string;
@@ -17,7 +17,7 @@ interface MyPopoverProps {
 export function MyPopover({
   buttonLabel,
   children,
-  popoverWidth = "w-80",
+  popoverWidth = 'w-80',
   sideOffset = 5,
 }: MyPopoverProps) {
   return (

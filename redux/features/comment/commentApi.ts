@@ -1,20 +1,20 @@
-import build from "next/dist/build";
+import build from 'next/dist/build';
 
-import { IMeta } from "@/types";
+import { IMeta } from '@/types';
 
-import { baseApi } from "@/redux/api/baseApi";
-import { tagTypes } from "@/redux/tag-types";
-import { IBlog } from "@/types/blog";
-import { getUserInfo } from "@/services/authServices";
+import { baseApi } from '@/redux/api/baseApi';
+import { tagTypes } from '@/redux/tag-types';
+import { IBlog } from '@/types/blog';
+import { getUserInfo } from '@/services/authServices';
 
 const commentApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     createComment: build.mutation({
       query: (data) => ({
-        url: "/comment/create-comment",
-        method: "POST",
+        url: '/comment/create-comment',
+        method: 'POST',
         headers: {
-          "Content-type": "application/json",
+          'Content-type': 'application/json',
         },
         data,
       }),
@@ -23,7 +23,7 @@ const commentApi = baseApi.injectEndpoints({
     getAllComments: build.query({
       query: (blogId) => ({
         url: `/comment/${blogId}`,
-        method: "GET",
+        method: 'GET',
       }),
 
       providesTags: [tagTypes.comment, tagTypes.user],
@@ -32,7 +32,7 @@ const commentApi = baseApi.injectEndpoints({
     getSingleComment: build.query({
       query: (commentId) => ({
         url: `/comment/get-single-comment/${commentId}`,
-        method: "GET",
+        method: 'GET',
       }),
 
       providesTags: [tagTypes.comment, tagTypes.user],
@@ -40,7 +40,7 @@ const commentApi = baseApi.injectEndpoints({
     updateComment: build.mutation({
       query: (updateCommentData) => ({
         url: `/comment/update-comment/${updateCommentData.id}`,
-        method: "PATCH",
+        method: 'PATCH',
         data: updateCommentData.body,
       }),
 
@@ -50,7 +50,7 @@ const commentApi = baseApi.injectEndpoints({
     getMyBlogs: build.query({
       query: (arg: Record<string, any>) => ({
         url: `/my-blogs/${arg}`,
-        method: "GET",
+        method: 'GET',
         params: arg,
       }),
       transformResponse: (response: IBlog[], meta: IMeta) => {
@@ -64,7 +64,7 @@ const commentApi = baseApi.injectEndpoints({
     getSingleBlog: build.query({
       query: (id) => ({
         url: `/blog/${id}`,
-        method: "GET",
+        method: 'GET',
       }),
 
       providesTags: [tagTypes.blog],
@@ -73,7 +73,7 @@ const commentApi = baseApi.injectEndpoints({
     deleteComment: build.mutation({
       query: (id) => ({
         url: `/comment/${id}`,
-        method: "DELETE",
+        method: 'DELETE',
       }),
       invalidatesTags: [tagTypes.comment],
     }),

@@ -1,13 +1,13 @@
-"use client";
-import React from "react";
-import CustomLoader from "@/components/shared/CustomLoader/CustomLoader";
+'use client';
+import React from 'react';
+import CustomLoader from '@/components/shared/CustomLoader/CustomLoader';
 
 import {
   useGetAllBlogsQuery,
   useGetMyBlogsQuery,
-} from "@/redux/features/blog/blogApi";
-import { AllBlogsDataTable } from "./components/allBlogsDataTable";
-import { allBlogsColumn } from "./components/column";
+} from '@/redux/features/blog/blogApi';
+import { AllBlogsDataTable } from './components/allBlogsDataTable';
+import { allBlogsColumn } from './components/column';
 
 const BlogManagementPage = () => {
   const { data, isLoading } = useGetAllBlogsQuery({});

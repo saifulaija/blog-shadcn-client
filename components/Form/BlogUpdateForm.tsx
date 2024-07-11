@@ -5,19 +5,19 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "../ui/form";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
+} from '../ui/form';
+import { Input } from '../ui/input';
+import { Button } from '../ui/button';
 
-import { useToast } from "../ui/use-toast";
+import { useToast } from '../ui/use-toast';
 
-import { useForm } from "react-hook-form";
-import { useEffect, useState } from "react";
+import { useForm } from 'react-hook-form';
+import { useEffect, useState } from 'react';
 
-import { Loader, Loader2 } from "lucide-react";
-import { useUpdateBlogMutation } from "@/redux/features/blog/blogApi";
-import { IBlogUpdateProps } from "@/types/blog";
-import { title } from "process";
+import { Loader, Loader2 } from 'lucide-react';
+import { useUpdateBlogMutation } from '@/redux/features/blog/blogApi';
+import { IBlogUpdateProps } from '@/types/blog';
+import { title } from 'process';
 import {
   Select,
   SelectContent,
@@ -26,36 +26,36 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from "../ui/select";
-import { BlogCategory } from "@/types";
-import dynamic from "next/dynamic";
-import "react-quill/dist/quill.snow.css";
+} from '../ui/select';
+import { BlogCategory } from '@/types';
+import dynamic from 'next/dynamic';
+import 'react-quill/dist/quill.snow.css';
 
-const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
+const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
 const BlogUpdateForm = ({ data }: IBlogUpdateProps) => {
   const { toast } = useToast();
   const [updateFlat, { isLoading: update }] = useUpdateBlogMutation();
   const [loading, setLoading] = useState(false);
-  const [submitError, setSubmitError] = useState("");
+  const [submitError, setSubmitError] = useState('');
 
   const form = useForm({
     // resolver: zodResolver(formSchema),
     defaultValues: {
-      title: "",
-      content: "",
-      category: "",
-      conclusion: "",
+      title: '',
+      content: '',
+      category: '',
+      conclusion: '',
     },
   });
 
   useEffect(() => {
     if (data) {
       form.reset({
-        title: data.title || "",
-        content: data.content || "",
-        conclusion: data.conclusion || "",
-        category: data.category || "",
+        title: data.title || '',
+        content: data.content || '',
+        conclusion: data.conclusion || '',
+        category: data.category || '',
       });
     }
   }, [data, form]);
@@ -71,15 +71,15 @@ const BlogUpdateForm = ({ data }: IBlogUpdateProps) => {
 
       if (res?.id) {
         toast({
-          title: "Flat Request",
-          description: "Your flat updated  successfully",
+          title: 'Flat Request',
+          description: 'Your flat updated  successfully',
         });
       }
     } catch (err: any) {
-      setSubmitError("Something went wrong. Please try again."); // Set submit error message
+      setSubmitError('Something went wrong. Please try again.'); // Set submit error message
       toast({
-        title: "Error",
-        description: "Something went wrong",
+        title: 'Error',
+        description: 'Something went wrong',
       });
     } finally {
       setLoading(false);

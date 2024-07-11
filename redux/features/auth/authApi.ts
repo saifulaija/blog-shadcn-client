@@ -1,14 +1,14 @@
-import { baseApi } from "@/redux/api/baseApi";
-import { tagTypes } from "@/redux/tag-types";
+import { baseApi } from '@/redux/api/baseApi';
+import { tagTypes } from '@/redux/tag-types';
 
-const AUTH_URL = "/auth";
+const AUTH_URL = '/auth';
 
 export const authApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     userLogin: build.mutation({
       query: (loginData) => ({
         url: `${AUTH_URL}/login`,
-        method: "POST",
+        method: 'POST',
         data: loginData,
       }),
       invalidatesTags: [tagTypes.user],
@@ -16,8 +16,8 @@ export const authApi = baseApi.injectEndpoints({
     changePassword: build.mutation({
       query: (data) => ({
         url: `${AUTH_URL}/change-password`,
-        method: "POST",
-        contentType: "application/json",
+        method: 'POST',
+        contentType: 'application/json',
         data: data,
       }),
       invalidatesTags: [tagTypes.user],
@@ -25,7 +25,7 @@ export const authApi = baseApi.injectEndpoints({
     forgotPassword: build.mutation({
       query: (data) => ({
         url: `${AUTH_URL}/forgot-password`,
-        method: "POST",
+        method: 'POST',
         data: data,
       }),
       invalidatesTags: [tagTypes.user],
@@ -33,7 +33,7 @@ export const authApi = baseApi.injectEndpoints({
     resetPassword: build.mutation({
       query: (data) => ({
         url: `${AUTH_URL}/reset-password`,
-        method: "POST",
+        method: 'POST',
         data: data,
       }),
       invalidatesTags: [tagTypes.user],

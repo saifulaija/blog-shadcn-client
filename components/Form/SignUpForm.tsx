@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { z } from "zod";
+import { z } from 'zod';
 
 import {
   Form,
@@ -9,32 +9,32 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "../ui/form";
-import { useForm } from "react-hook-form";
-import { Input } from "../ui/input";
-import { Button, buttonVariants } from "../ui/button";
-import { zodResolver } from "@hookform/resolvers/zod";
+} from '../ui/form';
+import { useForm } from 'react-hook-form';
+import { Input } from '../ui/input';
+import { Button, buttonVariants } from '../ui/button';
+import { zodResolver } from '@hookform/resolvers/zod';
 
-import { useRouter } from "next/navigation";
+import { useRouter } from 'next/navigation';
 
-import { toast, useToast } from "../ui/use-toast";
-import { uploadImage } from "@/utils/imgbb";
-import { ArrowRight, Loader } from "lucide-react";
-import { useState } from "react";
-import { registerSubscriber } from "@/services/actions/registerSubscriber";
-import Link from "next/link";
+import { toast, useToast } from '../ui/use-toast';
+import { uploadImage } from '@/utils/imgbb';
+import { ArrowRight, Loader } from 'lucide-react';
+import { useState } from 'react';
+import { registerSubscriber } from '@/services/actions/registerSubscriber';
+import Link from 'next/link';
 const formSchema = z.object({
   email: z.string().email({
-    message: "Please enter valid email",
+    message: 'Please enter valid email',
   }),
   password: z.string().min(6, {
-    message: "Password at least 6 characters",
+    message: 'Password at least 6 characters',
   }),
   name: z.string().min(1, {
-    message: "Enter your yserName",
+    message: 'Enter your yserName',
   }),
   contactNumber: z.string().min(1, {
-    message: "Enter your contact number",
+    message: 'Enter your contact number',
   }),
   profilePhoto: z.any(),
 });
@@ -42,45 +42,45 @@ const formSchema = z.object({
 const SignUpForm = () => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
   const {} = useToast();
   // const [createUser, { isLoading, isError }] = useCreateUserMutation();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      email: "",
-      password: "",
-      name: "",
+      email: '',
+      password: '',
+      name: '',
       profilePhoto: null,
-      contactNumber: "",
+      contactNumber: '',
     },
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setLoading(true);
-    setError("");
+    setError('');
     if (values.profilePhoto && values.profilePhoto.length > 0) {
       const url = await uploadImage(values.profilePhoto[0]);
       values.profilePhoto = url;
     } else {
-      values.profilePhoto = "";
+      values.profilePhoto = '';
     }
 
-    console.log(values, "values.........");
+    console.log(values, 'values.........');
     try {
       const res = await registerSubscriber(values);
 
       if (res?.statusCode === 200) {
         toast({
-          title: "Success!",
+          title: 'Success!',
           description: `User created successfully please go to login`,
         });
-        router.push("/signin");
+        router.push('/signin');
       } else {
-        setError(res?.message || "An unexpected error occurred.");
+        setError(res?.message || 'An unexpected error occurred.');
       }
     } catch (err: any) {
-      setError(err?.message || "An unexpected error occurred.");
+      setError(err?.message || 'An unexpected error occurred.');
     } finally {
       setLoading(false);
     }
@@ -187,8 +187,6 @@ const SignUpForm = () => {
             SignUp
             {loading && <Loader className="ml-6 h-5 w-5 animate-spin" />}
           </Button>
-
-          
         </div>
       </form>
     </Form>

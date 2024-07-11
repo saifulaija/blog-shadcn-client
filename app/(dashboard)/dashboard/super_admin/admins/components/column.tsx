@@ -1,23 +1,23 @@
-"use client";
+'use client';
 
-import { ColumnDef } from "@tanstack/react-table";
-import Image from "next/image";
+import { ColumnDef } from '@tanstack/react-table';
+import Image from 'next/image';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 
-import { formateDate, formateMoney } from "@/utils/common";
-import MyDialog from "@/components/shadcn/MyDialog";
-import BlogUpdateForm from "@/components/Form/BlogUpdateForm";
+import { formateDate, formateMoney } from '@/utils/common';
+import MyDialog from '@/components/shadcn/MyDialog';
+import BlogUpdateForm from '@/components/Form/BlogUpdateForm';
 
-import { MyBadge } from "@/components/shadcn/MyBadge";
-import { truncateTitle } from "@/utils/truncateTitle";
+import { MyBadge } from '@/components/shadcn/MyBadge';
+import { truncateTitle } from '@/utils/truncateTitle';
 
-import AuthorUpdateForm from "@/components/Form/AuthorUpdateForm";
+import AuthorUpdateForm from '@/components/Form/AuthorUpdateForm';
 
-import ModeratorUpdateForm from "@/components/Form/ModeratorUpdateForm";
-import AdminUpdateForm from "@/components/Form/AdminUpdateForm";
-import { TAdmin } from "@/types/admin";
-import DeleteAdmin from "./deleteAdmin";
+import ModeratorUpdateForm from '@/components/Form/ModeratorUpdateForm';
+import AdminUpdateForm from '@/components/Form/AdminUpdateForm';
+import { TAdmin } from '@/types/admin';
+import DeleteAdmin from './deleteAdmin';
 
 export type TAuthor = {
   id: string;
@@ -25,22 +25,22 @@ export type TAuthor = {
 
   email: string;
   contactNumber: string;
-  gender: "MALE" | "FEMALE";
+  gender: 'MALE' | 'FEMALE';
   profilePhoto: string;
   createdAt: Date;
 };
 
 export const adminColumn: ColumnDef<TAdmin>[] = [
   {
-    accessorKey: "profilePhoto",
-    header: "Image",
+    accessorKey: 'profilePhoto',
+    header: 'Image',
     cell: ({ row }) => {
       const image = row.original.profilePhoto;
 
       return (
         <div className="flex justify-center items-center w-[50px] h-[40px]">
           <Image
-            src={image || "/http"}
+            src={image || '/http'}
             width={70}
             height={70}
             alt="flat image"
@@ -52,16 +52,16 @@ export const adminColumn: ColumnDef<TAdmin>[] = [
   },
 
   {
-    accessorKey: "name",
-    header: "Name",
+    accessorKey: 'name',
+    header: 'Name',
     cell: ({ row }) => {
       const name = row.original.name;
       return <div>{name}</div>;
     },
   },
   {
-    accessorKey: "email",
-    header: "Email",
+    accessorKey: 'email',
+    header: 'Email',
     cell: ({ row }) => {
       const email = row.original.email;
 
@@ -74,8 +74,8 @@ export const adminColumn: ColumnDef<TAdmin>[] = [
   },
 
   {
-    accessorKey: "contactNumber",
-    header: "ContactNumber",
+    accessorKey: 'contactNumber',
+    header: 'ContactNumber',
     cell: ({ row }) => {
       const contactNumber = row.original.contactNumber;
       return (
@@ -104,8 +104,8 @@ export const adminColumn: ColumnDef<TAdmin>[] = [
   //   },
   // },
   {
-    accessorKey: "createdAt",
-    header: "Created At",
+    accessorKey: 'createdAt',
+    header: 'Created At',
     cell: ({ row }) => {
       const lastSeen = row.original.createdAt;
       return <div>{formateDate(lastSeen)}</div>;
@@ -113,8 +113,8 @@ export const adminColumn: ColumnDef<TAdmin>[] = [
   },
 
   {
-    id: "statusActions",
-    header: "Action",
+    id: 'statusActions',
+    header: 'Action',
     cell: ({ row }) => {
       const admin = row.original;
       return <DeleteAdmin adminId={admin.id} />;
@@ -122,8 +122,8 @@ export const adminColumn: ColumnDef<TAdmin>[] = [
   },
 
   {
-    id: "editActions",
-    header: "Action",
+    id: 'editActions',
+    header: 'Action',
     cell: ({ row }) => {
       const admin = row.original;
       return (

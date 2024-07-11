@@ -1,14 +1,14 @@
-import { authKey } from "@/constants/authKey";
-import setAccessToken from "@/services/actions/setAccessToken";
-import { getNewAccessToken } from "@/services/authServices";
-import { IGenericErrorResponse, ResponseSuccessType } from "@/types";
+import { authKey } from '@/constants/authKey';
+import setAccessToken from '@/services/actions/setAccessToken';
+import { getNewAccessToken } from '@/services/authServices';
+import { IGenericErrorResponse, ResponseSuccessType } from '@/types';
 
-import { getFromLocalStorage, setToLocalStorage } from "@/utils/local-storage";
-import axios from "axios";
+import { getFromLocalStorage, setToLocalStorage } from '@/utils/local-storage';
+import axios from 'axios';
 
 const instance = axios.create();
-instance.defaults.headers.post["Content-Type"] = "application/json";
-instance.defaults.headers["Accept"] = "application/json";
+instance.defaults.headers.post['Content-Type'] = 'application/json';
+instance.defaults.headers['Accept'] = 'application/json';
 instance.defaults.timeout = 60000;
 
 instance.interceptors.request.use(
@@ -50,14 +50,14 @@ instance.interceptors.response.use(
       config.sent = true;
       const response = await getNewAccessToken();
       const accessToken = response?.data?.accessToken;
-      config.headers["Authorization"] = accessToken;
+      config.headers['Authorization'] = accessToken;
       setToLocalStorage(authKey, accessToken);
       setAccessToken(accessToken);
       return instance(config);
     } else {
       const responseObject: IGenericErrorResponse = {
         statusCode: error?.response?.data?.statusCode || 500,
-        message: error?.response?.data?.message || "something went wrong!!!",
+        message: error?.response?.data?.message || 'something went wrong!!!',
         errorMessages: error?.response?.data?.message,
       };
       // return Promise.reject(error);

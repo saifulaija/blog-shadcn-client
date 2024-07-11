@@ -1,4 +1,4 @@
-import { USER_ROLE } from "@/constants/role";
+import { USER_ROLE } from '@/constants/role';
 
 export type IMeta = {
   page: number;
@@ -29,14 +29,54 @@ export type IGenericErrorMessage = {
   message: string;
 };
 
-export const Gender = ["MALE", "FEMALE"];
-export const ApproveStatus = ["APPROVED", "CANCEL"];
+export const Gender = ['MALE', 'FEMALE'];
+export const ApproveStatus = ['APPROVED', 'CANCEL'];
 export const BlogCategory = [
-  "programming",
-  "Technology",
-  "Travel",
-  "Food",
-  "Lifestyle",
-  "Fashion",
-  "Fitness",
+  'programming',
+  'Technology',
+  'Travel',
+  'Food',
+  'Lifestyle',
+  'Fashion',
+  'Fitness',
+];
+
+export const Tags = [
+  'programming',
+  'technology',
+  'travel',
+  'food',
+  'lifestyle',
+  'fashion',
+  'fitness',
+  'health',
+  'business',
+  'finance',
+  'science',
+  'education',
+  'entertainment',
+  'music',
+  'sports',
+  'art',
+  'history',
+  'politics',
+  'nature',
+  'photography',
+  'writing',
+  'gaming',
+  'diy',
+  'parenting',
+  'personaldevelopment',
+  'tools',
+  'productivity',
+  'psychology',
+  'socialmedia',
+  'startups',
+  'webdevelopment',
+  'datascience',
+  'javascript',
+  'typescript',
+  'algorithm',
+  'dev',
+  'ai',
 ];

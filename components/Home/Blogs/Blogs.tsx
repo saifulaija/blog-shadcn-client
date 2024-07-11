@@ -1,8 +1,8 @@
-"use client";
-import { Input } from "@/components/ui/input";
-import { useState } from "react";
-import { Search } from "lucide-react";
-import { useDebounced } from "@/redux/hooks";
+'use client';
+import { Input } from '@/components/ui/input';
+import { useState } from 'react';
+import { Search } from 'lucide-react';
+import { useDebounced } from '@/redux/hooks';
 import {
   Pagination,
   PaginationContent,
@@ -10,26 +10,25 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from "@/components/ui/pagination";
-import { useGetAllBlogsQuery } from "@/redux/features/blog/blogApi";
-import BestBlogCard from "../BestBlog/BlogCard";
-import { NoData } from "@/components/shared/NoData/NoData";
-import { IBlog } from "@/types/blog";
-import BlogCardSkeleton from "@/components/shared/CardLoader/BlogSkeleton";
-import { motion } from "framer-motion";
+} from '@/components/ui/pagination';
+import { useGetAllBlogsQuery } from '@/redux/features/blog/blogApi';
+import BestBlogCard from '../BestBlog/BlogCard';
+import { NoData } from '@/components/shared/NoData/NoData';
+import { IBlog } from '@/types/blog';
+import BlogCardSkeleton from '@/components/shared/CardLoader/BlogSkeleton';
 
 const Blogs = () => {
   const [isFocused, setIsFocused] = useState(false);
   const query: Record<string, any> = {};
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(8);
-  query["page"] = page;
-  query["limit"] = limit;
-  const [q, setQ] = useState<string>("");
+  query['page'] = page;
+  query['limit'] = limit;
+  const [q, setQ] = useState<string>('');
   const debounceTerm = useDebounced({ searchQuery: q, delay: 700 });
 
   if (debounceTerm) {
-    query["q"] = q;
+    query['q'] = q;
   }
 
   const { data, isLoading } = useGetAllBlogsQuery({ ...query });
@@ -59,10 +58,7 @@ const Blogs = () => {
 
           <div className="w-full flex justify-center items-center my-5">
             <div className="my-5 w-full max-w-md md:max-w-lg">
-              <div
-                className="relative w-full"
-                
-              >
+              <div className="relative w-full">
                 <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
                 <Input
                   type="search"
@@ -98,7 +94,7 @@ const Blogs = () => {
             <Pagination>
               <PaginationPrevious
                 onClick={handlePrePage}
-                className={page <= 1 ? "pointer-events-none text-gray-400" : ""}
+                className={page <= 1 ? 'pointer-events-none text-gray-400' : ''}
               >
                 Previous
               </PaginationPrevious>
@@ -108,7 +104,7 @@ const Blogs = () => {
                     <PaginationLink
                       onClick={() => setPage(pageNumber)}
                       className={`px-1 py-1 mx-1 rounded-full ${
-                        page === pageNumber ? "bg-primary text-white" : ""
+                        page === pageNumber ? 'bg-primary text-white' : ''
                       }`}
                     >
                       {pageNumber}
@@ -119,7 +115,7 @@ const Blogs = () => {
               <PaginationNext
                 onClick={handleNextPage}
                 className={
-                  page >= pageCount ? "pointer-events-none text-gray-400" : ""
+                  page >= pageCount ? 'pointer-events-none text-gray-400' : ''
                 }
               >
                 Next

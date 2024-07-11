@@ -1,14 +1,14 @@
-import { baseApi } from "@/redux/api/baseApi";
-import { tagTypes } from "@/redux/tag-types";
-import { IMeta } from "@/types";
-import { TModerator } from "@/types/moderator";
+import { baseApi } from '@/redux/api/baseApi';
+import { tagTypes } from '@/redux/tag-types';
+import { IMeta } from '@/types';
+import { TModerator } from '@/types/moderator';
 
 export const moderatorApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     getAllModerators: build.query({
       query: (arg: Record<string, any>) => ({
-        url: "/moderator",
-        method: "GET",
+        url: '/moderator',
+        method: 'GET',
         params: arg,
       }),
       // transformResponse: (response: TModerator[], meta: IMeta) => {
@@ -23,7 +23,7 @@ export const moderatorApi = baseApi.injectEndpoints({
     deleteModerator: build.mutation({
       query: (id) => ({
         url: `/moderator/soft/${id}`,
-        method: "DELETE",
+        method: 'DELETE',
       }),
       invalidatesTags: [tagTypes.moderator],
     }),
@@ -31,14 +31,14 @@ export const moderatorApi = baseApi.injectEndpoints({
     getSingleModerator: build.query({
       query: (id: string | string[] | undefined) => ({
         url: `/moderator/${id}`,
-        method: "GET",
+        method: 'GET',
       }),
       providesTags: [tagTypes.moderator],
     }),
     createModerator: build.mutation({
       query: (data) => ({
-        url: "/user/create-moderator",
-        method: "POST",
+        url: '/user/create-moderator',
+        method: 'POST',
         data,
       }),
       invalidatesTags: [tagTypes.moderator],
@@ -47,7 +47,7 @@ export const moderatorApi = baseApi.injectEndpoints({
     updateModerator: build.mutation({
       query: (data) => ({
         url: `/moderator/${data.id}`,
-        method: "PATCH",
+        method: 'PATCH',
         data: data.body,
       }),
       invalidatesTags: [tagTypes.moderator, tagTypes.user],

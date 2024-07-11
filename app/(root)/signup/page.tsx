@@ -1,14 +1,14 @@
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
-import SignUp from "../signup/components/SignUp";
+import SignUp from '../signup/components/SignUp';
 
-import { Metadata } from "next";
+import { Metadata } from 'next';
 
-import BloggerRegister from "./components/BloggerRegister";
+import BloggerRegister from './components/BloggerRegister';
 
 export const metadata: Metadata = {
-  title: "SignUp || BlogPlex ",
-  description: "An BlogPlex built with Next.js, Postgres, Shadcn signin",
+  title: 'SignUp || BlogPlex ',
+  description: 'An BlogPlex built with Next.js, Postgres, Shadcn signin',
 };
 
 const SignUpPage = () => {

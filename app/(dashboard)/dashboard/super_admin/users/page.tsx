@@ -1,10 +1,10 @@
-"use client";
-import React from "react";
-import { UserDataTable } from "./components/userDataTable";
+'use client';
+import React from 'react';
+import { UserDataTable } from './components/userDataTable';
 
-import CustomLoader from "@/components/shared/CustomLoader/CustomLoader";
-import { useGetAllUserQuery } from "@/redux/api/userApi";
-import { columns } from "./components/column";
+import CustomLoader from '@/components/shared/CustomLoader/CustomLoader';
+import { useGetAllUserQuery } from '@/redux/api/userApi';
+import { columns } from './components/column';
 
 const UserManagementPage = () => {
   const { data, isLoading } = useGetAllUserQuery({});

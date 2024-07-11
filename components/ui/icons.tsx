@@ -7,7 +7,7 @@ import {
   Fish,
   Rabbit,
   Turtle,
-} from "lucide-react";
+} from 'lucide-react';
 
 export const Icons = {
   moonIcon: MoonIcon,

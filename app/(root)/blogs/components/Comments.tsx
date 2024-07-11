@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import * as React from "react";
-import { ChevronsUpDown, MessageCircleMore, Plus, X } from "lucide-react";
+import * as React from 'react';
+import { ChevronsUpDown, MessageCircleMore, Plus, X } from 'lucide-react';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "@/components/ui/collapsible";
+} from '@/components/ui/collapsible';
 
 export function CommentsCard() {
   const [isOpen, setIsOpen] = React.useState(false);

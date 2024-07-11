@@ -1,23 +1,23 @@
-"use client";
+'use client';
 
-import { MyAvatar } from "@/components/shadcn/MyAvatar";
-import { Button } from "@/components/ui/button";
+import { MyAvatar } from '@/components/shadcn/MyAvatar';
+import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { useToast } from "@/components/ui/use-toast";
-import { useGetMYProfileQuery } from "@/redux/features/myProfile/myProfileApi";
+} from '@/components/ui/dropdown-menu';
+import { useToast } from '@/components/ui/use-toast';
+import { useGetMYProfileQuery } from '@/redux/features/myProfile/myProfileApi';
 
-import { logoutUser } from "@/services/actions/logoutUser";
-import { getUserInfo } from "@/services/authServices";
-import { LogOut, Mails, Settings } from "lucide-react";
+import { logoutUser } from '@/services/actions/logoutUser';
+import { getUserInfo } from '@/services/authServices';
+import { LogOut, Mails, Settings } from 'lucide-react';
 
-import Link from "next/link";
-import { useRouter } from "next/navigation";
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 const AuthDropdown = () => {
   const { toast } = useToast();
@@ -27,9 +27,9 @@ const AuthDropdown = () => {
   const handleLogout = () => {
     logoutUser(router);
     toast({
-      title: "Logout",
-      variant: "destructive",
-      description: "User logged out successfully",
+      title: 'Logout',
+      variant: 'destructive',
+      description: 'User logged out successfully',
     });
   };
 

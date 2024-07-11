@@ -4,7 +4,7 @@ export type TAdmin = {
   email: string;
   profilePhoto?: string | null;
   contactNumber: string;
-  gender: "MALE" | "FEMALE";
+  gender: 'MALE' | 'FEMALE';
   isDeleted: boolean;
   createdAt: Date;
   updatedAt: Date;

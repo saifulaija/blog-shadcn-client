@@ -1,13 +1,14 @@
 export enum tagTypes {
-  blogger = "blogger",
-  admin = "admin",
-  comment = "comment",
-  unLike = "unLike",
-  like = "like",
-  blog = "blog",
-  user = "user",
-  moderator = "moderator",
-  author = "author",
+  blogger = 'blogger',
+  admin = 'admin',
+  comment = 'comment',
+  unLike = 'unLike',
+  like = 'like',
+  blog = 'blog',
+  user = 'user',
+  moderator = 'moderator',
+  author = 'author',
+  tag = 'tag',
 }
 
 export const tagTypeList = [
@@ -21,4 +22,5 @@ export const tagTypeList = [
   tagTypes.user,
   tagTypes.moderator,
   tagTypes.author,
+  tagTypes.tag,
 ];
