@@ -1,26 +1,29 @@
+'use client';
 import Link from 'next/link';
 import {
   Bell,
+  Bike,
+  CheckCheck,
   CircleUser,
+  Code,
+  CookingPot,
+  Cpu,
   Home,
+  LifeBuoy,
+  LifeBuoyIcon,
   LineChart,
   Menu,
   Package,
   Package2,
   Search,
+  SearchCheck,
   ShoppingCart,
   Users,
 } from 'lucide-react';
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -34,12 +37,56 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import assets from '@/public';
 import Image from 'next/image';
 import { APP_NAME } from '@/lib/constants';
+import { useGetAllBlogsQuery } from '@/redux/features/blog/blogApi';
+import { Separator } from '../ui/separator';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import GlobalSearch from '../shared/GlobalSearch/GlobalSearch';
 
 export function TagDashboard({ children }: { children: React.ReactNode }) {
+  const { data } = useGetAllBlogsQuery({});
+  const blogs = data?.blogs || [];
+   const [q, setQ] = useState('');
+
+  const router=useRouter();
+
+  const technology = blogs.filter((item) => item.category === 'Technology');
+  const programming = blogs.filter((item) => item.category === 'programming');
+  const travel = blogs.filter((item) => item.category === 'Travel');
+  const food = blogs.filter((item) => item.category === 'Food');
+  const lifestyle = blogs.filter((item) => item.category === 'Lifestyle');
+  const fashion = blogs.filter((item) => item.category === 'Fashion');
+  const fitness = blogs.filter((item) => item.category === 'Fitness');
+
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+
+  console.log(q);
+  
+
+
+  //  const handleSearch = (e:any) => {
+  //   console.log(e);
+    
+  //    e.preventDefault();
+  //    router.push(`/blogs?q=${encodeURIComponent(searchText)}`);
+  //  };
+
+
+
   return (
     <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
       <div className="hidden border-r bg-muted/40 md:block">
-        <div className="flex h-full max-h-screen flex-col gap-2">
+        <div className="flex h-full max-h-screen flex-col gap-2 fixed">
           <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
             <Link href="/" className="flex items-center gap-2 font-semibold">
               <Image
@@ -51,73 +98,88 @@ export function TagDashboard({ children }: { children: React.ReactNode }) {
               />
               {APP_NAME}
             </Link>
-            <Button variant="outline" size="icon" className="ml-auto h-8 w-8">
-              <Bell className="h-4 w-4" />
+            <Button variant="link" size="icon" className="ml-auto h-8 w-8">
               <span className="sr-only">Toggle notifications</span>
             </Button>
           </div>
           <div className="flex-1">
-            <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
+            <nav className="grid items-start px-2 text-md font-medium lg:px-4">
+              <div className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary">
+                <SearchCheck className="h-4 w-4" />
+                Find by Category
+              </div>
+              <Separator />
+
               <Link
-                href="#"
+                href={`/blogs/tag/programming`}
                 className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
               >
-                <Home className="h-4 w-4" />
-                Dashboard
-              </Link>
-              <Link
-                href="#"
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
-              >
-                <ShoppingCart className="h-4 w-4" />
-                Orders
+                <Code className="h-5 w-5" />
+                Programming
                 <Badge className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
-                  6
+                  {programming.length}
                 </Badge>
               </Link>
               <Link
-                href="#"
+                href={`/blogs/tag/Technology`}
                 className="flex items-center gap-3 rounded-lg bg-muted px-3 py-2 text-primary transition-all hover:text-primary"
               >
-                <Package className="h-4 w-4" />
-                Products{' '}
+                <Cpu className="h-5 w-5" />
+                Technology
+                <Badge className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
+                  {technology.length}
+                </Badge>
               </Link>
               <Link
-                href="#"
+                href={`/blogs/tag/Technology`}
                 className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
               >
-                <Users className="h-4 w-4" />
-                Customers
+                <Bike className="h-5 w-5" />
+                Travel
+                <Badge className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
+                  {travel.length}
+                </Badge>
               </Link>
               <Link
-                href="#"
+                href={`/blogs/tag/lifestyle`}
                 className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
               >
-                <LineChart className="h-4 w-4" />
-                Analytics
+                <LifeBuoyIcon className="h-5 w-5" />
+                Lifestyle
+                <Badge className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
+                  {lifestyle.length}
+                </Badge>
+              </Link>
+              <Link
+                href={`/blogs/tag/lifestyle`}
+                className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
+              >
+                <CookingPot className="h-5 w-5" />
+                Fashion
+                <Badge className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
+                  {fashion.length}
+                </Badge>
+              </Link>
+              <Link
+                href={`/blogs/tag/lifestyle`}
+                className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
+              >
+                <CheckCheck className="h-5 w-5" />
+                Fitness
+                <Badge className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
+                  {fitness.length}
+                </Badge>
               </Link>
             </nav>
-          </div>
-          <div className="mt-auto p-4">
-            <Card x-chunk="dashboard-02-chunk-0">
-              <CardHeader className="p-2 pt-0 md:p-4">
-                <CardTitle>Upgrade to Pro</CardTitle>
-                <CardDescription>
-                  Unlock all features and get unlimited access to our support
-                  team.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="p-2 pt-0 md:p-4 md:pt-0">
-                <Button size="sm" className="w-full">
-                  Upgrade
-                </Button>
-              </CardContent>
-            </Card>
           </div>
         </div>
       </div>
       <div className="flex flex-col">
-        <header className="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6">
+        <header
+          className={`flex h-14 items-center fixed top-0 left-0 md:left-[280px] right-0 z-50 gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6 ${
+            scrolled ? 'bg-opacity-90 border-b backdrop-blur-lg' : ''
+          }`}
+        >
           <Sheet>
             <SheetTrigger asChild>
               <Button
@@ -131,54 +193,75 @@ export function TagDashboard({ children }: { children: React.ReactNode }) {
             </SheetTrigger>
             <SheetContent side="left" className="flex flex-col">
               <nav className="grid gap-2 text-lg font-medium">
+                <div className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary">
+                  <SearchCheck className="h-4 w-4" />
+                  Find by Category
+                </div>
+                <Separator />
+
                 <Link
-                  href="#"
-                  className="flex items-center gap-2 text-lg font-semibold"
+                  href={`/blogs/tag/programming`}
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
                 >
-                  <Package2 className="h-6 w-6" />
-                  <span className="sr-only">Acme Inc</span>
-                </Link>
-                <Link
-                  href="#"
-                  className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
-                >
-                  <Home className="h-5 w-5" />
-                  Dashboard
-                </Link>
-                <Link
-                  href="#"
-                  className="mx-[-0.65rem] flex items-center gap-4 rounded-xl bg-muted px-3 py-2 text-foreground hover:text-foreground"
-                >
-                  <ShoppingCart className="h-5 w-5" />
-                  Orders
+                  <Code className="h-5 w-5" />
+                  Programming
                   <Badge className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
-                    6
+                    {programming.length}
                   </Badge>
                 </Link>
                 <Link
-                  href="#"
-                  className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
+                  href={`/blogs/tag/Technology`}
+                  className="flex items-center gap-3 rounded-lg bg-muted px-3 py-2 text-primary transition-all hover:text-primary"
                 >
-                  <Package className="h-5 w-5" />
-                  Products
+                  <Cpu className="h-5 w-5" />
+                  Technology
+                  <Badge className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
+                    {technology.length}
+                  </Badge>
                 </Link>
                 <Link
-                  href="#"
-                  className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
+                  href={`/blogs/tag/Technology`}
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
                 >
-                  <Users className="h-5 w-5" />
-                  Customers
+                  <Bike className="h-5 w-5" />
+                  Travel
+                  <Badge className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
+                    {travel.length}
+                  </Badge>
                 </Link>
                 <Link
-                  href="#"
-                  className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
+                  href={`/blogs/tag/lifestyle`}
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
                 >
-                  <LineChart className="h-5 w-5" />
-                  Analytics
+                  <LifeBuoyIcon className="h-5 w-5" />
+                  Lifestyle
+                  <Badge className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
+                    {lifestyle.length}
+                  </Badge>
+                </Link>
+                <Link
+                  href={`/blogs/tag/lifestyle`}
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
+                >
+                  <CookingPot className="h-5 w-5" />
+                  Fashion
+                  <Badge className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
+                    {fashion.length}
+                  </Badge>
+                </Link>
+                <Link
+                  href={`/blogs/tag/lifestyle`}
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
+                >
+                  <CheckCheck className="h-5 w-5" />
+                  Fitness
+                  <Badge className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
+                    {fitness.length}
+                  </Badge>
                 </Link>
               </nav>
               <div className="mt-auto">
-                <Card>
+                {/* <Card>
                   <CardHeader>
                     <CardTitle>Upgrade to Pro</CardTitle>
                     <CardDescription>
@@ -191,21 +274,22 @@ export function TagDashboard({ children }: { children: React.ReactNode }) {
                       Upgrade
                     </Button>
                   </CardContent>
-                </Card>
+                </Card> */}
               </div>
             </SheetContent>
           </Sheet>
           <div className="w-full flex-1">
-            <form>
-              <div className="relative">
-                <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-                <Input
-                  type="search"
-                  placeholder="Search products..."
-                  className="w-full appearance-none bg-background pl-8 shadow-none md:w-2/3 lg:w-1/3"
-                />
-              </div>
-            </form>
+            <div className="relative">
+              {/* <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+              <Input
+                type="search"
+                onChange={(e) => setQ(e.target.value)}
+                placeholder="Search products..."
+                className="w-full appearance-none bg-background pl-8 shadow-none md:w-2/3 lg:w-1/3"
+              /> */}
+
+              <GlobalSearch placeholder='Search blog...........'/>
+            </div>
           </div>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>

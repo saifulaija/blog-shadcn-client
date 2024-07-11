@@ -155,6 +155,7 @@ const BlogDetailsCard: React.FC<BlogDetailsProps> = ({ blogId }) => {
               className="rounded-t-lg"
             />
           </div>
+          <Separator />
 
           <div className="flex justify-between items-center px-2">
             <div className="flex items-center gap-2">
@@ -214,7 +215,7 @@ const BlogDetailsCard: React.FC<BlogDetailsProps> = ({ blogId }) => {
 
         <div>
           <Separator className="mt-10" />
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center justify-center space-x-4">
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
@@ -258,12 +259,7 @@ const BlogDetailsCard: React.FC<BlogDetailsProps> = ({ blogId }) => {
             ) : (
               <AlertDialog>
                 <AlertDialogTrigger asChild>
-                  <Button
-                    className="cursor-pointer"
-                    asChild
-                    variant="link"
-                    // onClick={handleLogin}
-                  >
+                  <Button className="cursor-pointer" asChild variant="link">
                     <div>
                       <MessageCircle className="mr-1 text-gray-500 font-bold" />
                       <p className="text-gray-500 font-bold">
@@ -323,6 +319,7 @@ const BlogDetailsCard: React.FC<BlogDetailsProps> = ({ blogId }) => {
               </div>
             </Button>
           </div>
+
           <AnimatePresence initial={false}>
             {showComments && (
               <motion.div

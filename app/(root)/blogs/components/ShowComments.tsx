@@ -84,7 +84,7 @@ const ShowComments = ({
   };
 
   return (
-    <div className="max-w-[800px] w-full mb-5">
+    <div className="w-full mb-5">
       {user ? (
         <div>
           {comments?.map((comment, index) => (
@@ -145,7 +145,7 @@ const ShowComments = ({
                 onSubmit={form.handleSubmit(handleSendComment)}
                 className="w-full"
               >
-                <div className="flex w-full items-center justify-center">
+                <div className="flex w-full items-center justify-center px-2">
                   <FormField
                     control={form.control}
                     name="content"

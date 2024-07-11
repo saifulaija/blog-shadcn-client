@@ -3,7 +3,7 @@ import { IBlog } from '@/types/blog';
 import BestBlogCard from './BlogCard';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { ChevronDown, ChevronRight, SendHorizonal } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 import { useGetAllBlogsQuery } from '@/redux/features/blog/blogApi';
 
 const BestBlogsServer = () => {
@@ -20,7 +20,7 @@ const BestBlogsServer = () => {
         <div className="flex-center mt-10">
           <Button asChild className="group animate-in zoom-in duration-500">
             <Link
-              href="/all_blogs"
+              href="/blogs"
               className="flex items-center gap-2 font-semibold"
             >
               View All
