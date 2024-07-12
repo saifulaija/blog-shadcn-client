@@ -62,13 +62,13 @@ export function TagDashboard({ children }: { children: React.ReactNode }) {
   const blogs = data?.blogs || [];
   const [q, setQ] = useState('');
 
-  const technology = blogs.filter((item) => item.category === 'Technology');
+  const technology = blogs.filter((item) => item.category === 'technology');
   const programming = blogs.filter((item) => item.category === 'programming');
-  const travel = blogs.filter((item) => item.category === 'Travel');
-  const food = blogs.filter((item) => item.category === 'Food');
-  const lifestyle = blogs.filter((item) => item.category === 'Lifestyle');
-  const fashion = blogs.filter((item) => item.category === 'Fashion');
-  const fitness = blogs.filter((item) => item.category === 'Fitness');
+  const travel = blogs.filter((item) => item.category === 'travel');
+  const food = blogs.filter((item) => item.category === 'food');
+  const lifestyle = blogs.filter((item) => item.category === 'lifestyle');
+  const fashion = blogs.filter((item) => item.category === 'fashion');
+  const fitness = blogs.filter((item) => item.category === 'fitness');
 
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
@@ -109,7 +109,7 @@ export function TagDashboard({ children }: { children: React.ReactNode }) {
               <Separator />
 
               <Link
-                href={`/blogs/tag/programming`}
+                href={`/blogs/category/programming`}
                 className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
               >
                 <Code className="h-5 w-5" />
@@ -119,7 +119,7 @@ export function TagDashboard({ children }: { children: React.ReactNode }) {
                 </Badge>
               </Link>
               <Link
-                href={`/blogs/tag/Technology`}
+                href={`/blogs/category/technology`}
                 className="flex items-center gap-3 rounded-lg bg-muted px-3 py-2 text-primary transition-all hover:text-primary"
               >
                 <Cpu className="h-5 w-5" />
@@ -129,7 +129,7 @@ export function TagDashboard({ children }: { children: React.ReactNode }) {
                 </Badge>
               </Link>
               <Link
-                href={`/blogs/tag/Technology`}
+                href={`/blogs/category/travel`}
                 className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
               >
                 <Bike className="h-5 w-5" />
@@ -139,7 +139,7 @@ export function TagDashboard({ children }: { children: React.ReactNode }) {
                 </Badge>
               </Link>
               <Link
-                href={`/blogs/tag/lifestyle`}
+                href={`/blogs/category/lifestyle`}
                 className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
               >
                 <LifeBuoyIcon className="h-5 w-5" />
@@ -149,7 +149,7 @@ export function TagDashboard({ children }: { children: React.ReactNode }) {
                 </Badge>
               </Link>
               <Link
-                href={`/blogs/tag/lifestyle`}
+                href={`/blogs/category/fashion`}
                 className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
               >
                 <CookingPot className="h-5 w-5" />
@@ -159,7 +159,7 @@ export function TagDashboard({ children }: { children: React.ReactNode }) {
                 </Badge>
               </Link>
               <Link
-                href={`/blogs/tag/lifestyle`}
+                href={`/blogs/category/fitness`}
                 className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
               >
                 <CheckCheck className="h-5 w-5" />
