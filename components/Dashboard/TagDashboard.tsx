@@ -40,15 +40,27 @@ import { APP_NAME } from '@/lib/constants';
 import { useGetAllBlogsQuery } from '@/redux/features/blog/blogApi';
 import { Separator } from '../ui/separator';
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import GlobalSearch from '../shared/GlobalSearch/GlobalSearch';
+import AuthButton from '../shared/AuthButton/AuthButton';
+import { getUserInfo } from '@/services/authServices';
+import { HamburgerMenuIcon, TextAlignCenterIcon } from '@radix-ui/react-icons';
 
 export function TagDashboard({ children }: { children: React.ReactNode }) {
+  const user = getUserInfo();
+  const pathname = usePathname();
+  const menuItems = [
+    { label: 'Home', path: '/', show: true },
+    { label: 'Blogs', path: '/blogs', show: true },
+    {
+      label: 'Dashboard',
+      path: `/dashboard/${user?.role}`,
+      show: user?.role && user.role !== 'subscriber',
+    },
+  ];
   const { data } = useGetAllBlogsQuery({});
   const blogs = data?.blogs || [];
   const [q, setQ] = useState('');
-
-  const router = useRouter();
 
   const technology = blogs.filter((item) => item.category === 'Technology');
   const programming = blogs.filter((item) => item.category === 'programming');
@@ -68,15 +80,6 @@ export function TagDashboard({ children }: { children: React.ReactNode }) {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-
-  console.log(q);
-
-  //  const handleSearch = (e:any) => {
-  //   console.log(e);
-
-  //    e.preventDefault();
-  //    router.push(`/blogs?q=${encodeURIComponent(searchText)}`);
-  //  };
 
   return (
     <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
@@ -171,7 +174,7 @@ export function TagDashboard({ children }: { children: React.ReactNode }) {
       </div>
       <div className="flex flex-col">
         <header
-          className={`flex h-14 items-center fixed top-0 left-0 md:left-[280px] right-0 z-50 gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6 ${
+          className={`flex justify-between h-14 items-center fixed top-0 left-0 md:left-[280px] right-0 z-50 gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6 ${
             scrolled ? 'bg-opacity-90 border-b backdrop-blur-lg' : ''
           }`}
         >
@@ -182,7 +185,7 @@ export function TagDashboard({ children }: { children: React.ReactNode }) {
                 size="icon"
                 className="shrink-0 md:hidden"
               >
-                <Menu className="h-5 w-5" />
+                <TextAlignCenterIcon className="h-5 w-5" />
                 <span className="sr-only">Toggle navigation menu</span>
               </Button>
             </SheetTrigger>
@@ -193,7 +196,7 @@ export function TagDashboard({ children }: { children: React.ReactNode }) {
                   Find by Category
                 </div>
                 <Separator />
-
+                <GlobalSearch placeholder="Search blogs....." />
                 <Link
                   href={`/blogs/tag/programming`}
                   className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
@@ -273,35 +276,29 @@ export function TagDashboard({ children }: { children: React.ReactNode }) {
               </div>
             </SheetContent>
           </Sheet>
-          <div className="w-full flex-1">
-            <div className="relative">
-              {/* <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-              <Input
-                type="search"
-                onChange={(e) => setQ(e.target.value)}
-                placeholder="Search products..."
-                className="w-full appearance-none bg-background pl-8 shadow-none md:w-2/3 lg:w-1/3"
-              /> */}
 
-              <GlobalSearch placeholder="Search blog..........." />
-            </div>
+          <div className="hidden md:block md:flex-1">
+            <GlobalSearch placeholder="Search blog..........." />
           </div>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="secondary" size="icon" className="rounded-full">
-                <CircleUser className="h-5 w-5" />
-                <span className="sr-only">Toggle user menu</span>
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>Settings</DropdownMenuItem>
-              <DropdownMenuItem>Support</DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>Logout</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <div className="flex items-center gap-2 md:flex-1">
+            {menuItems.map((menuItem) =>
+              menuItem.show ? (
+                <Link
+                  href={menuItem.path}
+                  key={menuItem.label}
+                  className={`link ${
+                    pathname === menuItem.path
+                      ? 'bg-muted text-primary  rounded-sm px-3 py-2 transition-all'
+                      : ''
+                  } text-foreground`}
+                >
+                  {menuItem.label}
+                </Link>
+              ) : null,
+            )}
+          </div>
+
+          <AuthButton />
         </header>
         <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
           {children}

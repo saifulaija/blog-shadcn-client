@@ -22,7 +22,7 @@ export default function GlobalSearch({ placeholder }: { placeholder: string }) {
   }
 
   return (
-    <div className="w-full flex-1">
+    <div className="max-w-[500px] w-full flex-1">
       <div className="relative">
         <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
         <Input

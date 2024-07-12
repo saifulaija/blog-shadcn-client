@@ -183,6 +183,8 @@ import { APP_NAME } from '@/lib/constants';
 import { getUserInfo } from '@/services/authServices';
 import { useToast } from '@/components/ui/use-toast';
 import { logoutUser } from '@/services/actions/logoutUser';
+import { ExitIcon } from '@radix-ui/react-icons';
+import AuthButton from '../AuthButton/AuthButton';
 
 const Header = () => {
   const pathname = usePathname();
@@ -214,15 +216,8 @@ const Header = () => {
     },
   ];
 
-  const router = useRouter();
-  const handleLogout = () => {
-    logoutUser(router);
-    toast({
-      variant: 'destructive',
-      title: 'Logout',
-      description: 'User logged out successfully',
-    });
-  };
+
+
 
   return (
     <div
@@ -313,31 +308,8 @@ const Header = () => {
             )}
           </nav>
 
-          <div className="flex items-center gap-2">
-            <ModeToggle />
-
-            {user && user.userId ? (
-              <Button
-                onClick={handleLogout}
-                asChild
-                className="cursor-pointer group"
-              >
-                <span className="flex items-center gap-2">
-                  Logout
-                  <LogOut className="transition-transform duration-300 ease-in-out transform group-hover:translate-x-1" />
-                </span>
-              </Button>
-            ) : (
-              <Button asChild className="group">
-                <Link href="/signin" className="flex items-center gap-2">
-                  <span className="flex items-center justify-center gap-2 font-semibold tracking-wide">
-                    Login
-                    <ChevronRight className="transition-transform duration-300 ease-in-out transform group-hover:translate-x-1" />
-                  </span>
-                </Link>
-              </Button>
-            )}
-          </div>
+        
+          <AuthButton/>
         </header>
       </div>
     </div>
