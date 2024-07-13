@@ -39,16 +39,21 @@ import Image from 'next/image';
 import { APP_NAME } from '@/lib/constants';
 import { useGetAllBlogsQuery } from '@/redux/features/blog/blogApi';
 import { Separator } from '../ui/separator';
-import { useEffect, useState } from 'react';
+import { ComponentType, useEffect, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import GlobalSearch from '../shared/GlobalSearch/GlobalSearch';
 import AuthButton from '../shared/AuthButton/AuthButton';
 import { getUserInfo } from '@/services/authServices';
-import { HamburgerMenuIcon, TextAlignCenterIcon } from '@radix-ui/react-icons';
+import { HamburgerMenuIcon, PersonIcon, TextAlignCenterIcon } from '@radix-ui/react-icons';
+import { Item } from '@radix-ui/react-dropdown-menu';
+import { Icon } from 'next/dist/lib/metadata/types/metadata-types';
+import { cn } from '@/lib/utils';
 
 export function TagDashboard({ children }: { children: React.ReactNode }) {
   const user = getUserInfo();
   const pathname = usePathname();
+  console.log(pathname);
+  
   const menuItems = [
     { label: 'Home', path: '/', show: true },
     { label: 'Blogs', path: '/blogs', show: true },
@@ -69,6 +74,46 @@ export function TagDashboard({ children }: { children: React.ReactNode }) {
   const lifestyle = blogs.filter((item) => item.category === 'lifestyle');
   const fashion = blogs.filter((item) => item.category === 'fashion');
   const fitness = blogs.filter((item) => item.category === 'fitness');
+
+interface IMenuItem {
+  title: string;
+  path: string;
+ icon: ComponentType<React.SVGProps<SVGSVGElement>>;
+ count:number
+}
+
+  const sideMenu: IMenuItem[] = [
+    {
+      title: 'Programming',
+      path: `/blogs/category/programming`,
+      icon: Code,
+      count: programming.length,
+    },
+    {
+      title: 'Technology',
+      path: `/blogs/category/technology`,
+      icon: Cpu,
+      count: technology.length,
+    },
+    {
+      title: 'Travel',
+      path: `/blogs/category/travel`,
+      icon: Bike,
+      count: travel.length,
+    },
+    {
+      title: 'Lifestyle',
+      path: `/blogs/category/lifestyle`,
+      icon: LifeBuoy,
+      count:lifestyle.length
+    },
+    {
+      title: 'Fitness',
+      path: `/blogs/category/fitness`,
+      icon: CheckCheck,
+      count:fitness.length,
+    },
+  ];
 
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
@@ -108,66 +153,23 @@ export function TagDashboard({ children }: { children: React.ReactNode }) {
               </div>
               <Separator />
 
-              <Link
-                href={`/blogs/category/programming`}
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
-              >
-                <Code className="h-5 w-5" />
-                Programming
-                <Badge className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
-                  {programming.length}
-                </Badge>
-              </Link>
-              <Link
-                href={`/blogs/category/technology`}
-                className="flex items-center gap-3 rounded-lg bg-muted px-3 py-2 text-primary transition-all hover:text-primary"
-              >
-                <Cpu className="h-5 w-5" />
-                Technology
-                <Badge className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
-                  {technology.length}
-                </Badge>
-              </Link>
-              <Link
-                href={`/blogs/category/travel`}
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
-              >
-                <Bike className="h-5 w-5" />
-                Travel
-                <Badge className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
-                  {travel.length}
-                </Badge>
-              </Link>
-              <Link
-                href={`/blogs/category/lifestyle`}
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
-              >
-                <LifeBuoyIcon className="h-5 w-5" />
-                Lifestyle
-                <Badge className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
-                  {lifestyle.length}
-                </Badge>
-              </Link>
-              <Link
-                href={`/blogs/category/fashion`}
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
-              >
-                <CookingPot className="h-5 w-5" />
-                Fashion
-                <Badge className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
-                  {fashion.length}
-                </Badge>
-              </Link>
-              <Link
-                href={`/blogs/category/fitness`}
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
-              >
-                <CheckCheck className="h-5 w-5" />
-                Fitness
-                <Badge className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
-                  {fitness.length}
-                </Badge>
-              </Link>
+              {sideMenu.map((item, index) => (
+                <Link
+                  key={index}
+                  href={item.path}
+                  className={cn(
+                    'flex items-center gap-3 px-3 py-2 text-muted-foreground transition-all hover:text-primary',
+                    pathname === item.path &&
+                      'text-primary bg-muted border-r-2 border-r-primary',
+                  )}
+                >
+                  <item.icon className="h-5 w-5" />
+                  {item.title}
+                  <Badge className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
+                    {item.count}
+                  </Badge>
+                </Link>
+              ))}
             </nav>
           </div>
         </div>
@@ -197,66 +199,23 @@ export function TagDashboard({ children }: { children: React.ReactNode }) {
                 </div>
                 <Separator />
                 <GlobalSearch placeholder="Search blogs....." />
-                <Link
-                  href={`/blogs/tag/programming`}
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
-                >
-                  <Code className="h-5 w-5" />
-                  Programming
-                  <Badge className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
-                    {programming.length}
-                  </Badge>
-                </Link>
-                <Link
-                  href={`/blogs/tag/Technology`}
-                  className="flex items-center gap-3 rounded-lg bg-muted px-3 py-2 text-primary transition-all hover:text-primary"
-                >
-                  <Cpu className="h-5 w-5" />
-                  Technology
-                  <Badge className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
-                    {technology.length}
-                  </Badge>
-                </Link>
-                <Link
-                  href={`/blogs/tag/Technology`}
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
-                >
-                  <Bike className="h-5 w-5" />
-                  Travel
-                  <Badge className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
-                    {travel.length}
-                  </Badge>
-                </Link>
-                <Link
-                  href={`/blogs/tag/lifestyle`}
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
-                >
-                  <LifeBuoyIcon className="h-5 w-5" />
-                  Lifestyle
-                  <Badge className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
-                    {lifestyle.length}
-                  </Badge>
-                </Link>
-                <Link
-                  href={`/blogs/tag/lifestyle`}
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
-                >
-                  <CookingPot className="h-5 w-5" />
-                  Fashion
-                  <Badge className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
-                    {fashion.length}
-                  </Badge>
-                </Link>
-                <Link
-                  href={`/blogs/tag/lifestyle`}
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
-                >
-                  <CheckCheck className="h-5 w-5" />
-                  Fitness
-                  <Badge className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
-                    {fitness.length}
-                  </Badge>
-                </Link>
+                {sideMenu.map((item, index) => (
+                  <Link
+                    key={index}
+                    href={item.path}
+                    className={cn(
+                      'flex items-center gap-3 px-3 py-2 text-muted-foreground transition-all hover:text-primary',
+                      pathname === item.path &&
+                        'text-primary bg-muted border-r-2 border-r-primary',
+                    )}
+                  >
+                    <item.icon className="h-5 w-5" />
+                    {item.title}
+                    <Badge className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
+                      {item.count}
+                    </Badge>
+                  </Link>
+                ))}
               </nav>
               <div className="mt-auto">
                 {/* <Card>
