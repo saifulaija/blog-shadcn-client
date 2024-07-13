@@ -4,7 +4,9 @@ import BestBlogCard from '@/components/Home/BestBlog/BlogCard';
 import CategoryBlogCard from '@/components/Home/BestBlog/CategoryBlogCard';
 import BlogCardSkeleton from '@/components/shared/CardLoader/BlogSkeleton';
 import { NoData } from '@/components/shared/NoData/NoData';
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '@/components/ui/breadcrumb';
 import { useGetAllBlogsQuery } from '@/redux/features/blog/blogApi';
+import { Slash } from 'lucide-react';
 import { useState } from 'react';
 
 
@@ -17,12 +19,45 @@ const CategoryBlogs = ({ category }: { category: string }) => {
   const { data, isLoading } = useGetAllBlogsQuery({category});
 
   return (
-    <div className="w-full">
+    <div className="w-full mt-10">
+      <Breadcrumb>
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/">Home</BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator>
+            <Slash />
+          </BreadcrumbSeparator>
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/blogs">Blogs</BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator>
+            <Slash />
+          </BreadcrumbSeparator>
+          <BreadcrumbItem>
+            <BreadcrumbPage>Category</BreadcrumbPage>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator>
+            <Slash />
+          </BreadcrumbSeparator>
+          <BreadcrumbItem>
+            <BreadcrumbPage>{category}</BreadcrumbPage>
+          </BreadcrumbItem>
+          {/* {q && (
+            <>
+              <BreadcrumbSeparator>
+                <Slash />
+              </BreadcrumbSeparator>
+              <BreadcrumbItem>
+                <BreadcrumbPage>{q}</BreadcrumbPage>
+              </BreadcrumbItem>
+            </>
+          )} */}
+        </BreadcrumbList>
+      </Breadcrumb>
       <div className="wrapper">
         <div>
-          <h1 className="text-2xl font-semibold text-center p-5">
-            {category} Blogs
-          </h1>
+         
 
           <div className="w-full">
             {isLoading ? (
