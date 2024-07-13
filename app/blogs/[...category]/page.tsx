@@ -14,8 +14,7 @@ type TParams = {
 };
 const CatchAllPage = ({ params }: TParams) => {
   const category = params.category[1];
- 
-  
+
   return (
     <div className="mt-5">
       <CategoryBlogs category={category} />

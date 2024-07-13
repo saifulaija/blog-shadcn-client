@@ -1,6 +1,7 @@
 'use client';
 
 import BestBlogCard from '@/components/Home/BestBlog/BlogCard';
+import CategoryBlogCard from '@/components/Home/BestBlog/CategoryBlogCard';
 import BlogCardSkeleton from '@/components/shared/CardLoader/BlogSkeleton';
 import { NoData } from '@/components/shared/NoData/NoData';
 import { useGetAllBlogsQuery } from '@/redux/features/blog/blogApi';
@@ -33,7 +34,7 @@ const CategoryBlogs = ({ category }: { category: string }) => {
             ) : (data?.blogs?.length ?? 0) > 0 ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
                 {data?.blogs.map((blog) => (
-                  <BestBlogCard blog={blog} key={blog.id} />
+                  <CategoryBlogCard blog={blog} key={blog.id} />
                 ))}
               </div>
             ) : (

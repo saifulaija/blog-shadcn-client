@@ -31,9 +31,7 @@ import { IBlog } from '@/types/blog';
 import { cn } from '@/lib/utils';
 import { Separator } from '@/components/ui/separator';
 
-const BestBlogCard = ({ blog }: { blog: IBlog }) => {
-
-
+const CategoryBlogCard = ({ blog }: { blog: IBlog }) => {
   const [voteCountNumber, { isLoading, isError }] = useCountBlogVoteMutation();
   const { toast } = useToast();
   const router = useRouter();
@@ -52,7 +50,7 @@ const BestBlogCard = ({ blog }: { blog: IBlog }) => {
   }, [blog?.id]);
 
   const handleDetails = () => {
-    router.push(`blogs/details/${blog?.id}`);
+    router.push(`/blogs/details/${blog?.id}`);
   };
 
   const handleBookmark = (e: React.MouseEvent) => {
@@ -239,4 +237,4 @@ const BestBlogCard = ({ blog }: { blog: IBlog }) => {
   );
 };
 
-export default BestBlogCard;
+export default CategoryBlogCard;
