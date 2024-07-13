@@ -228,7 +228,7 @@ const BlogDetailsCard: React.FC<BlogDetailsProps> = ({ blogId }) => {
                   <div key={index}>
                     {' '}
                     <Link
-                      href={`/blogs/tag/${item.name}`}
+                      href={`/blog/tag/${item.name}`}
                       className={cn('font-medium tracking-normal text-xl')}
                     >
                       #{item.name}
