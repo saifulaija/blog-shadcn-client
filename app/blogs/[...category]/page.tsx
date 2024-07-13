@@ -11,13 +11,17 @@ export const metadata: Metadata = {
 };
 type TParams = {
   params: { category: string[] };
+  searchParams?: {
+    q?: string;
+  };
 };
-const CatchAllPage = ({ params }: TParams) => {
+const CatchAllPage = ({ params, searchParams }: TParams) => {
   const category = params.category[1];
+    const q = searchParams?.q || '';
 
   return (
     <div className="mt-5">
-      <CategoryBlogs category={category} />
+      <CategoryBlogs category={category} q={q} />
     </div>
   );
 };

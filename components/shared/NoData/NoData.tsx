@@ -18,12 +18,12 @@ export function NoData({
     <div className="flex flex-col items-center justify-center h-full p-4 text-center">
       <Image
         src={assets.images.noData}
-        width={300}
+        width={400}
         height={300}
         alt="No data"
-        className="mb-4"
+       
       />
-      <Link href="/blogs" className={buttonVariants()}>
+      <Link href="/blogs" className={` ${'-mt-14'} ${buttonVariants()}`}>
         <div className="flex items-center group">
           <ResetIcon className="transition-transform duration-300 ease-in-out transform group-hover:-translate-x-1 mr-2" />
           {buttonText}

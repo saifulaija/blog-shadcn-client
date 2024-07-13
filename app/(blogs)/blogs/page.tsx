@@ -12,7 +12,6 @@ const AllBlogsPage = ({
 }: {
   searchParams?: {
     q?: string;
-    page?: string;
   };
 }) => {
   const q = searchParams?.q || '';

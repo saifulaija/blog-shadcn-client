@@ -4,19 +4,29 @@ import BestBlogCard from '@/components/Home/BestBlog/BlogCard';
 import CategoryBlogCard from '@/components/Home/BestBlog/CategoryBlogCard';
 import BlogCardSkeleton from '@/components/shared/CardLoader/BlogSkeleton';
 import { NoData } from '@/components/shared/NoData/NoData';
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '@/components/ui/breadcrumb';
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from '@/components/ui/breadcrumb';
 import { useGetAllBlogsQuery } from '@/redux/features/blog/blogApi';
+import { useDebounced } from '@/redux/hooks';
 import { Slash } from 'lucide-react';
 import { useState } from 'react';
 
+const CategoryBlogs = ({ category, q }: { category: string; q: string }) => {
+  const query: Record<string, any> = {};
+  const debounceTerm = useDebounced({ searchQuery: q, delay: 700 });
+  query['category'] = category;
 
-const CategoryBlogs = ({ category }: { category: string }) => {
-  const [isFocused, setIsFocused] = useState(false);
-  const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(8);
+  if (debounceTerm) {
+    query['q'] = debounceTerm;
+  }
 
-
-  const { data, isLoading } = useGetAllBlogsQuery({category});
+  const { data, isLoading } = useGetAllBlogsQuery({ ...query });
 
   return (
     <div className="w-full mt-10">
@@ -43,7 +53,7 @@ const CategoryBlogs = ({ category }: { category: string }) => {
           <BreadcrumbItem>
             <BreadcrumbPage>{category}</BreadcrumbPage>
           </BreadcrumbItem>
-          {/* {q && (
+          {q && (
             <>
               <BreadcrumbSeparator>
                 <Slash />
@@ -52,12 +62,22 @@ const CategoryBlogs = ({ category }: { category: string }) => {
                 <BreadcrumbPage>{q}</BreadcrumbPage>
               </BreadcrumbItem>
             </>
-          )} */}
+          )}
         </BreadcrumbList>
       </Breadcrumb>
       <div className="wrapper">
         <div>
-         
+          <div className="flex justify-center items-center italic font-semibold p-2">
+            {q && (
+              <>
+                <p>
+                  {data?.blogs?.length
+                    ? `Search result ${data.blogs.length}`
+                    : ''}
+                </p>
+              </>
+            )}
+          </div>
 
           <div className="w-full">
             {isLoading ? (

@@ -60,8 +60,11 @@ const Blogs = ({ q }: { q: string }) => {
           <div className="flex justify-center items-center italic font-semibold p-2">
             {q && (
               <>
-                {' '}
-                <p>Search result {data?.blogs?.length} </p>
+                <p>
+                  {data?.blogs?.length
+                    ? `Search result ${data.blogs.length}`
+                    : ''}
+                </p>
               </>
             )}
           </div>
