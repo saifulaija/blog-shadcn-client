@@ -23,6 +23,7 @@ import { ArrowRight, Loader } from 'lucide-react';
 import { useState } from 'react';
 import { registerSubscriber } from '@/services/actions/registerSubscriber';
 import Link from 'next/link';
+import { ToastAction } from '../ui/toast';
 const formSchema = z.object({
   email: z.string().email({
     message: 'Please enter valid email',
@@ -74,6 +75,9 @@ const SignUpForm = () => {
         toast({
           title: 'Success!',
           description: `User created successfully please go to login`,
+          action: (
+            <ToastAction altText="Goto schedule to undo">Close</ToastAction>
+          ),
         });
         router.push('/signin');
       } else {
@@ -168,14 +172,14 @@ const SignUpForm = () => {
               control={form.control}
               name="profilePhoto"
               render={({ field }) => (
-                <FormItem>
+                <FormItem className="col-span-1 md:col-span-2">
                   <FormLabel>profilePhoto</FormLabel>
                   <FormControl>
                     <Input
                       type="file"
                       accept="image/*"
                       onChange={(e) => field.onChange(e.target.files)}
-                      className=" max:w-[680px] w-full"
+                      className="w-full"
                     />
                   </FormControl>
                   <FormMessage />

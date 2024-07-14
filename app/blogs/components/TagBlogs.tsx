@@ -1,16 +1,6 @@
 'use client';
-import { Input } from '@/components/ui/input';
-import { useState } from 'react';
-import { Search, Slash, Tag } from 'lucide-react';
+import {  Slash } from 'lucide-react';
 import { useDebounced } from '@/redux/hooks';
-import {
-  Pagination,
-  PaginationContent,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from '@/components/ui/pagination';
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -27,10 +17,16 @@ import BlogCardSkeleton from '@/components/shared/CardLoader/BlogSkeleton';
 import BestBlogCard from '@/components/Home/BestBlog/BlogCard';
 import CategoryBlogCard from '@/components/Home/BestBlog/CategoryBlogCard';
 
-const TagBlogs = ({ tag }: { tag: string }) => {
+const TagBlogs = ({ tag, q }: { tag: string; q: string }) => {
   const query: Record<string, any> = {};
+  const debounceTerm = useDebounced({ searchQuery: q, delay: 700 });
+  query['tag'] = tag;
 
-  const { data, isLoading } = useGetAllBlogsQuery({ tag });
+  if (debounceTerm) {
+    query['q'] = debounceTerm;
+  }
+
+  const { data, isLoading } = useGetAllBlogsQuery({ ...query });
 
   return (
     <div className="w-full mt-10">
@@ -57,20 +53,21 @@ const TagBlogs = ({ tag }: { tag: string }) => {
           <BreadcrumbItem>
             <BreadcrumbPage>{tag}</BreadcrumbPage>
           </BreadcrumbItem>
-          {/* {q && (
-            <>
-              <BreadcrumbSeparator>
-                <Slash />
-              </BreadcrumbSeparator>
-              <BreadcrumbItem>
-                <BreadcrumbPage>{q}</BreadcrumbPage>
-              </BreadcrumbItem>
-            </>
-          )} */}
         </BreadcrumbList>
       </Breadcrumb>
       <div className="wrapper">
         <div>
+          <div className="flex justify-center items-center italic font-semibold p-2">
+            {q && (
+              <>
+                <p>
+                  {data?.blogs?.length
+                    ? `Search result ${data.blogs.length}`
+                    : ''}
+                </p>
+              </>
+            )}
+          </div>
           <div className="w-full">
             {isLoading ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">

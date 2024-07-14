@@ -20,6 +20,7 @@ import { useRouter } from 'next/navigation';
 import { Loader } from 'lucide-react';
 import { signInUser } from '@/services/actions/signInUser';
 import { storeUserInfo } from '@/services/authServices';
+import { ToastAction } from '../ui/toast';
 
 const formSchema = z.object({
   email: z.string().email({
@@ -57,6 +58,9 @@ const SignInForm = () => {
           color: 'green',
           title: 'Login',
           description: 'User login successfully',
+          action: (
+            <ToastAction altText="Goto schedule to undo">Close</ToastAction>
+          ),
         });
         router.refresh();
       } else {

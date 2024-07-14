@@ -2,6 +2,7 @@
 
 import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
+import { useGetAllBlogsQuery } from '@/redux/features/blog/blogApi';
 import { Search } from 'lucide-react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { FaSearch } from 'react-icons/fa';
@@ -10,6 +11,10 @@ export default function GlobalSearch({ placeholder }: { placeholder: string }) {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
+  const {data}=useGetAllBlogsQuery({})
+  console.log(data);
+  
+  
 
   function handleSearch(term: string) {
     const params = new URLSearchParams(searchParams);

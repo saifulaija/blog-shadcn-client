@@ -4,8 +4,11 @@ import { useRouter } from "next/navigation";
 import { logoutUser } from "@/services/actions/logoutUser";
 import { useToast } from "@/components/ui/use-toast";
 import { Button } from "@/components/ui/button";
-import { ChevronRightIcon, ExitIcon } from "@radix-ui/react-icons";
+
 import Link from "next/link";
+import { ChevronRight } from "lucide-react";
+import { ExitIcon } from "@radix-ui/react-icons";
+import { ToastAction } from "@/components/ui/toast";
 
 
 const AuthButton = () => {
@@ -18,6 +21,9 @@ const AuthButton = () => {
           variant: 'destructive',
           title: 'Logout',
           description: 'User logged out successfully',
+          action: (
+            <ToastAction altText="Goto schedule to undo">Close</ToastAction>
+          ),
         });
       };
   return (
@@ -36,7 +42,7 @@ const AuthButton = () => {
           <Link href="/signin" className="flex items-center gap-2">
             <span className="flex items-center justify-center gap-2 font-semibold tracking-wide">
               Login
-              <ChevronRightIcon className="transition-transform duration-300 ease-in-out transform group-hover:translate-x-1" />
+              <ChevronRight className="transition-transform duration-300 ease-in-out transform group-hover:translate-x-1" />
             </span>
           </Link>
         </Button>

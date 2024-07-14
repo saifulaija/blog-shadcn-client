@@ -31,7 +31,7 @@ const SignUp = () => {
             transition={{ duration: 0.6, ease: 'easeInOut' }}
           >
             <h2 className="text-xl md:text-2xl mb-2 text-primary font-semibold">
-              Register Now
+              Register as User
             </h2>
             <div className="text-balance flex justify-center items-center gap-1 -mt-3 text-center">
               <Link

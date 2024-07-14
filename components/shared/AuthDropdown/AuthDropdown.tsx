@@ -21,7 +21,10 @@ import { useRouter } from 'next/navigation';
 
 const AuthDropdown = () => {
   const { toast } = useToast();
-  const { data: user, isLoading, error } = useGetMYProfileQuery({});
+  // const { data: user, isLoading, error } = useGetMYProfileQuery({});
+  const user =getUserInfo()
+  console.log(user);
+  
 
   const router = useRouter();
   const handleLogout = () => {
@@ -37,7 +40,7 @@ const AuthDropdown = () => {
 
   return (
     <>
-      {user && user.id ? (
+      {user && user.userId ? (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="secondary" size="icon" className="rounded-full">

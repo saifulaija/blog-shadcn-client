@@ -9,7 +9,7 @@ import { useGetAllBlogsQuery } from '@/redux/features/blog/blogApi';
 const BestBlogsServer = () => {
   const { data } = useGetAllBlogsQuery({});
   return (
-    <div className="w-full p-0 md:p-8">
+    <div className="w-full px-2 md:p-8">
       <div className="wrapper">
         <h1 className="h2-bold text-center p-10">Popular Blogs</h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:m-0">

@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import {
@@ -12,6 +10,9 @@ import { MoreHorizontal } from 'lucide-react';
 
 import { useToast } from '@/components/ui/use-toast';
 import { useUpdateStatusApproveMutation } from '@/redux/features/blog/blogApi';
+import { ToastAction } from '@/components/ui/toast';
+import { useAppDispatch } from '@/redux/hooks';
+import { addStatus } from '@/redux/features/blog/approveSlice';
 
 interface UpdateUserStatusProps {
   userId: string;
@@ -22,6 +23,7 @@ const UpdatePublishedStatus: React.FC<UpdateUserStatusProps> = ({
   userId,
   currentStatus,
 }) => {
+  const dispatch = useAppDispatch();
   const { toast } = useToast();
   const [updateUser, { isLoading }] = useUpdateStatusApproveMutation();
 
@@ -32,19 +34,31 @@ const UpdatePublishedStatus: React.FC<UpdateUserStatusProps> = ({
         publishedStatus: newStatus,
       },
     };
-
+    const message =
+      newStatus === 'APPROVED'
+        ? 'you are congratulation your blog'
+        : 'We are sorry your blog ';
+    const statusData = {
+      authorId: userId,
+      message,
+      status: newStatus,
+    };
     try {
       const res = await updateUser(updateData).unwrap();
 
       if (res.id) {
+        dispatch(addStatus(statusData));
         toast({
           title: 'Success',
           description: 'Published status changed successfully',
+          action: (
+            <ToastAction altText="Goto schedule to undo">Close</ToastAction>
+          ),
         });
       }
     } catch (error: any) {
       toast({
-        title: 'Success',
+        title: 'Error',
         variant: 'destructive',
         description: 'can not updated already canceled',
       });

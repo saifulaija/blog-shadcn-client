@@ -12,6 +12,8 @@ import { AllBlogsDataTable } from './components/allBlogsDataTable';
 
 const BlogManagementPage = () => {
   const { data, isLoading } = useGetAllBlogsQuery({});
+  console.log(data?.blogs, 'from redux');
+  
   return (
     <section className="py-5 px-2">
       <div>

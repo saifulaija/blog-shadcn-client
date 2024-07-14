@@ -10,14 +10,17 @@ export const metadata: Metadata = {
 };
 type TParams = {
   params: { tag: string[] };
+  searchParams?: {
+    q?: string;
+  };
 };
-const CatchAllPage = ({ params }: TParams) => {
+const CatchAllPage = ({ params,searchParams }: TParams) => {
   const tag = params.tag[1];
-  console.log(tag, 'tag');
-
+   const q = searchParams?.q || '';
+ 
   return (
     <div className="mt-5">
-      <TagBlogs tag={tag} />
+      <TagBlogs tag={tag} q={q}  />
     </div>
   );
 };

@@ -6,7 +6,7 @@ export default function SubmitBtn({ loading }: { loading: any }) {
   return (
     <Button type="submit" disabled={loading}>
       {loading ? (
-        <div className="h-5 w-5 animate-spin rounded-full border-b-2 border-red-500"></div>
+        <div className="h-5 w-5 animate-spin rounded-full border-b-2 border-gray-500"></div>
       ) : (
         <>
           Subscribe

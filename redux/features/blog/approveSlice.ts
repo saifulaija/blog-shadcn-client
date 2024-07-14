@@ -1,13 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-type approveItem = {
+export type approveItem = {
   authorId: string | undefined;
-  name: string | undefined;
   message: string | undefined;
-  status: string | undefined;
+  status: 'APPROVED' | 'CANCEL';
 };
 
-type InitialState = {
+export type InitialState = {
   statusItems: approveItem[];
 };
 
@@ -22,15 +21,25 @@ const approveSlice = createSlice({
     addStatus: (state, action: PayloadAction<approveItem>) => {
       state.statusItems.push(action.payload);
     },
-    getStatus: (state, action: PayloadAction<approveItem[]>) => {
+    setStatusItems: (state, action: PayloadAction<approveItem[]>) => {
       state.statusItems = action.payload;
     },
     clearStatusItems: (state) => {
       state.statusItems = [];
     },
+    getStatusByAuthorId: (state, action: PayloadAction<string | undefined>) => {
+      state.statusItems = state.statusItems.filter(
+        (item) => item.authorId === action.payload,
+      );
+    },
   },
 });
 
-export const { addStatus, getStatus, clearStatusItems } = approveSlice.actions;
+export const {
+  addStatus,
+  setStatusItems,
+  clearStatusItems,
+  getStatusByAuthorId,
+} = approveSlice.actions;
 
 export default approveSlice.reducer;

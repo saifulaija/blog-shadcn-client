@@ -15,15 +15,19 @@ import { APP_NAME } from '@/lib/constants';
 import { ModeToggle } from '../shared/header/ModeToggle';
 
 import NotificationDropdown from '../shared/NotificationDropdown/NotificationDropwon';
-import { useAppSelector } from '@/redux/hooks';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { RootState } from '@/redux/store';
 import { Badge } from '../ui/badge';
+import { clearStatusItems } from '@/redux/features/blog/approveSlice';
+import { clearBlogItems } from '@/redux/features/blog/blogSlice';
 
 export function Dashboard({ children }: { children: React.ReactNode }) {
   const [userRole, setUserRole] = useState('');
   const [scrolled, setScrolled] = useState(false);
   const blogs = useAppSelector((state: RootState) => state.blog.blogItems);
-  console.log(blogs);
+  const approves = useAppSelector((state: RootState) => state.approve.statusItems);
+  const blogLength=blogs?.length
+  const approveLength=approves?.length
 
   useEffect(() => {
     const { role } = getUserInfo();
@@ -41,6 +45,15 @@ export function Dashboard({ children }: { children: React.ReactNode }) {
   }, []);
 
   const sidebarItems = headerItems(userRole as UserRole);
+  const dispatch=useAppDispatch()
+
+ const handleNotificationClick = () => {
+   if (userRole === 'blogger') {
+     dispatch(clearStatusItems());
+   } else {
+     dispatch(clearBlogItems());
+   }
+ };
 
   return (
     <div className="flex min-h-screen w-full flex-col">
@@ -97,9 +110,12 @@ export function Dashboard({ children }: { children: React.ReactNode }) {
           <ModeToggle />
           <div className="relative">
             <Badge className="fixed ml-4 cursor-pointer animate-bounce">
-              {blogs?.length}
+              {/* {userRole === 'blogger' ? dispatch(clearStatusItems()) : dispatch(clearBlogItems())} */}
+              {userRole === 'blogger' ? approveLength : blogLength}
             </Badge>
-            {userRole !== 'blogger' && <NotificationDropdown />}
+            <div onClick={handleNotificationClick}>
+              {userRole && <NotificationDropdown />}
+            </div>
           </div>
           <AuthDropdown />
         </div>

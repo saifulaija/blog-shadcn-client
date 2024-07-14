@@ -97,7 +97,7 @@ const BestBlogCard = ({ blog }: { blog: IBlog }) => {
     <Card
       onClick={handleDetails}
       className={cn(
-        'hover:shadow-lg border border-green-500 hover:shadow-slate-400 max-w-md w-full hover:border hover:cursor-pointer transition duration-300 ',
+        'hover:shadow-lg  hover:shadow-slate-400 max-w-md w-full hover:border-2 hover:border-primary hover:cursor-pointer transition duration-300 ',
       )}
     >
       <CardHeader className="p-0 items-center">

@@ -16,8 +16,8 @@ const SignUpPage = () => {
     <div className="flex justify-center items-center mx-auto p-5">
       <Tabs orientation="vertical" defaultValue="signin" className="w-[600px]">
         <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="signin">Register as user</TabsTrigger>
-          <TabsTrigger value="signup">Register as blogger</TabsTrigger>
+          <TabsTrigger value="signin">Register as User</TabsTrigger>
+          <TabsTrigger value="signup">Register as Blogger</TabsTrigger>
         </TabsList>
         <TabsContent value="signin">
           <SignUp />

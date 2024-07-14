@@ -3,8 +3,10 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useGetMetaQuery } from '@/redux/api/metaDataApi';
 import {
+  Book,
   CheckCheck,
   CircleEllipsis,
+  CircleOff,
   DollarSign,
   NotebookPen,
   Users,
@@ -24,7 +26,7 @@ const BloggerDashboardPage = () => {
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Blogs</CardTitle>
 
-            <NotebookPen className="h-4 w-4 text-primary" />
+            <Book className="h-4 w-4 text-primary" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold"> {data?.blogCount}</div>
@@ -52,12 +54,12 @@ const BloggerDashboardPage = () => {
         </Card>
         <Card x-chunk="dashboard-01-chunk-3">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Views</CardTitle>
+            <CardTitle className="text-sm font-medium">Cancel Blogs</CardTitle>
             {/* <Activity className="h-4 w-4 text-muted-foreground" /> */}
-            <View className="h-4 w-4 text-primary" />
+            <CircleOff className="h-4 w-4 text-primary" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold"> {data?.totalViews}</div>
+            <div className="text-2xl font-bold"> {data?.cancelBlogCount}</div>
           </CardContent>
         </Card>
       </div>

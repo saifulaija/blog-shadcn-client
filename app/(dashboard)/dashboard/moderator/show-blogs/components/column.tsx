@@ -13,6 +13,7 @@ import { MyBadge } from '@/components/shadcn/MyBadge';
 import { truncateTitle } from '@/utils/truncateTitle';
 import UpdatePublishedStatus from './publishedStatus';
 import Link from 'next/link';
+import { TTag } from '@/types/blog';
 
 export type Blog = {
   id: string;
@@ -20,9 +21,11 @@ export type Blog = {
   title: string;
   conclusion: string;
   category: string;
+  tag:TTag[];
   publishedStatus: 'PENDING' | 'APPROVED' | 'CANCEL';
   image: string;
   createdAt: Date;
+
 };
 
 export const allBlogsColumn: ColumnDef<Blog>[] = [
