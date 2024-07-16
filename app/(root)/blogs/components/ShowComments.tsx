@@ -55,7 +55,6 @@ const ShowComments = ({
   const [createComment, { isLoading }] = useCreateCommentMutation();
   const [deleteComment] = useDeleteCommentMutation();
   const user = getUserInfo();
- 
 
   const myCommentData = comments.filter(
     (item) => item.comment.id === user?.userId,

@@ -22,9 +22,8 @@ import { useRouter } from 'next/navigation';
 
 const AuthDropdown = () => {
   const { toast } = useToast();
- 
+
   const user = getUserInfo();
- 
 
   const router = useRouter();
   const handleLogout = () => {

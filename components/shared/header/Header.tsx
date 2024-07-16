@@ -217,7 +217,10 @@ const Header = () => {
   ];
 
   return (
-    <div
+    <motion.div
+      initial={{ y: -150 }}
+      animate={{ y: 0 }}
+      transition={{ delay: 0.5, duration: 0.5 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-shadow duration-300 flex justify-center items-center h-16 ${
         scrolled
           ? 'shadow-md border-b bg-background/90 backdrop-blur-lg'
@@ -308,7 +311,7 @@ const Header = () => {
           <AuthButton />
         </header>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

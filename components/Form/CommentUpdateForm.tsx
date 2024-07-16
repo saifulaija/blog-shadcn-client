@@ -15,11 +15,14 @@ import { useForm } from 'react-hook-form';
 import { useEffect, useState } from 'react';
 
 import { Loader, Loader2 } from 'lucide-react';
-import { useGetSingleCommentQuery, useUpdateCommentMutation } from '@/redux/features/comment/commentApi';
+import {
+  useGetSingleCommentQuery,
+  useUpdateCommentMutation,
+} from '@/redux/features/comment/commentApi';
 import { ToastAction } from '../ui/toast';
 
 const CommentUpdateForm = ({ commentId }: { commentId: any }) => {
-   const { data, isLoading } = useGetSingleCommentQuery(commentId)
+  const { data, isLoading } = useGetSingleCommentQuery(commentId);
   const { toast } = useToast();
   const [updateFlat, { isLoading: update }] = useUpdateCommentMutation();
 

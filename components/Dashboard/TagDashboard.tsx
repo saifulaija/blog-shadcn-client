@@ -55,15 +55,12 @@ import {
   PersonIcon,
   TextAlignCenterIcon,
 } from '@radix-ui/react-icons';
-import { Item } from '@radix-ui/react-dropdown-menu';
-import { Icon } from 'next/dist/lib/metadata/types/metadata-types';
+import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
-import { FaHouseUser } from 'react-icons/fa';
 
 export function TagDashboard({ children }: { children: React.ReactNode }) {
   const user = getUserInfo();
   const pathname = usePathname();
-  console.log(pathname);
 
   const menuItems = [
     {
@@ -159,7 +156,7 @@ export function TagDashboard({ children }: { children: React.ReactNode }) {
     },
     {
       title: 'Blogs',
-      path: `/blogs/category/foods`,
+      path: `/blogs`,
       icon: Book,
     },
   ];
@@ -241,7 +238,10 @@ export function TagDashboard({ children }: { children: React.ReactNode }) {
         </div>
       </div>
       <div className="flex flex-col">
-        <header
+        <motion.header
+          initial={{ y: -150 }}
+          animate={{ y: 0 }}
+          transition={{ delay: 0.5, duration: 0.5 }}
           className={`flex justify-between h-14 items-center fixed top-0 left-0 md:left-[280px] right-0 z-50 gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6 ${
             scrolled ? 'bg-opacity-90 border-b backdrop-blur-xl' : ''
           }`}
@@ -324,7 +324,7 @@ export function TagDashboard({ children }: { children: React.ReactNode }) {
           </div>
 
           <AuthButton />
-        </header>
+        </motion.header>
         <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
           {children}
         </main>

@@ -58,7 +58,10 @@ const BlogDetailsPage = ({ params }: TParams) => {
           )} */}
         </BreadcrumbList>
       </Breadcrumb>
-     <div className='mt-6'> <BlogDetailsCard blogId={blogId} /></div>
+      <div className="mt-6">
+        {' '}
+        <BlogDetailsCard blogId={blogId} />
+      </div>
     </div>
   );
 };

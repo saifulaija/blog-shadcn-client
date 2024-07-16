@@ -13,6 +13,7 @@ import Image from 'next/image';
 import assets from '@/public';
 import { APP_NAME } from '@/lib/constants';
 import { ModeToggle } from '../shared/header/ModeToggle';
+import { motion } from 'framer-motion';
 
 import NotificationDropdown from '../shared/NotificationDropdown/NotificationDropwon';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
@@ -59,7 +60,10 @@ export function Dashboard({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="flex min-h-screen w-full flex-col">
-      <header
+      <motion.header
+        initial={{ y: -150 }}
+        animate={{ y: 0 }}
+        transition={{ delay: 0.5, duration: 0.5 }}
         className={`sticky top-0 flex h-16 items-center z-50 transition-shadow duration-300 justify-between gap-4 border-b  px-4 md:px-6 ${scrolled ? 'shadow-md border-b bg-background/90 backdrop-blur-lg' : 'bg-background/70 border-b'}`}
       >
         <div className="hidden sm:block">
@@ -121,7 +125,7 @@ export function Dashboard({ children }: { children: React.ReactNode }) {
           </div>
           <AuthDropdown />
         </div>
-      </header>
+      </motion.header>
       <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8">
         {children}
       </main>

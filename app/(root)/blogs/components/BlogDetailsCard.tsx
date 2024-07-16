@@ -346,8 +346,6 @@
 
 // export default BlogDetailsCard;
 
-
-
 'use client';
 import {
   useCountBlogVoteMutation,
@@ -705,9 +703,11 @@ const BlogDetailsCard: React.FC<BlogDetailsProps> = ({ blogId }) => {
             transition={{ duration: 0.3 }}
           >
             <div className="md:max-w-[1200px]">
-              <ShowComments  authorId={authorId}
-               comments={comments}
-             newId={newId} />
+              <ShowComments
+                authorId={authorId}
+                comments={comments}
+                newId={newId}
+              />
             </div>
           </motion.div>
         )}
@@ -717,8 +717,3 @@ const BlogDetailsCard: React.FC<BlogDetailsProps> = ({ blogId }) => {
 };
 
 export default BlogDetailsCard;
-
-
-
-
-

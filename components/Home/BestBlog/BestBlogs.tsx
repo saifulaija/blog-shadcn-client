@@ -8,9 +8,9 @@ import { useGetAllBlogsQuery } from '@/redux/features/blog/blogApi';
 import CustomLoader from '@/components/shared/CustomLoader/CustomLoader';
 
 const BestBlogsServer = () => {
-  const { data,isLoading } = useGetAllBlogsQuery({});
-  if(isLoading){
-    return <CustomLoader/>
+  const { data, isLoading } = useGetAllBlogsQuery({});
+  if (isLoading) {
+    return <CustomLoader />;
   }
   return (
     <div className="w-full px-2 md:p-8">
