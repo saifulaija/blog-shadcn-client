@@ -5,9 +5,13 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { ChevronRight } from 'lucide-react';
 import { useGetAllBlogsQuery } from '@/redux/features/blog/blogApi';
+import CustomLoader from '@/components/shared/CustomLoader/CustomLoader';
 
 const BestBlogsServer = () => {
-  const { data } = useGetAllBlogsQuery({});
+  const { data,isLoading } = useGetAllBlogsQuery({});
+  if(isLoading){
+    return <CustomLoader/>
+  }
   return (
     <div className="w-full px-2 md:p-8">
       <div className="wrapper">

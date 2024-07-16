@@ -212,7 +212,7 @@ export function TagDashboard({ children }: { children: React.ReactNode }) {
       <div className="flex flex-col">
         <header
           className={`flex justify-between h-14 items-center fixed top-0 left-0 md:left-[280px] right-0 z-50 gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6 ${
-            scrolled ? 'bg-opacity-90 border-b backdrop-blur-lg' : ''
+            scrolled ? 'bg-opacity-90 border-b backdrop-blur-xl' : ''
           }`}
         >
           <Sheet>
@@ -253,20 +253,7 @@ export function TagDashboard({ children }: { children: React.ReactNode }) {
                 ))}
               </nav>
               <div className="mt-auto">
-                {/* <Card>
-                  <CardHeader>
-                    <CardTitle>Upgrade to Pro</CardTitle>
-                    <CardDescription>
-                      Unlock all features and get unlimited access to our
-                      support team.
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <Button size="sm" className="w-full">
-                      Upgrade
-                    </Button>
-                  </CardContent>
-                </Card> */}
+              
               </div>
             </SheetContent>
           </Sheet>
