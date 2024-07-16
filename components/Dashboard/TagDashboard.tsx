@@ -22,6 +22,8 @@ import {
   ShoppingCart,
   Soup,
   Users,
+  LucideHome,
+  Book,
 } from 'lucide-react';
 
 import { Badge } from '@/components/ui/badge';
@@ -56,6 +58,7 @@ import {
 import { Item } from '@radix-ui/react-dropdown-menu';
 import { Icon } from 'next/dist/lib/metadata/types/metadata-types';
 import { cn } from '@/lib/utils';
+import { FaHouseUser } from 'react-icons/fa';
 
 export function TagDashboard({ children }: { children: React.ReactNode }) {
   const user = getUserInfo();
@@ -63,8 +66,6 @@ export function TagDashboard({ children }: { children: React.ReactNode }) {
   console.log(pathname);
 
   const menuItems = [
-    { label: 'Home', path: '/', show: true },
-    { label: 'Blogs', path: '/blogs', show: true },
     {
       label: 'Dashboard',
       path: `/dashboard/${user?.role}`,
@@ -150,6 +151,19 @@ export function TagDashboard({ children }: { children: React.ReactNode }) {
     },
   ];
 
+  const headerMenu = [
+    {
+      title: 'Home',
+      path: `/`,
+      icon: LucideHome,
+    },
+    {
+      title: 'Blogs',
+      path: `/blogs/category/foods`,
+      icon: Book,
+    },
+  ];
+
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
     const handleScroll = () => {
@@ -206,6 +220,23 @@ export function TagDashboard({ children }: { children: React.ReactNode }) {
                 </Link>
               ))}
             </nav>
+            <Separator />
+            <div className="mb-auto p-4 ">
+              {headerMenu.map((item, index) => (
+                <Link
+                  key={index}
+                  href={item.path}
+                  className={cn(
+                    'flex items-center gap-3 px-3 py-2 text-muted-foreground transition-all hover:text-primary',
+                    pathname === item.path &&
+                      'text-primary bg-muted border-r-2 border-r-primary',
+                  )}
+                >
+                  <item.icon className="h-5 w-5" />
+                  {item.title}
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -253,15 +284,28 @@ export function TagDashboard({ children }: { children: React.ReactNode }) {
                 ))}
               </nav>
               <div className="mt-auto">
-              
+                {headerMenu.map((item, index) => (
+                  <Link
+                    key={index}
+                    href={item.path}
+                    className={cn(
+                      'flex items-center gap-3 px-3 py-2 text-muted-foreground transition-all hover:text-primary',
+                      pathname === item.path &&
+                        'text-primary bg-muted border-r-2 border-r-primary',
+                    )}
+                  >
+                    <item.icon className="h-5 w-5" />
+                    {item.title}
+                  </Link>
+                ))}
               </div>
             </SheetContent>
           </Sheet>
 
-          <div className="hidden md:block md:flex-1">
+          <div className="hidden md:block flex-1">
             <GlobalSearch placeholder="Search blog..........." />
           </div>
-          <div className="flex items-center gap-2 md:flex-1">
+          <div className="flex items-center gap-2   md:block">
             {menuItems.map((menuItem) =>
               menuItem.show ? (
                 <Link
