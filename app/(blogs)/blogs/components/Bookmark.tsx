@@ -79,6 +79,7 @@ import { useAppSelector } from '@/redux/hooks';
 import { IBlog } from '@/types/blog';
 
 import { Slash } from 'lucide-react';
+import { NoData } from '@/components/shared/NoData/NoData';
 const Bookmark = ({ q }: { q: string }) => {
   const bookmarks = useAppSelector((state) => state.bookmark.blogsItem);
 
@@ -130,10 +131,17 @@ const Bookmark = ({ q }: { q: string }) => {
             </>
           )}
         </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {filteredBookmarks.map((blog: IBlog) => (
-            <BookmarkBlogCard key={blog.id} blog={blog} />
-          ))}
+          {filteredBookmarks.length > 0 ? (
+            filteredBookmarks.map((blog: IBlog) => (
+              <BookmarkBlogCard key={blog.id} blog={blog} />
+            ))
+          ) : (
+            <div className="flex justify-center items-center w-full">
+              <NoData />
+            </div>
+          )}
         </div>
       </div>
     </div>
