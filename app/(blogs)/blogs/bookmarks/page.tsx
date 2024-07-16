@@ -6,10 +6,17 @@ export const metadata: Metadata = {
   description: 'An BlogPlex built with Next.js, Postgres, Shadcn signin',
 };
 
-const BookmarkPage = () => {
+const BookmarkPage = ({
+  searchParams,
+}: {
+  searchParams?: {
+    q?: string;
+  };
+}) => {
+  const q = searchParams?.q || '';
   return (
     <div>
-      <Bookmark />
+      <Bookmark q={q} />
     </div>
   );
 };
