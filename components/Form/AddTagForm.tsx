@@ -62,21 +62,26 @@ const AddTagForm = ({ blogId }: { blogId: string }) => {
       name: values.name,
     };
 
-    console.log(data, 'tag');
-
     try {
-      const res = await createBlog(data).unwrap();
+      const res = await createBlog(data);
       console.log(res);
 
-      if (res?.id) {
+      if (res?.data === undefined) {
+        toast({
+          title: 'Error',
+          description: `The tag "${values.name}" already exists.`,
+          action: <ToastAction altText="Close">Close</ToastAction>,
+        });
+        return;
+      }
+
+      if (res?.data?.id) {
         toast({
           title: 'Success!',
           description: 'Tag added successfully',
-          action: (
-            <ToastAction altText="Goto schedule to undo">Close</ToastAction>
-          ),
+          action: <ToastAction altText="Close">Close</ToastAction>,
         });
-        // router.push(`/dashboard/${user?.role}/show-blogs`);
+
         dispatch(
           addBlog({
             name: user?.name,
@@ -89,7 +94,7 @@ const AddTagForm = ({ blogId }: { blogId: string }) => {
       console.error(error);
       toast({
         title: 'Error',
-        description: 'An error occurred while creating the blog',
+        description: 'An error occurred while creating the blog.',
       });
     }
   };
