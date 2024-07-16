@@ -5,7 +5,6 @@ import { cn } from '@/lib/utils';
 import { useGetAllBlogsQuery } from '@/redux/features/blog/blogApi';
 import { Search } from 'lucide-react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-
 export default function GlobalSearch({ placeholder }: { placeholder: string }) {
   const searchParams = useSearchParams();
   const pathname = usePathname();

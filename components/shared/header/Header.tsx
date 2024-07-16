@@ -289,7 +289,6 @@ const Header = () => {
               </div>
             </motion.div>
           </div>
-
           <nav className="hidden lg:flex gap-6">
             {menuItems.map((menuItem) =>
               menuItem.show ? (

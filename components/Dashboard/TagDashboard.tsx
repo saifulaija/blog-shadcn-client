@@ -206,7 +206,7 @@ export function TagDashboard({ children }: { children: React.ReactNode }) {
                   className={cn(
                     'flex items-center gap-3 px-3 py-2 text-muted-foreground transition-all hover:text-primary',
                     pathname === item.path &&
-                      'text-primary bg-muted border-r-2 border-r-primary',
+                      'text-primary bg-muted border-r-4 border-r-primary',
                   )}
                 >
                   <item.icon className="h-5 w-5" />
@@ -226,7 +226,7 @@ export function TagDashboard({ children }: { children: React.ReactNode }) {
                   className={cn(
                     'flex items-center gap-3 px-3 py-2 text-muted-foreground transition-all hover:text-primary',
                     pathname === item.path &&
-                      'text-primary bg-muted border-r-2 border-r-primary',
+                      'text-primary bg-muted border-r-4 border-r-primary',
                   )}
                 >
                   <item.icon className="h-5 w-5" />
@@ -272,7 +272,7 @@ export function TagDashboard({ children }: { children: React.ReactNode }) {
                     className={cn(
                       'flex items-center gap-3 px-3 py-2 text-muted-foreground transition-all hover:text-primary',
                       pathname === item.path &&
-                        'text-primary bg-muted border-r-2 border-r-primary',
+                        'text-primary bg-muted border-r-4 border-r-primary',
                     )}
                   >
                     <item.icon className="h-5 w-5" />
@@ -291,7 +291,7 @@ export function TagDashboard({ children }: { children: React.ReactNode }) {
                     className={cn(
                       'flex items-center gap-3 px-3 py-2 text-muted-foreground transition-all hover:text-primary',
                       pathname === item.path &&
-                        'text-primary bg-muted border-r-2 border-r-primary',
+                        'text-primary bg-muted border-r-4 border-r-primary',
                     )}
                   >
                     <item.icon className="h-5 w-5" />

@@ -3,7 +3,7 @@ import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 import { NextRequest } from 'next/server';
 type Role = keyof typeof roleBasedPrivateRoutes;
-const AuthRoutes = ['/signin', '/register'];
+const AuthRoutes = ['/signin', '/signup'];
 const commonPrivateRoutes = ['/dashboard', '/dashboard/change-password'];
 const roleBasedPrivateRoutes = {
   ADMIN: [/^\/dashboard\/admin/],
@@ -20,7 +20,7 @@ export function middleware(request: NextRequest) {
     if (AuthRoutes.includes(pathname)) {
       return NextResponse.next();
     } else {
-      return NextResponse.redirect(new URL('/login', request.url));
+      return NextResponse.redirect(new URL('/signin', request.url));
     }
   }
 
@@ -60,5 +60,5 @@ export function middleware(request: NextRequest) {
 
 // See "Matching Paths" below to learn more
 export const config = {
-  matcher: ['/signin', '/register', '/dashboard/:page*'],
+  matcher: ['/signin', '/signup', '/dashboard/:page*'],
 };

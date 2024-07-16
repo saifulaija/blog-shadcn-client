@@ -34,6 +34,21 @@ const blogsApi = baseApi.injectEndpoints({
       },
       providesTags: [tagTypes.blog],
     }),
+    getAllBlogsForAdmin: build.query({
+      query: (arg: Record<string, any>) => ({
+        url: '/blog/get-for-admin',
+        method: 'GET',
+        params: arg,
+      }),
+      transformResponse: (response: IBlog[], meta: IMeta) => {
+        return {
+          blogs: response,
+          meta,
+        };
+      },
+      providesTags: [tagTypes.blog],
+    }),
+
     getMyBlogs: build.query({
       query: (arg: Record<string, any>) => ({
         url: `/blog/my-blogs`,
@@ -110,4 +125,5 @@ export const {
   useGetSingleBlogForModeratorQuery,
   useUpdateStatusApproveMutation,
   useCountBlogVoteMutation,
+  useGetAllBlogsForAdminQuery,
 } = blogsApi;

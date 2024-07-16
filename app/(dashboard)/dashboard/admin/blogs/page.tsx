@@ -2,15 +2,14 @@
 import React from 'react';
 import CustomLoader from '@/components/shared/CustomLoader/CustomLoader';
 
-import {
-  useGetAllBlogsQuery,
-  useGetMyBlogsQuery,
-} from '@/redux/features/blog/blogApi';
+import { useGetAllBlogsForAdminQuery } from '@/redux/features/blog/blogApi';
 import { AllBlogsDataTable } from './components/allBlogsDataTable';
 import { allBlogsColumn } from './components/column';
 
 const BlogManagementPage = () => {
-  const { data, isLoading } = useGetAllBlogsQuery({});
+  const { data, isLoading } = useGetAllBlogsForAdminQuery({});
+  console.log(data);
+
   return (
     <section className="py-5 px-2">
       <div>
