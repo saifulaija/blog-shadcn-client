@@ -30,7 +30,7 @@ const Blogs = ({ q }: { q: string }) => {
   const { data, isLoading } = useGetAllBlogsQuery({ ...query });
 
   return (
-    <div className="w-full py-10">
+    <div className="w-full py-14 ">
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
@@ -57,7 +57,7 @@ const Blogs = ({ q }: { q: string }) => {
 
       <div className="wrapper">
         <div>
-          <div className="flex justify-center items-center italic font-semibold p-2">
+          <div className="flex justify-center items-center italic font-semibold">
             {q && (
               <>
                 <p>

@@ -15,6 +15,7 @@ import storage from 'redux-persist/lib/storage';
 import { baseApi } from './api/baseApi';
 import approveReducer from './features/blog/approveSlice';
 import blogSReducer from './features/blog/blogSlice';
+import bookmarkReducer from './features/blog/bookmarkSlice';
 
 const persistConfig = {
   key: 'root',
@@ -23,6 +24,10 @@ const persistConfig = {
 
 const persistedApproveReducer = persistReducer(persistConfig, approveReducer);
 const persistedBlogReducer = persistReducer(persistConfig, blogSReducer);
+const persistedBookmarkedReducer = persistReducer(
+  persistConfig,
+  bookmarkReducer,
+);
 // const persistedOrderReducer = persistReducer(persistConfig, orderReducer);
 
 export const store = configureStore({
@@ -30,6 +35,7 @@ export const store = configureStore({
     [baseApi.reducerPath]: baseApi.reducer,
     approve: persistedApproveReducer,
     blog: persistedBlogReducer,
+    bookmark: persistedBookmarkedReducer,
   },
 
   middleware: (getDefaultMiddleware) =>
