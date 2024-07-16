@@ -5,10 +5,12 @@ import { IBlog } from '@/types/blog'; // Ensure to import the appropriate type i
 import { InitialState } from '@/redux/features/blog/approveSlice';
 
 interface ScrollAreaNotificationProps {
-  approves: any[]; 
+  approves: any[];
 }
 
-export function ScrollAreaNotificationBlogger({ approves }: ScrollAreaNotificationProps ) {
+export function ScrollAreaNotificationBlogger({
+  approves,
+}: ScrollAreaNotificationProps) {
   return (
     <ScrollArea className="h-52 w-[300px] rounded-md border">
       <div className="p-4 space-y-4">

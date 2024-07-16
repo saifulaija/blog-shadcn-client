@@ -17,7 +17,7 @@ const AllBlogsPage = ({
   const q = searchParams?.q || '';
 
   return (
-    <div className="mt-5">
+    <div className="my-5">
       <Blogs q={q} />
     </div>
   );

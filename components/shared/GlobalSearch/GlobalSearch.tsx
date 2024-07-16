@@ -11,10 +11,8 @@ export default function GlobalSearch({ placeholder }: { placeholder: string }) {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
-  const {data}=useGetAllBlogsQuery({})
+  const { data } = useGetAllBlogsQuery({});
   console.log(data);
-  
-  
 
   function handleSearch(term: string) {
     const params = new URLSearchParams(searchParams);

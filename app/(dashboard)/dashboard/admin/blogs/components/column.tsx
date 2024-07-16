@@ -20,6 +20,7 @@ export type Blog = {
   title: string;
   conclusion: string;
   category: string;
+  tag: any[];
   publishedStatus: 'PENDING' | 'APPROVED' | 'CANCEL';
   image: string;
   createdAt: Date;

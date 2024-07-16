@@ -21,11 +21,10 @@ export type Blog = {
   title: string;
   conclusion: string;
   category: string;
-  tag:TTag[];
+  tag: TTag[];
   publishedStatus: 'PENDING' | 'APPROVED' | 'CANCEL';
   image: string;
   createdAt: Date;
-
 };
 
 export const allBlogsColumn: ColumnDef<Blog>[] = [

@@ -25,9 +25,11 @@ export function Dashboard({ children }: { children: React.ReactNode }) {
   const [userRole, setUserRole] = useState('');
   const [scrolled, setScrolled] = useState(false);
   const blogs = useAppSelector((state: RootState) => state.blog.blogItems);
-  const approves = useAppSelector((state: RootState) => state.approve.statusItems);
-  const blogLength=blogs?.length
-  const approveLength=approves?.length
+  const approves = useAppSelector(
+    (state: RootState) => state.approve.statusItems,
+  );
+  const blogLength = blogs?.length;
+  const approveLength = approves?.length;
 
   useEffect(() => {
     const { role } = getUserInfo();
@@ -45,15 +47,15 @@ export function Dashboard({ children }: { children: React.ReactNode }) {
   }, []);
 
   const sidebarItems = headerItems(userRole as UserRole);
-  const dispatch=useAppDispatch()
+  const dispatch = useAppDispatch();
 
- const handleNotificationClick = () => {
-   if (userRole === 'blogger') {
-     dispatch(clearStatusItems());
-   } else {
-     dispatch(clearBlogItems());
-   }
- };
+  const handleNotificationClick = () => {
+    if (userRole === 'blogger') {
+      dispatch(clearStatusItems());
+    } else {
+      dispatch(clearBlogItems());
+    }
+  };
 
   return (
     <div className="flex min-h-screen w-full flex-col">

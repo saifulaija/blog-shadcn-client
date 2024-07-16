@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Metadata } from 'next';
-import BlogDetailsCard from '@/app/(dashboard)/dashboard/moderator/show-blogs/components/BlogDetailsCard';
+import BlogDetailsCard from '@/app/(root)/blogs/components/BlogDetailsCard';
 
 type TParams = {
   params: {

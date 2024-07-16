@@ -14,10 +14,12 @@ import { useToast } from '../ui/use-toast';
 import { useForm } from 'react-hook-form';
 import { useEffect, useState } from 'react';
 
-import { Loader } from 'lucide-react';
-import { useUpdateCommentMutation } from '@/redux/features/comment/commentApi';
+import { Loader, Loader2 } from 'lucide-react';
+import { useGetSingleCommentQuery, useUpdateCommentMutation } from '@/redux/features/comment/commentApi';
+import { ToastAction } from '../ui/toast';
 
-const CommentUpdateForm = ({ data }: { data: any }) => {
+const CommentUpdateForm = ({ commentId }: { commentId: any }) => {
+   const { data, isLoading } = useGetSingleCommentQuery(commentId)
   const { toast } = useToast();
   const [updateFlat, { isLoading: update }] = useUpdateCommentMutation();
 
@@ -49,7 +51,10 @@ const CommentUpdateForm = ({ data }: { data: any }) => {
       if (res?.id) {
         toast({
           title: 'Flat Request',
-          description: 'Your flat updated  successfully',
+          description: 'Your comment updated  successfully',
+          action: (
+            <ToastAction altText="Goto schedule to undo">Close</ToastAction>
+          ),
         });
       }
     } catch (err: any) {
@@ -88,8 +93,8 @@ const CommentUpdateForm = ({ data }: { data: any }) => {
         </div>
         <div className="mt-6 flex justify-between">
           <Button type="submit" disabled={update} className="w-full">
-            {update && <Loader className="mr-2 h-4 w-4 animate-spin" />}
             {update ? 'Updating...' : 'Edit'}
+            {update && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
           </Button>
         </div>
       </form>

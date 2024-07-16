@@ -14,13 +14,13 @@ type TParams = {
     q?: string;
   };
 };
-const CatchAllPage = ({ params,searchParams }: TParams) => {
+const CatchAllPage = ({ params, searchParams }: TParams) => {
   const tag = params.tag[1];
-   const q = searchParams?.q || '';
- 
+  const q = searchParams?.q || '';
+
   return (
     <div className="mt-5">
-      <TagBlogs tag={tag} q={q}  />
+      <TagBlogs tag={tag} q={q} />
     </div>
   );
 };

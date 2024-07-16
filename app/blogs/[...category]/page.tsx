@@ -17,7 +17,7 @@ type TParams = {
 };
 const CatchAllPage = ({ params, searchParams }: TParams) => {
   const category = params.category[1];
-    const q = searchParams?.q || '';
+  const q = searchParams?.q || '';
 
   return (
     <div className="mt-5">

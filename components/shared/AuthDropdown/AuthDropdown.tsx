@@ -9,6 +9,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { ToastAction } from '@/components/ui/toast';
 import { useToast } from '@/components/ui/use-toast';
 import { useGetMYProfileQuery } from '@/redux/features/myProfile/myProfileApi';
 
@@ -21,18 +22,17 @@ import { useRouter } from 'next/navigation';
 
 const AuthDropdown = () => {
   const { toast } = useToast();
-  // const { data: user, isLoading, error } = useGetMYProfileQuery({});
-  const user =getUserInfo()
-  console.log(user);
-  
+ 
+  const user = getUserInfo();
+ 
 
   const router = useRouter();
   const handleLogout = () => {
     logoutUser(router);
     toast({
       title: 'Logout',
-      variant: 'destructive',
       description: 'User logged out successfully',
+      action: <ToastAction altText="Goto schedule to undo">Close</ToastAction>,
     });
   };
 

@@ -28,7 +28,7 @@ const Hero = () => {
               community.
             </p>
             <Button asChild className="group animate-in zoom-in duration-500">
-              <Link href="/all_blogs" className="flex items-center gap-2">
+              <Link href="/blogs" className="flex items-center gap-2">
                 Explore More
                 <ChevronRight className="transition-transform duration-300 ease-in-out transform group-hover:translate-x-1" />
               </Link>
@@ -41,3 +41,4 @@ const Hero = () => {
 };
 
 export default Hero;
+

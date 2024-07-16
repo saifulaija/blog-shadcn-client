@@ -8,6 +8,8 @@ import {
   Code,
   CookingPot,
   Cpu,
+  Globe,
+  GraduationCapIcon,
   Home,
   LifeBuoy,
   LifeBuoyIcon,
@@ -18,6 +20,7 @@ import {
   Search,
   SearchCheck,
   ShoppingCart,
+  Soup,
   Users,
 } from 'lucide-react';
 
@@ -44,7 +47,12 @@ import { usePathname, useRouter } from 'next/navigation';
 import GlobalSearch from '../shared/GlobalSearch/GlobalSearch';
 import AuthButton from '../shared/AuthButton/AuthButton';
 import { getUserInfo } from '@/services/authServices';
-import { HamburgerMenuIcon, PersonIcon, TextAlignCenterIcon } from '@radix-ui/react-icons';
+import {
+  GlobeIcon,
+  HamburgerMenuIcon,
+  PersonIcon,
+  TextAlignCenterIcon,
+} from '@radix-ui/react-icons';
 import { Item } from '@radix-ui/react-dropdown-menu';
 import { Icon } from 'next/dist/lib/metadata/types/metadata-types';
 import { cn } from '@/lib/utils';
@@ -53,7 +61,7 @@ export function TagDashboard({ children }: { children: React.ReactNode }) {
   const user = getUserInfo();
   const pathname = usePathname();
   console.log(pathname);
-  
+
   const menuItems = [
     { label: 'Home', path: '/', show: true },
     { label: 'Blogs', path: '/blogs', show: true },
@@ -67,20 +75,22 @@ export function TagDashboard({ children }: { children: React.ReactNode }) {
   const blogs = data?.blogs || [];
   const [q, setQ] = useState('');
 
-  const technology = blogs.filter((item) => item.category === 'technology');
+  const technology = blogs.filter((item) => item.category === 'technologies');
   const programming = blogs.filter((item) => item.category === 'programming');
-  const travel = blogs.filter((item) => item.category === 'travel');
-  const food = blogs.filter((item) => item.category === 'food');
-  const lifestyle = blogs.filter((item) => item.category === 'lifestyle');
-  const fashion = blogs.filter((item) => item.category === 'fashion');
+  const travel = blogs.filter((item) => item.category === 'travels');
+  const food = blogs.filter((item) => item.category === 'foods');
+  const educations = blogs.filter((item) => item.category === 'educations');
+  const lifestyle = blogs.filter((item) => item.category === 'lifestyles');
+  const fashion = blogs.filter((item) => item.category === 'fashions');
   const fitness = blogs.filter((item) => item.category === 'fitness');
+  const devops = blogs.filter((item) => item.category === 'devops');
 
-interface IMenuItem {
-  title: string;
-  path: string;
- icon: ComponentType<React.SVGProps<SVGSVGElement>>;
- count:number
-}
+  interface IMenuItem {
+    title: string;
+    path: string;
+    icon: ComponentType<React.SVGProps<SVGSVGElement>>;
+    count: number;
+  }
 
   const sideMenu: IMenuItem[] = [
     {
@@ -91,27 +101,52 @@ interface IMenuItem {
     },
     {
       title: 'Technology',
-      path: `/blogs/category/technology`,
+      path: `/blogs/category/technologies`,
       icon: Cpu,
       count: technology.length,
     },
+
+    {
+      title: 'Devops',
+      path: `/blogs/category/devops`,
+      icon: Globe,
+      count: devops.length,
+    },
     {
       title: 'Travel',
-      path: `/blogs/category/travel`,
+      path: `/blogs/category/travels`,
       icon: Bike,
       count: travel.length,
     },
     {
+      title: 'Educations',
+      path: `/blogs/category/educations`,
+      icon: GraduationCapIcon,
+      count: educations.length,
+    },
+    {
       title: 'Lifestyle',
-      path: `/blogs/category/lifestyle`,
+      path: `/blogs/category/lifestyles`,
       icon: LifeBuoy,
-      count:lifestyle.length
+      count: lifestyle.length,
     },
     {
       title: 'Fitness',
       path: `/blogs/category/fitness`,
       icon: CheckCheck,
-      count:fitness.length,
+      count: fitness.length,
+    },
+    {
+      title: 'Fashions',
+      path: `/blogs/category/fashions`,
+      icon: CheckCheck,
+      count: fashion.length,
+    },
+    {
+      title: 'Foods',
+      path: `/blogs/category/foods`,
+      icon: Soup,
+      count: food.length,
     },
   ];
 

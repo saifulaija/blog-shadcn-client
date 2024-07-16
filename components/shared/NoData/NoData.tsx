@@ -21,7 +21,6 @@ export function NoData({
         width={400}
         height={300}
         alt="No data"
-       
       />
       <Link href="/blogs" className={` ${'-mt-14'} ${buttonVariants()}`}>
         <div className="flex items-center group">

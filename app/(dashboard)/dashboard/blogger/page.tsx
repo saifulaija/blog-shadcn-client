@@ -2,22 +2,12 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useGetMetaQuery } from '@/redux/api/metaDataApi';
-import {
-  Book,
-  CheckCheck,
-  CircleEllipsis,
-  CircleOff,
-  DollarSign,
-  NotebookPen,
-  Users,
-  View,
-} from 'lucide-react';
+import { Book, CheckCheck, CircleEllipsis, CircleOff } from 'lucide-react';
 import React from 'react';
 import { BloggerDashboardChart } from './components/BloggerDashboardChart';
 
 const BloggerDashboardPage = () => {
   const { data, isLoading } = useGetMetaQuery(undefined);
-  console.log(data);
 
   return (
     <div>

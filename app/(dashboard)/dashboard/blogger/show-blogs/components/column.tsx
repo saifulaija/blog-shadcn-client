@@ -117,14 +117,14 @@ export const blogColumn: ColumnDef<IBlog>[] = [
     },
   },
   {
-    id: 'editActions',
+    id: 'addActions',
     header: 'Action',
     cell: ({ row }) => {
       const blog = row.original;
       return (
         <div>
           <MyDialog triggerButton={<Button variant="outline">Add Tags</Button>}>
-            <AddTagForm blogId={blog.id} />
+            <AddTagForm blogId={blog?.id} />
           </MyDialog>
         </div>
       );

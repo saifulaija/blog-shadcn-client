@@ -32,13 +32,11 @@ import { cn } from '@/lib/utils';
 import { Separator } from '@/components/ui/separator';
 
 const BestBlogCard = ({ blog }: { blog: IBlog }) => {
-
-
   const [voteCountNumber, { isLoading, isError }] = useCountBlogVoteMutation();
   const { toast } = useToast();
   const router = useRouter();
   const truncatedTitle = truncateTitle(blog?.title, 30);
-  const currentUrl = `https://saifulislam-portfolio-pro.vercel.app/blogs/details/${blog?.id}`;
+  const currentUrl = `https://blogplex.vercel.app/blogs/details/${blog?.id}`;
   const whatsappShareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(`${blog?.title} - ${currentUrl}`)}`;
   const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?display=page&u=${encodeURIComponent(currentUrl)}`;
   const linkedinShareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(currentUrl)}`;
@@ -97,7 +95,7 @@ const BestBlogCard = ({ blog }: { blog: IBlog }) => {
     <Card
       onClick={handleDetails}
       className={cn(
-        'hover:shadow-lg  hover:shadow-slate-400 max-w-md w-full hover:border-2 hover:border-primary hover:cursor-pointer transition duration-300 ',
+        'hover:shadow-lg  hover:shadow-slate-400 max-w-md w-full hover:cursor-pointer transition duration-300 ',
       )}
     >
       <CardHeader className="p-0 items-center">

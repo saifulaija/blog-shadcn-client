@@ -55,7 +55,7 @@ const ShowComments = ({
   const [createComment, { isLoading }] = useCreateCommentMutation();
   const [deleteComment] = useDeleteCommentMutation();
   const user = getUserInfo();
-  const { data, isLoading: update } = useGetSingleCommentQuery(commentId);
+ 
 
   const myCommentData = comments.filter(
     (item) => item.comment.id === user?.userId,
@@ -74,10 +74,11 @@ const ShowComments = ({
   };
 
   const handleEditComment = (id: string) => {
-    console.log(id);
     setCommentId(id);
     setIsModalOpen(true);
   };
+
+  //  const { data, isLoading: update } = useGetSingleCommentQuery(commentId);
 
   const handleDeleteComment = async (commentId: string) => {
     await deleteComment(commentId);
@@ -122,7 +123,7 @@ const ShowComments = ({
                           </Button>
                         }
                       >
-                        <CommentUpdateForm data={data} />
+                        <CommentUpdateForm commentId={commentId} />
                       </MyDialog>
 
                       <Button

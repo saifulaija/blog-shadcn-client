@@ -1,5 +1,5 @@
 'use client';
-import {  Slash } from 'lucide-react';
+import { Slash } from 'lucide-react';
 import { useDebounced } from '@/redux/hooks';
 import {
   Breadcrumb,
@@ -70,7 +70,7 @@ const TagBlogs = ({ tag, q }: { tag: string; q: string }) => {
           </div>
           <div className="w-full">
             {isLoading ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
                 {Array.from({ length: 8 }).map((_, index) => (
                   <BlogCardSkeleton key={index} />
                 ))}

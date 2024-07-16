@@ -46,7 +46,6 @@ const NotificationDropdown = () => {
     (state: RootState) => state.approve.statusItems,
   );
   const blogs = useAppSelector((state: RootState) => state.blog.blogItems);
-  
 
   return (
     <>

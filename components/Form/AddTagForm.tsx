@@ -46,9 +46,9 @@ const formSchema = z.object({
 
 const AddTagForm = ({ blogId }: { blogId: string }) => {
   const dispatch = useDispatch();
-  const router = useRouter();
+
   const user = useUserInfo();
-  const [createBlog, { isLoading }] = useCreateTagMutation();
+  const [createBlog, { isLoading, isSuccess }] = useCreateTagMutation();
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -62,14 +62,18 @@ const AddTagForm = ({ blogId }: { blogId: string }) => {
       name: values.name,
     };
 
+    console.log(data, 'tag');
+
     try {
       const res = await createBlog(data).unwrap();
+      console.log(res);
+
       if (res?.id) {
         toast({
           title: 'Success!',
           description: 'Tag added successfully',
           action: (
-            <ToastAction altText="Goto schedule to undo">Undo</ToastAction>
+            <ToastAction altText="Goto schedule to undo">Close</ToastAction>
           ),
         });
         // router.push(`/dashboard/${user?.role}/show-blogs`);
@@ -125,8 +129,8 @@ const AddTagForm = ({ blogId }: { blogId: string }) => {
           </div>
           <div className="mt-6">
             <Button type="submit" disabled={isLoading} className="w-full">
-              {isLoading && <Loader2 className="ml-6 h-4 w-4 animate-spin" />}
               Add Now
+              {isLoading && <Loader2 className="ml-10 h-4 w-4 animate-spin" />}
             </Button>
           </div>
         </div>

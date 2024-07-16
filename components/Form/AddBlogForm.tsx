@@ -22,7 +22,7 @@ import { uploadImage } from '@/utils/imgbb';
 
 import useUserInfo from '@/hooks/useUserInfo';
 
-import { Loader } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
 import { useCreateBlogMutation } from '@/redux/features/blog/blogApi';
 import {
   Select,
@@ -39,6 +39,7 @@ import 'react-quill/dist/quill.snow.css';
 import { BlogCategory } from '@/types';
 import { useDispatch } from 'react-redux';
 import { addBlog } from '@/redux/features/blog/blogSlice';
+import { ToastAction } from '../ui/toast';
 
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
@@ -80,6 +81,9 @@ const AddBlogForm = () => {
         toast({
           title: 'Success!',
           description: 'Blog created successfully',
+          action: (
+            <ToastAction altText="Goto schedule to undo">Close</ToastAction>
+          ),
         });
         router.push(`/dashboard/${user?.role}/show-blogs`);
         dispatch(
@@ -210,8 +214,8 @@ const AddBlogForm = () => {
           </div>
           <div className="mt-6">
             <Button type="submit" disabled={isLoading} className="w-full">
-              {isLoading && <Loader className="ml-6 h-4 w-4 animate-spin" />}
-              Add Now
+              Create Blog Now
+              {isLoading && <Loader2 className="ml-6 h-4 w-4 animate-spin" />}
             </Button>
           </div>
         </div>

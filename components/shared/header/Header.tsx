@@ -216,9 +216,6 @@ const Header = () => {
     },
   ];
 
-
-
-
   return (
     <div
       className={`fixed top-0 left-0 right-0 z-50 transition-shadow duration-300 flex justify-center items-center h-16 ${
@@ -308,8 +305,7 @@ const Header = () => {
             )}
           </nav>
 
-        
-          <AuthButton/>
+          <AuthButton />
         </header>
       </div>
     </div>

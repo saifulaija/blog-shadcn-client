@@ -33,12 +33,14 @@ export const Gender = ['MALE', 'FEMALE'];
 export const ApproveStatus = ['APPROVED', 'CANCEL'];
 export const BlogCategory = [
   'programming',
-  'Technology',
-  'Travel',
-  'Food',
-  'Lifestyle',
-  'Fashion',
-  'Fitness',
+  'technologies',
+  'devops',
+  'travels',
+  'foods',
+  'lifestyles',
+  'fashions',
+  'fitness',
+  'educations',
 ];
 
 export const Tags = [
