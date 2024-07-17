@@ -1,5 +1,13 @@
 # BlogPlex
 ## For more details, visit the [BlogPlex Backend Repository](https://github.com/saifulaija/nextBlog-server).
+## Crediantials:
+- **Admin Email**: admin@gmail.com
+- - **Password**: 111111
+ 
+  - ----------------------
+  - **Blogger Email**: blogger2@gmail.com
+  - **Password**: 111111
+
 
 Welcome to **BlogPlex**, a comprehensive platform for reading, writing, liking, and commenting on blogs. Built with modern technologies, BlogPlex offers a seamless and intuitive user experience.
 
