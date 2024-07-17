@@ -263,7 +263,10 @@ export function TagDashboard({ children }: { children: React.ReactNode }) {
                 <span className="sr-only">Toggle navigation menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="left" className="flex flex-col">
+            <SheetContent
+              side="left"
+              className="flex flex-col overflow-y-auto max-h-full"
+            >
               <nav className="grid gap-2 text-lg font-medium">
                 <div className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary">
                   <SearchCheck className="h-4 w-4" />

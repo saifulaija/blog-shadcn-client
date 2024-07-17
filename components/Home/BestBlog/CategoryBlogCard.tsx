@@ -36,7 +36,7 @@ const CategoryBlogCard = ({ blog }: { blog: IBlog }) => {
   const { toast } = useToast();
   const router = useRouter();
   const truncatedTitle = truncateTitle(blog?.title, 30);
-  const currentUrl = `https://saifulislam-portfolio-pro.vercel.app/blogs/details/${blog?.id}`;
+  const currentUrl = `https://blogplex.vercel.app/blogs/details/${blog?.id}`;
   const whatsappShareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(`${blog?.title} - ${currentUrl}`)}`;
   const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?display=page&u=${encodeURIComponent(currentUrl)}`;
   const linkedinShareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(currentUrl)}`;

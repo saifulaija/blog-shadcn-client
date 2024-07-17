@@ -18,6 +18,7 @@ import { useGetMetaQuery } from '@/redux/api/metaDataApi';
 import {
   CheckCheck,
   CircleEllipsis,
+  CircleOff,
   NotebookPen,
   User,
   View,
@@ -160,11 +161,11 @@ const AdminDashboardPage = () => {
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Admins</CardTitle>
-            <User className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium">Cancel Blogs</CardTitle>
+            <CircleOff className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{data?.adminCount}</div>
+            <div className="text-2xl font-bold">{data?.cancelBlogCount}</div>
           </CardContent>
         </Card>
       </div>
