@@ -17,7 +17,7 @@ export function ScrollAreaNotificationBlogger({
         {approves.length > 0 ? (
           approves.map((approve) => (
             <div key={approve.authorId} className="space-y-1">
-              {` ${approve.message} ${approve.status} category`}
+              {` ${approve.message}`}
               <Separator />
             </div>
           ))

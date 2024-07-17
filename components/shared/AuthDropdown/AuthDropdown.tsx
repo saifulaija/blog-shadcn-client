@@ -69,7 +69,7 @@ const AuthDropdown = () => {
           </DropdownMenuContent>
         </DropdownMenu>
       ) : (
-        <Link href="/login">
+        <Link href="/signin">
           <Button>Login</Button>
         </Link>
       )}

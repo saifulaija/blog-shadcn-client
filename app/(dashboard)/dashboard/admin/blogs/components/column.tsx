@@ -83,23 +83,7 @@ export const allBlogsColumn: ColumnDef<Blog>[] = [
       );
     },
   },
-  // {
-  //   accessorKey: "advanceAmount",
-  //   header: "Advance Amount",
-  //   cell: ({ row }) => {
-  //     const advanceAmount = row.original.advanceAmount;
-  //     return <div>{formateMoney(advanceAmount)}</div>;
-  //   },
-  // },
 
-  // {
-  //   accessorKey: "space",
-  //   header:"Space",
-  //   cell: ({ row }) => {
-  //     const space = row.original.space;
-  //     return <div>{space} sq ft</div>;
-  //   },
-  // },
   {
     accessorKey: 'createdAt',
     header: 'Created At',

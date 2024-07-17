@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { Menu, Bell } from 'lucide-react';
+import { Menu } from 'lucide-react';
 import { getUserInfo } from '@/services/authServices';
 import { headerItems } from '@/utils/headerItems';
 import HeaderLink from './HeaderLink';
@@ -14,7 +14,6 @@ import assets from '@/public';
 import { APP_NAME } from '@/lib/constants';
 import { ModeToggle } from '../shared/header/ModeToggle';
 import { motion } from 'framer-motion';
-
 import NotificationDropdown from '../shared/NotificationDropdown/NotificationDropwon';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { RootState } from '@/redux/store';
@@ -56,6 +55,8 @@ export function Dashboard({ children }: { children: React.ReactNode }) {
     } else {
       dispatch(clearBlogItems());
     }
+    // Force component update
+    setUserRole((prevRole) => prevRole);
   };
 
   return (
@@ -114,15 +115,9 @@ export function Dashboard({ children }: { children: React.ReactNode }) {
         </div>
         <div className="flex items-center gap-2">
           <ModeToggle />
-          <div className="relative">
-            <Badge className="fixed ml-4 cursor-pointer animate-bounce">
-              {/* {userRole === 'blogger' ? dispatch(clearStatusItems()) : dispatch(clearBlogItems())} */}
-              {userRole === 'blogger' ? approveLength : blogLength}
-            </Badge>
-            <div onClick={handleNotificationClick}>
-              {userRole && <NotificationDropdown />}
-            </div>
-          </div>
+
+          <div>{userRole && <NotificationDropdown />}</div>
+
           <AuthDropdown />
         </div>
       </motion.header>

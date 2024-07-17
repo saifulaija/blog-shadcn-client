@@ -3,71 +3,81 @@
 import { ScrollAreaNotification } from '@/components/ScrollArea/ScrollArea';
 import { ScrollAreaNotificationBlogger } from '@/components/ScrollArea/ScrollNotificationBlogger';
 import { Button } from '@/components/ui/button';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { ToastAction } from '@/components/ui/toast';
-import { useToast } from '@/components/ui/use-toast';
-import { useGetMYProfileQuery } from '@/redux/features/myProfile/myProfileApi';
-import { useAppSelector } from '@/redux/hooks';
-import { RootState } from '@/redux/store';
 
-import { logoutUser } from '@/services/actions/logoutUser';
+import { useToast } from '@/components/ui/use-toast';
+import { clearStatusItems } from '@/redux/features/blog/approveSlice';
+import { clearBlogItems } from '@/redux/features/blog/blogSlice';
 import { getUserInfo } from '@/services/authServices';
 
-import { Bell } from 'lucide-react';
+import { Bell, MailCheck } from 'lucide-react';
 
-import { useRouter } from 'next/navigation';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { RootState } from '@/redux/store';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover';
+import { ArrowRightIcon } from '@radix-ui/react-icons';
 
 const NotificationDropdown = () => {
   const { toast } = useToast();
-  // const { data: user, isLoading, error } = useGetMYProfileQuery({});
   const user = getUserInfo();
-
-  const router = useRouter();
-  const handleLogout = () => {
-    logoutUser(router);
-    toast({
-      title: 'Logout',
-      variant: 'destructive',
-      description: 'User logged out successfully',
-      action: <ToastAction altText="Goto schedule to undo">Close</ToastAction>,
-    });
-  };
+  const dispatch = useAppDispatch();
 
   const role = user?.role.toLowerCase();
-  console.log(role);
 
+  const handleNotificationClick = () => {
+    console.log('Notification click handler called');
+    console.log('Current role:', role);
+
+    if (role === 'blogger') {
+      console.log('Dispatching clearStatusItems');
+      dispatch(clearStatusItems());
+    } else {
+      console.log('Dispatching clearBlogItems');
+      dispatch(clearBlogItems());
+    }
+  };
+
+  const blogs = useAppSelector((state: RootState) => state.blog.blogItems);
   const approves = useAppSelector(
     (state: RootState) => state.approve.statusItems,
   );
-  const blogs = useAppSelector((state: RootState) => state.blog.blogItems);
+  const blogLength = blogs?.length;
+  const approveLength = approves?.length;
 
   return (
-    <>
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant="link" size="icon" className="rounded-full">
-            <Bell />
+    <div>
+      <Popover>
+        <PopoverTrigger asChild>
+          <Button variant="outline" className="flex items-center">
+            <span className="flex items-center">
+              <MailCheck className="h-5 w-5 mr-2" />
+              <span>{role === 'blogger' ? approveLength : blogLength}</span>
+            </span>
           </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" className="border-0">
-          {role === 'blogger' ? (
-            <DropdownMenuItem>
+        </PopoverTrigger>
+        <PopoverContent className="w-80">
+          <div className="grid gap-4">
+            {role === 'blogger' ? (
               <ScrollAreaNotificationBlogger approves={approves} />
-            </DropdownMenuItem>
-          ) : (
-            <DropdownMenuItem>
+            ) : (
               <ScrollAreaNotification blogs={blogs} />
-            </DropdownMenuItem>
-          )}
-        </DropdownMenuContent>
-      </DropdownMenu>
-    </>
+            )}
+          </div>
+
+          <Button
+            variant="link"
+            onClick={handleNotificationClick}
+            className="flex items-center"
+          >
+            <span>Clear Notification</span>
+            <ArrowRightIcon className="ml-2" />
+          </Button>
+        </PopoverContent>
+      </Popover>
+    </div>
   );
 };
 
