@@ -5,18 +5,15 @@ import setAccessToken from './setAccessToken';
 import { jwtDecode } from 'jwt-decode';
 
 export const signInUser = async (data: FieldValues) => {
-  const res = await fetch(
-    'https://finalbogplex-server.vercel.app/api/v1/auth/login',
-    {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify(data),
-      // cache: "no-store",
-      credentials: 'include',
+  const res = await fetch('http://localhost:5000/api/v1/auth/login', {
+    method: 'POST',
+    headers: {
+      'Content-type': 'application/json',
     },
-  );
+    body: JSON.stringify(data),
+    // cache: "no-store",
+    credentials: 'include',
+  });
   const userInfo = await res.json();
   if (!res.ok) {
     throw new Error(userInfo.message || 'An unexpected error occurred.');

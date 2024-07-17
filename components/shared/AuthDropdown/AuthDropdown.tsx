@@ -35,7 +35,7 @@ const AuthDropdown = () => {
     });
   };
 
-  const role = user?.role.toLowerCase();
+  const role = user?.role?.toLowerCase();
 
   return (
     <>

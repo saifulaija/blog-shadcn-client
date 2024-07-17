@@ -1,17 +1,14 @@
 'use client';
-
 import { ColumnDef } from '@tanstack/react-table';
 import Image from 'next/image';
-
 import { Button } from '@/components/ui/button';
-
-import { formateDate, formateMoney } from '@/utils/common';
+import { formateDate } from '@/utils/common';
 import MyDialog from '@/components/shadcn/MyDialog';
 import BlogUpdateForm from '@/components/Form/BlogUpdateForm';
 import DeleteBlog from './delete-blog';
 import { MyBadge } from '@/components/shadcn/MyBadge';
 import { truncateTitle } from '@/utils/truncateTitle';
-import AddTagForm from '@/components/Form/AddTagForm';
+
 import { IBlog, TTag } from '@/types/blog';
 
 export type Blog = {
@@ -111,20 +108,6 @@ export const blogColumn: ColumnDef<IBlog>[] = [
         <div>
           <MyDialog triggerButton={<Button variant="outline">Edit</Button>}>
             <BlogUpdateForm data={blog} />
-          </MyDialog>
-        </div>
-      );
-    },
-  },
-  {
-    id: 'addActions',
-    header: 'Action',
-    cell: ({ row }) => {
-      const blog = row.original;
-      return (
-        <div>
-          <MyDialog triggerButton={<Button variant="outline">Add Tags</Button>}>
-            <AddTagForm blogId={blog?.id} />
           </MyDialog>
         </div>
       );

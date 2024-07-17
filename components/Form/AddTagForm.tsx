@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 import { z } from 'zod';
 import {
   Form,
@@ -10,7 +10,7 @@ import {
   FormMessage,
 } from '../ui/form';
 import { useForm } from 'react-hook-form';
-import { Input } from '../ui/input';
+
 import { Button } from '../ui/button';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from '../ui/use-toast';
@@ -27,17 +27,22 @@ import {
 } from '../ui/select';
 
 import 'react-quill/dist/quill.snow.css';
-import { BlogCategory, Tags } from '@/types';
+
 import { useDispatch } from 'react-redux';
-import { addBlog } from '@/redux/features/blog/blogSlice';
 import { useCreateTagMutation } from '@/redux/features/tag/tagApi';
 import { ToastAction } from '@radix-ui/react-toast';
+import { addTag } from '@/services/actions/tagAdd';
+import { useRouter } from 'next/navigation';
+import { Tags } from '@/types';
 
 const formSchema = z.object({
   name: z.string().min(1, { message: 'tag must be selected' }),
 });
 
 const AddTagForm = ({ blogId }: { blogId: string }) => {
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
   const dispatch = useDispatch();
   const user = useUserInfo();
   const [createBlog, { isLoading, isSuccess }] = useCreateTagMutation();
@@ -48,46 +53,33 @@ const AddTagForm = ({ blogId }: { blogId: string }) => {
     },
   });
 
-  const onSubmit = async (values: any) => {
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    setLoading(true);
+    setError('');
     const data = {
       blogId,
       name: values.name,
     };
 
     try {
-      const res = await createBlog(data);
-      console.log(res);
+      const res = await addTag(data);
 
-      if (res?.data === undefined) {
+      if (res?.data) {
         toast({
-          title: 'Error',
-          description: `The tag "${values.name}" already exists.`,
-          action: <ToastAction altText="Close">Close</ToastAction>,
-        });
-        return;
-      }
-
-      if (res?.data?.id) {
-        toast({
-          title: 'Success!',
+          color: 'green',
+          title: 'Success',
           description: 'Tag added successfully',
-          action: <ToastAction altText="Close">Close</ToastAction>,
+          action: (
+            <ToastAction altText="Goto schedule to undo">Close</ToastAction>
+          ),
         });
-
-        dispatch(
-          addBlog({
-            name: user?.name,
-            category: values?.category,
-            message: 'create a new blog',
-          }),
-        );
+      } else {
+        setError(res?.message || 'An unexpected error occurred.');
       }
-    } catch (error) {
-      console.error(error);
-      toast({
-        title: 'Error',
-        description: 'An error occurred while creating the blog.',
-      });
+    } catch (err: any) {
+      setError(err?.message || 'An unexpected error occurred.');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -95,6 +87,7 @@ const AddTagForm = ({ blogId }: { blogId: string }) => {
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
         <div className="w-full space-y-4 px-2 md:px-5 py-6">
+          {error && <p className="text-red-500">{error}</p>}
           <div className="grid grid-cols-1  gap-4 justify-center items-center">
             <FormField
               control={form.control}
@@ -127,7 +120,7 @@ const AddTagForm = ({ blogId }: { blogId: string }) => {
           <div className="mt-6">
             <Button type="submit" disabled={isLoading} className="w-full">
               Add Now
-              {isLoading && <Loader2 className="ml-10 h-4 w-4 animate-spin" />}
+              {loading && <Loader2 className="ml-10 h-4 w-4 animate-spin" />}
             </Button>
           </div>
         </div>

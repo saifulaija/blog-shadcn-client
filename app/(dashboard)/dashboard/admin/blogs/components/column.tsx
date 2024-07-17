@@ -13,6 +13,7 @@ import { MyBadge } from '@/components/shadcn/MyBadge';
 import { truncateTitle } from '@/utils/truncateTitle';
 import UpdatePublishedStatus from './publishedStatus';
 import Link from 'next/link';
+import AddTagForm from '@/components/Form/AddTagForm';
 
 export type Blog = {
   id: string;
@@ -103,6 +104,21 @@ export const allBlogsColumn: ColumnDef<Blog>[] = [
           userId={blog.id}
           currentStatus={blog.publishedStatus}
         />
+      );
+    },
+  },
+
+  {
+    id: 'addActions',
+    header: 'Add Tags',
+    cell: ({ row }) => {
+      const blog = row.original;
+      return (
+        <div>
+          <MyDialog triggerButton={<Button variant="outline">Add Tags</Button>}>
+            <AddTagForm blogId={blog?.id} />
+          </MyDialog>
+        </div>
       );
     },
   },
