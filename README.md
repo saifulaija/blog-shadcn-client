@@ -27,6 +27,7 @@ Welcome to **BlogPlex**, a comprehensive platform for reading, writing, liking, 
 
 - **Read Blogs**: Browse through a diverse collection of blogs across various topics.
 - **Write Blogs**: Share your thoughts and ideas by writing your own blogs.
+-  **Admin approve Blogs**: when admin approve blog then the blog published.
 - **Like and Comment**: Engage with the community by liking and commenting on blogs.
 - **User Authentication**: Secure and efficient user authentication.
 - **Responsive Design**: Enjoy a seamless experience on both desktop and mobile devices.
