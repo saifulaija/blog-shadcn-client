@@ -79,6 +79,7 @@ export const Tags = [
   'psychology',
   'socialmedia',
   'startups',
+  'machine-learning',
   'webdevelopment',
   'datascience',
   'javascript',

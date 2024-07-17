@@ -92,7 +92,6 @@ export const bloggerColumn: ColumnDef<TAuthor>[] = [
     },
   },
 
-
   {
     accessorKey: 'createdAt',
     header: 'Created At',

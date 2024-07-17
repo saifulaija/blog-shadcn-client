@@ -21,7 +21,7 @@ export default function GlobalSearch({ placeholder }: { placeholder: string }) {
 
   const id = getIdFromPathname(pathname);
 
-  const disableSearch = !!id;
+  const disableSearch = !!id || pathname === '/blogs/tags';
 
   function handleSearch(term: string) {
     const params = new URLSearchParams(searchParams);

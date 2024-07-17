@@ -1,5 +1,4 @@
 'use client';
-
 import BestBlogCard from '@/components/Home/BestBlog/BlogCard';
 import CategoryBlogCard from '@/components/Home/BestBlog/CategoryBlogCard';
 import BlogCardSkeleton from '@/components/shared/CardLoader/BlogSkeleton';
@@ -45,7 +44,7 @@ const CategoryBlogs = ({ category, q }: { category: string; q: string }) => {
             <Slash />
           </BreadcrumbSeparator>
           <BreadcrumbItem>
-            <BreadcrumbPage>Category</BreadcrumbPage>
+            <BreadcrumbPage>category</BreadcrumbPage>
           </BreadcrumbItem>
           <BreadcrumbSeparator>
             <Slash />

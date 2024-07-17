@@ -45,7 +45,7 @@ const TagBlogs = ({ tag, q }: { tag: string; q: string }) => {
             <Slash />
           </BreadcrumbSeparator>
           <BreadcrumbItem>
-            <BreadcrumbPage>Tag</BreadcrumbPage>
+            <BreadcrumbLink href="/blogs/tags">Tag</BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator>
             <Slash />

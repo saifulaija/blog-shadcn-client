@@ -25,6 +25,7 @@ import {
   LucideHome,
   Book,
   BookMarkedIcon,
+  Tag,
 } from 'lucide-react';
 
 import { Badge } from '@/components/ui/badge';
@@ -159,6 +160,11 @@ export function TagDashboard({ children }: { children: React.ReactNode }) {
       title: 'Bookmark',
       path: `/blogs/bookmarks`,
       icon: BookMarkedIcon,
+    },
+    {
+      title: 'Tags',
+      path: `/blogs/tags`,
+      icon: Tag,
     },
     {
       title: 'Blogs',

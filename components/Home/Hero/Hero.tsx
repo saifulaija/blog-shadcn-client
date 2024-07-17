@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import React from 'react';
 import Image from 'next/image';
 import assets from '@/public';
@@ -53,5 +53,3 @@ const Hero = () => {
 };
 
 export default Hero;
-
-

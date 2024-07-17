@@ -1,66 +1,3 @@
-// import { baseApi } from '@/redux/api/baseApi';
-// import { tagTypes } from '@/redux/tag-types';
-// const tagApi = baseApi.injectEndpoints({
-//   endpoints: (build) => ({
-//     createTag: build.mutation({
-//       query: (data) => ({
-//         url: '/tag/create-tag',
-//         method: 'POST',
-//         headers: {
-//           'Content-type': 'application/json',
-//         },
-//         data,
-//       }),
-//       invalidatesTags: [tagTypes.tag, tagTypes.blog, tagTypes.user],
-//     }),
-//     getAllTags: build.query({
-//       query: (blogId) => ({
-//         url: `/tag/${blogId}`,
-//         method: 'GET',
-//       }),
-
-//       providesTags: [tagTypes.tag, tagTypes.user],
-//     }),
-
-//     getSingleTag: build.query({
-//       query: (tagId) => ({
-//         url: `/tag/get-single-tag/${tagId}`,
-//         method: 'GET',
-//       }),
-
-//       providesTags: [tagTypes.tag, tagTypes.user],
-//     }),
-//     updateTag: build.mutation({
-//       query: (updateTagData) => ({
-//         url: `/tag/update-tag/${updateTagData.id}`,
-//         method: 'PATCH',
-//         data: updateTagData.body,
-//       }),
-
-//       invalidatesTags: [tagTypes.tag, tagTypes.user],
-//     }),
-
-//     deleteTag: build.mutation({
-//       query: (id) => ({
-//         url: `/tag/${id}`,
-//         method: 'DELETE',
-//       }),
-//       invalidatesTags: [tagTypes.tag],
-//     }),
-//   }),
-// });
-
-// export const {
-//   useCreateTagMutation,
-//   useGetAllTagsQuery,
-//   useDeleteTagMutation,
-//   useGetSingleTagQuery,
-//   useUpdateTagMutation,
-// } = tagApi;
-
-
-
-
 import { baseApi } from '@/redux/api/baseApi';
 import { tagTypes } from '@/redux/tag-types';
 
@@ -78,11 +15,11 @@ const tagApi = baseApi.injectEndpoints({
       invalidatesTags: [tagTypes.tag, tagTypes.blog, tagTypes.user],
     }),
     getAllTags: build.query({
-      query: (blogId) => ({
-        url: `/tag/${blogId}`,
+      query: () => ({
+        url: '/tag',
         method: 'GET',
       }),
-      providesTags: [tagTypes.tag, tagTypes.user],
+      providesTags: [tagTypes.tag],
     }),
     getSingleTag: build.query({
       query: (tagId) => ({
@@ -116,4 +53,3 @@ export const {
   useGetSingleTagQuery,
   useUpdateTagMutation,
 } = tagApi;
-

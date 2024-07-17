@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import Bookmark from '../components/Bookmark';
 
 export const metadata: Metadata = {
-  title: 'Details-blog || BlogPlex-bookmark',
+  title: 'Bookmark-Blogs || BlogPlex',
   description: 'An BlogPlex built with Next.js, Postgres, Shadcn signin',
 };
 
