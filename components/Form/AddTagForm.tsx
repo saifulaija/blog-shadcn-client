@@ -42,10 +42,6 @@ const formSchema = z.object({
 const AddTagForm = ({ blogId }: { blogId: string }) => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
-  const dispatch = useDispatch();
-  const user = useUserInfo();
-  const [createBlog, { isLoading, isSuccess }] = useCreateTagMutation();
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -118,7 +114,7 @@ const AddTagForm = ({ blogId }: { blogId: string }) => {
             />
           </div>
           <div className="mt-6">
-            <Button type="submit" disabled={isLoading} className="w-full">
+            <Button type="submit" disabled={loading} className="w-full">
               Add Now
               {loading && <Loader2 className="ml-10 h-4 w-4 animate-spin" />}
             </Button>
