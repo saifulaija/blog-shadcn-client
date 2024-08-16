@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { ChevronRight } from 'lucide-react';
 import { useGetAllBlogsQuery } from '@/redux/features/blog/blogApi';
 import CustomLoader from '@/components/shared/CustomLoader/CustomLoader';
+import CustomHeader from '@/components/shared/CustomHeader/CustomHeader';
 
 const BestBlogsServer = () => {
   const { data, isLoading } = useGetAllBlogsQuery({});
@@ -13,9 +14,9 @@ const BestBlogsServer = () => {
     return <CustomLoader />;
   }
   return (
-    <div className="w-full px-2 md:p-8">
+    <div className="w-full px-2 md:p-4 ">
       <div className="wrapper">
-        <h1 className="h2-bold text-center p-10">Popular Blogs</h1>
+        <CustomHeader title="Popular Blogs" />
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:m-0">
           {data?.blogs
             ?.slice(0, 8)

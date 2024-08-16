@@ -7,7 +7,7 @@ import { Poppins as FontSans } from 'next/font/google';
 import Providers from '@/lib/providers/providers';
 import { ThemeProvider } from '@/lib/providers/theme-provider';
 import { Toaster } from '@/components/ui/toaster';
-import { APP_DESCRIPTION } from '@/lib/constants';
+
 
 const fontSans = FontSans({
   subsets: ['latin'],
