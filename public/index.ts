@@ -14,6 +14,8 @@ const assets = {
     community: require('./assets/images/customer-engagement.png'),
     discover: require('./assets/images/exploration.png'),
     share: require('./assets/images/share.png'),
+    spam: require('./assets/images/spam.png'),
+    application: require('./assets/images/application.png'),
   },
   category: {
     programming: require('./assets/images/programming.png'),

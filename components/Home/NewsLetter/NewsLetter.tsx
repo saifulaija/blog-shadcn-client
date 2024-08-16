@@ -1,82 +1,75 @@
 import { Calendar, HandPlatter } from 'lucide-react';
 import NewsLetterForm from './NewsLetterForm';
+import Image from 'next/image';
+import assets from '@/public';
 
 export default function NewsLetter() {
   return (
-    <div className="relative isolate overflow-hidden bg-gray-900 py-16 sm:py-24 lg:py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2">
-          <div className="max-w-xl lg:max-w-lg">
-            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-              Subscribe to our newsletter.
+    <div className="relative  py-12 sm:py-16 lg:py-20 px-6 lg:px-8 ">
+      <div className="container mx-auto">
+        <div className="grid gap-16 lg:grid-cols-2">
+          <div>
+            <h2 className="text-3xl font-bold  sm:text-4xl">
+              Subscribe to our newsletter
             </h2>
-            <p className="mt-4 text-lg leading-8 text-gray-300">
+            <p className="mt-4 text-lg  text-muted-foreground">
               Stay updated with the latest articles and discussions on BlogPlex.
               Get exclusive content, insights, and engage with our community. No
               spam, just quality content.
             </p>
-            <div className="mt-6 flex max-w-md gap-x-4">
-              {/* <label htmlFor="email-address" className="sr-only">
-                Email address
-              </label>
-              <input
-                id="email-address"
-                name="email"
-                type="email"
-                autoComplete="email"
-                required
-                className="min-w-0 flex-auto rounded-md border-0 bg-white/5 px-3.5 py-2 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
-                placeholder="Enter your email"
-              />
-              <button
-                type="submit"
-                className="flex-none rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-primary/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-              >
-                Subscribe
-              </button> */}
-
+            <div className="mt-6">
               <NewsLetterForm />
             </div>
           </div>
-          <dl className="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:pt-2">
-            <div className="flex flex-col items-start">
-              <div className="rounded-md bg-white/5 p-2 ring-1 ring-white/10">
-                <Calendar className="h-6 w-6 text-white" aria-hidden="true" />
-              </div>
-              <dt className="mt-4 font-semibold text-white">Weekly articles</dt>
-              <dd className="mt-2 leading-7 text-gray-400">
-                Discover new articles and discussions every week on BlogPlex.
-                Engage with a vibrant community.
-              </dd>
-            </div>
-            <div className="flex flex-col items-start">
-              <div className="rounded-md bg-white/5 p-2 ring-1 ring-white/10">
-                <HandPlatter
-                  className="h-6 w-6 text-white"
-                  aria-hidden="true"
+          <dl className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 lg:gap-x-8 lg:gap-y-12">
+            <div className="flex items-start space-x-4 group">
+              <div className="flex-shrink-0">
+                <Image
+                  src={assets.images.application || '/default-category.jpg'}
+                  alt={'image'}
+                  width={40}
+                  height={40}
+                  quality={100}
+                  className="group-hover:scale-90 transition-all duration-75"
                 />
               </div>
-              <dt className="mt-4 font-semibold text-white">No spam</dt>
-              <dd className="mt-2 leading-7 text-gray-400">
-                We value your privacy and time. Receive only the content you
-                love without any spam.
-              </dd>
+              <div>
+                <dt className="text-lg font-medium text-gray-900">
+                  Weekly articles
+                </dt>
+                <dd className="mt-2 text-base text-gray-500">
+                  Discover new articles and discussions every week on BlogPlex.
+                  Engage with a vibrant community.
+                </dd>
+              </div>
+            </div>
+            <div className="flex items-start space-x-4 group">
+              <div className="flex-shrink-0">
+                <Image
+                  src={assets.images.spam || '/default-category.jpg'}
+                  alt={'image'}
+                  width={40}
+                  height={40}
+                  quality={100}
+                  className="group-hover:scale-90 transition-all duration-75"
+                />
+              </div>
+              <div>
+                <dt className="text-lg font-medium text-gray-900">No spam</dt>
+                <dd className="mt-2 text-base text-gray-500">
+                  We value your privacy and time. Receive only the content you
+                  love without any spam.
+                </dd>
+              </div>
             </div>
           </dl>
         </div>
       </div>
-      <div
-        className="absolute left-1/2 top-0 -z-10 -translate-x-1/2 blur-3xl xl:-top-6"
-        aria-hidden="true"
-      >
-        <div
-          className="aspect-[1155/678] w-[72.1875rem] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30"
-          style={{
-            clipPath:
-              'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
-          }}
-        />
-      </div>
     </div>
   );
 }
+
+
+
+
+
