@@ -1,5 +1,6 @@
 'use client';
 import SignInForm from '@/components/Form/SignInForm ';
+import MyDialog from '@/components/shadcn/MyDialog';
 
 import { buttonVariants } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
@@ -8,6 +9,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 
 import Link from 'next/link';
+import Credential from './Credential';
 
 const sectionVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -47,6 +49,9 @@ const SignIn = () => {
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Separator />
+              <MyDialog triggerButton='Credentials'>
+               <Credential/>
+              </MyDialog>
             </div>
           </motion.div>
           <motion.div

@@ -17,7 +17,7 @@ const BestBlogsServer = () => {
     <div className="w-full px-2 md:p-4 ">
       <div className="wrapper">
         <CustomHeader title="Popular Blogs" />
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:m-0">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:m-0 mt-6">
           {data?.blogs
             ?.slice(0, 8)
             .map((blog: IBlog) => <BestBlogCard blog={blog} key={blog.id} />)}
