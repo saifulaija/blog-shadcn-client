@@ -16,6 +16,9 @@ const assets = {
     share: require('./assets/images/share.png'),
     spam: require('./assets/images/spam.png'),
     application: require('./assets/images/application.png'),
+    user: require('./assets/images/staff.png'),
+    visitors: require('./assets/images/audience.png'),
+    subscriber: require('./assets/images/christmas-card.png'),
   },
   category: {
     programming: require('./assets/images/programming.png'),

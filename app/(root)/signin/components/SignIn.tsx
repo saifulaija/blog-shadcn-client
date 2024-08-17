@@ -6,7 +6,7 @@ import { buttonVariants } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 
 import { AnimatePresence, motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ChevronRight } from 'lucide-react';
 
 import Link from 'next/link';
 import Credential from './Credential';
@@ -49,8 +49,15 @@ const SignIn = () => {
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Separator />
-              <MyDialog triggerButton='Credentials'>
-               <Credential/>
+              <MyDialog
+                triggerButton={
+                  <div className="hover:underline text-primary flex items-center">
+                    <span>Credentials</span>
+                    <ChevronRight />
+                  </div>
+                }
+              >
+                <Credential />
               </MyDialog>
             </div>
           </motion.div>

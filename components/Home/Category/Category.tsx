@@ -7,7 +7,7 @@ import { CategoryCarousel } from './categoryCarousel';
 
 const Category = () => {
   return (
-    <div className="w-full mt-4 container mx-auto">
+    <div className="w-full my-4 container mx-auto">
      <CustomHeader title="Blog Categories"/>
       <div className=" container mx-auto mt-6">
         <CategoryCarousel />

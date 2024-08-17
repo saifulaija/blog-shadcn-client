@@ -1,105 +1,137 @@
-/* eslint-disable @next/next/no-img-element */
-import React from 'react';
+'use client';
 
-const WorkWithUs = () => {
+import { Card } from '@/components/ui/card';
+import assets from '@/public';
+import { Users, Eye, Mail } from 'lucide-react';
+import Image from 'next/image';
+import { useState, useEffect, useRef } from 'react';
+
+export default function WorkWithUs() {
+  const [employeeCount, setEmployeeCount] = useState(0);
+  const [visitorCount, setVisitorCount] = useState(0);
+  const [subscriberCount, setSubscriberCount] = useState(0);
+
+  const [isCounting, setIsCounting] = useState(false);
+  const sectionRef = useRef(null);
+
+  // Mock function to simulate data fetching
+  const fetchData = () => {
+    // Replace this with actual data fetching logic
+    setEmployeeCount(25); // Replace with real data
+    setVisitorCount(10000); // Replace with real data
+    setSubscriberCount(3000); // Replace with real data
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  // Function to handle the count-up animation
+  const handleCountUp = (startValue:any, endValue:any, setValue:any) => {
+    let start = startValue;
+    const duration = 2000; // Duration in ms
+    const increment = endValue / (duration / 16.67); // Calculate the increment per frame (approx. 60fps)
+
+    function step() {
+      start += increment;
+      if (start < endValue) {
+        setValue(Math.floor(start));
+        requestAnimationFrame(step);
+      } else {
+        setValue(endValue);
+      }
+    }
+
+    requestAnimationFrame(step);
+  };
+
+  useEffect(() => {
+    // Intersection Observer to check if the section is in view
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !isCounting) {
+          setIsCounting(true);
+          handleCountUp(0, 25, setEmployeeCount);
+          handleCountUp(0, 10000, setVisitorCount);
+          handleCountUp(0, 3000, setSubscriberCount);
+        }
+      },
+      {
+        threshold: 0.2, // Trigger when 20% of the section is visible
+      },
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    // Cleanup observer on unmount
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, [isCounting]);
+
   return (
-    <div className="my-20">
-      <div className="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32">
-        <img
-          src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=focalpoint&fp-y=.8&w=2830&h=1500&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply"
-          alt=""
-          className="absolute inset-0 -z-10 h-full w-full object-cover object-right md:object-center"
-        />
-        <div
-          className="hidden sm:absolute sm:-top-10 sm:right-1/2 sm:-z-10 sm:mr-10 sm:block sm:transform-gpu sm:blur-3xl"
-          aria-hidden="true"
-        >
-          <div
-            className="aspect-[1097/845] w-[68.5625rem] bg-gradient-to-tr from-[#ff4694] to-[#776fff] opacity-20"
-            style={{
-              clipPath:
-                'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
-            }}
-          ></div>
-        </div>
-        <div
-          className="absolute -top-52 left-1/2 -z-10 -translate-x-1/2 transform-gpu blur-3xl sm:top-[-28rem] sm:ml-16 sm:translate-x-0 sm:transform-gpu"
-          aria-hidden="true"
-        >
-          <div
-            className="aspect-[1097/845] w-[68.5625rem] bg-gradient-to-tr from-[#ff4694] to-[#776fff] opacity-20"
-            style={{
-              clipPath:
-                'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
-            }}
-          ></div>
-        </div>
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl lg:mx-0">
-            <h2 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
+    <div ref={sectionRef} className="px-6 sm:px-8 lg:px-10 mb-16 -mt-5">
+      <div className="container mx-auto max-w-7xl">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+          <div>
+            <h2 className="text-3xl font-bold  sm:text-4xl">
               Work with BlogPlex
             </h2>
-            <p className="mt-6 text-lg leading-8 text-gray-300">
-              At BlogPlex, we&apos;re revolutionizing the way people share and
-              engage with content. Join us to be part of an innovative team
-              that&apos;s dedicated to making blogging more accessible and
-              interactive.
+            <p className="mt-4 text-lg text-muted-foreground">
+              At BlogPlex, we are committed to creating a vibrant community of
+              content creators and readers. Join our team to contribute to a
+              platform that reaches thousands of visitors daily, and help shape
+              the future of content creation and consumption.
             </p>
           </div>
-          <div className="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none">
-            <div className="grid grid-cols-1 gap-x-8 gap-y-6 text-base font-semibold leading-7 text-white sm:grid-cols-2 md:flex lg:gap-x-10">
-              <a href="#">
-                Open roles <span aria-hidden="true">&rarr;</span>
-              </a>
-              <a href="#">
-                Internship program <span aria-hidden="true">&rarr;</span>
-              </a>
-              <a href="#">
-                Our values <span aria-hidden="true">&rarr;</span>
-              </a>
-              <a href="#">
-                Meet our leadership <span aria-hidden="true">&rarr;</span>
-              </a>
-            </div>
-            <dl className="mt-16 grid grid-cols-1 gap-8 sm:mt-20 sm:grid-cols-2 lg:grid-cols-4">
-              <div className="flex flex-col-reverse">
-                <dt className="text-base leading-7 text-gray-300">
-                  Offices worldwide
-                </dt>
-                <dd className="text-2xl font-bold leading-9 tracking-tight text-primary">
-                  12
-                </dd>
-              </div>
-              <div className="flex flex-col-reverse">
-                <dt className="text-base leading-7 text-gray-300">
-                  Full-time colleagues
-                </dt>
-                <dd className="text-2xl font-bold leading-9 tracking-tight text-primary">
-                  300+
-                </dd>
-              </div>
-              <div className="flex flex-col-reverse">
-                <dt className="text-base leading-7 text-gray-300">
-                  Hours per week
-                </dt>
-                <dd className="text-2xl font-bold leading-9 tracking-tight text-primary">
-                  40
-                </dd>
-              </div>
-              <div className="flex flex-col-reverse">
-                <dt className="text-base leading-7 text-gray-300">
-                  Paid time off
-                </dt>
-                <dd className="text-2xl font-bold leading-9 tracking-tight text-primary">
-                  Unlimited
-                </dd>
-              </div>
-            </dl>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+            <Card className="flex flex-col items-center pt-4 group">
+              <Image
+                src={assets.images.user || '/default-category.jpg'}
+                alt={'image'}
+                width={40}
+                height={40}
+                quality={100}
+                className="group-hover:scale-90 transition-all duration-75"
+              />
+              <h3 className="mt-4 text-2xl font-semibold ">
+                {employeeCount} +
+              </h3>
+              <p className="mt-2 text-base text-gray-500">Total Employees</p>
+            </Card>
+            <Card className="flex flex-col items-center p-4 group">
+              <Image
+                src={assets.images.visitors || '/default-category.jpg'}
+                alt={'image'}
+                width={40}
+                height={40}
+                quality={100}
+                className="group-hover:scale-90 transition-all duration-75"
+              />
+              <h3 className="mt-4 text-2xl font-semibold ">{visitorCount} +</h3>
+              <p className="mt-2 text-base text-gray-500">Total Visitors</p>
+            </Card>
+            <Card className="flex flex-col items-center p-4 group">
+              <Image
+                src={assets.images.subscriber || '/default-category.jpg'}
+                alt={'image'}
+                width={40}
+                height={40}
+                quality={100}
+                className="group-hover:scale-90 transition-all duration-75"
+              />
+              <h3 className="mt-4 text-2xl font-semibold ">
+                {subscriberCount} +
+              </h3>
+              <p className="mt-2 text-base text-gray-500">Total Subscribers</p>
+            </Card>
           </div>
         </div>
       </div>
     </div>
   );
-};
-
-export default WorkWithUs;
+}

@@ -29,11 +29,11 @@ const Footer = () => {
               Making the world a better place through constructing elegant
               hierarchies.
             </p>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 text-gray-600">
               <MapPin width={20} height={20} />
-              <p className="text-gray-600"> Dinajpur,Bangladesh</p>
+              <p className=" text-gray-600 "> Dinajpur,Bangladesh</p>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 text-gray-600">
               <Phone width={20} height={20} />
               <span className="text-gray-600"> +8801874767969</span>
             </div>

@@ -5,7 +5,7 @@ import assets from '@/public';
 
 export default function NewsLetter() {
   return (
-    <div className="relative  py-12 sm:py-16 lg:py-20 px-6 lg:px-8 ">
+    <div className="relative px-6 lg:px-8 mt-4 ">
       <div className="container mx-auto">
         <div className="grid gap-16 lg:grid-cols-2">
           <div>
