@@ -64,7 +64,7 @@ export default function Home() {
         </div>
       </div>
       {/* <Loading /> */}
-      <BelowFooter />
+    
     </main>
   );
 }
