@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -23,12 +24,12 @@
     --border: 0 0% 89.8%;
     --input: 0 0% 89.8%;
     --ring: 0 72.2% 50.6%;
-    --radius: 0.5rem;
-    --chart-1: 347 77% 50%;
-    --chart-2: 352 83% 91%;
-    --chart-3: 350 80% 72%;
-    --chart-4: 351 83% 82%;
-    --chart-5: 349 77% 62%;
+    --radius: 0.3rem;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
   }
 
   .dark {
@@ -51,13 +52,14 @@
     --border: 0 0% 14.9%;
     --input: 0 0% 14.9%;
     --ring: 0 72.2% 50.6%;
-    --chart-1: 347 77% 50%;
-    --chart-2: 349 77% 62%;
-    --chart-3: 350 80% 72%;
-    --chart-4: 351 83% 82%;
-    --chart-5: 352 83% 91%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
   }
 }
+
 
 @layer utilities {
   .wrapper {

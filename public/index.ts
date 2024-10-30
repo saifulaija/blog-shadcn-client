@@ -1,12 +1,12 @@
 const assets = {
   images: {
-    logo: require('./assets/icons/icon.png'),
+    logo: require('./assets/icons/icon.jpeg'),
 
     login: require('./assets/images/blog-login.jpeg'),
     register: require('./assets/images/blog-register.jpg'),
     noData: require('./assets/icons/nodata.svg'),
     banner01: require('./assets/images/banner01.png'),
-    banner02: require('./assets/images/banner02.png'),
+    banner02: require('./assets/images/banner02.webp'),
     banner03: require('./assets/images/banner03.png'),
     banner04: require('./assets/images/banner04.png'),
     explore: require('./assets/images/explore.png'),
